@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail de Sécurité CTS & ERP Type L - Suite Open Source</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9 !important;
+            color: var(--color-primary);
+            scroll-behavior: auto !important;
+        }
+
+        /* Styles pour tous les onglets */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-tab.active {
+            border-bottom-color: #ea580c;
+            color: #ea580c;
+            font-weight: 600;
+        }
+
+        /* Scrollbar personnalisée */
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Pulse animation for beta badge */
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Réduction de 5% de l'échelle pour la page d'accueil */
+        .page-scale-95 {
+            transform: scale(0.95);
+            transform-origin: top center;
+        }
+
+        /* Assurer que la page commence toujours en haut */
+        html {
+            scroll-behavior: auto !important;
+        }
+        
+        /* Styles pour les liens de navigation */
+        .nav-tab {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 2px solid transparent;
+            color: #4b5563;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .nav-tab:hover {
+            color: #ea580c;
+        }
+        
+        .nav-tab.active {
+            border-bottom-color: #ea580c;
+            color: #ea580c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- En-tête Principal -->
+    <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-2"></span>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Portail de Sécurité
+                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">CTS & ERP Type
+                            L</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.hash='accueil'; switchTab('accueil'); window.scrollTo(0, 0);"
+                        class="text-sm text-stone-500 hover:text-orange-600 transition flex items-center hidden sm:inline-flex">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Retour à l'accueil
+                    </button>
+                    <div class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse" title="Application active"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navigation par Onglets -->
+    <div class="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div class="max-w-8xl mx-auto">
+            <nav class="flex overflow-x-auto no-scrollbar">
+                <button onclick="switchTab('accueil')"
+                    class="nav-tab active px-3 py-3 border-b-2 border-orange-600 text-orange-600 font-semibold whitespace-nowrap flex items-center">
+                    <i class="fas fa-home mr-2"></i>
+                    Accueil
+                </button>
+                <a href="focus-reglementation/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-search mr-2"></i>
+                    Focus Réglementation
+                </a>
+                <a href="reglementation-cts/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-scale-balanced mr-2"></i>
+                    Règlementation CTS
+                </a>
+                <a href="securite-incendie/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-red-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-fire mr-2"></i>
+                    Sécurité Incendie
+                </a>
+                <a href="formation-securite/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-emerald-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i>
+                    Formation Sécurité
+                </a>
+                <a href="simulation/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-calculator mr-2"></i>
+                    Outils Simulation
+                </a>
+                <a href="reglementation-erp/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-amber-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-book mr-2"></i>
+                    Règlementation ERP
+                </a>
+                <a href="quiz/index.html"
+                    class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-purple-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-question-circle mr-2"></i>
+                    Quiz du Régisseur
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- ==================== ONGLET ACCUEIL ==================== -->
+        <div id="accueil" class="tab-content active">
+            <div class="max-w-8xl mx-auto">
+
+                <!-- TABLEAU DE BORD 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Guide Réglementaire CTS & ERP Type L</h2>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        Cette suite d'applications open source constitue une plateforme centralisée
+                        regroupant des outils spécialement conçus pour
+                        répondre aux besoins concrets des professionnels travaillant avec les Établissements
+                        Recevant du Public de Type L (salles de spectacles, théâtres, lieux polyvalents)
+                        ainsi que les Chapiteaux, Tentes et Structures itinérantes CTS.
+                        Elle vise à simplifier et sécuriser la gestion quotidienne des obligations
+                        réglementaires en proposant des simulateurs interactifs, des guides pratiques, des
+                        calculateurs techniques et des ressources pédagogiques directement applicables sur le terrain.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        L'ensemble des outils est pensé pour le secteur du spectacle vivant
+                        et événementiel, prenant en compte ses spécificités techniques, ses
+                        contraintes opérationnelles et son cadre réglementaire afin
+                        d'offrir un accompagnement complet depuis la conception d'un projet
+                        jusqu'à sa réalisation en toute sécurité.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-orange-500">
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Cadre
+                                Général</span>
+                            <span class="font-medium">ERP Type L</span>
+                            <p class="text-sm text-stone-600 mt-1">Installations fixes ou provisoires accueillant du
+                                public pour des spectacles.</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-slate-600">
+                            <span
+                                class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Réglementation
+                                Spécifique</span>
+                            <span class="font-medium">CTS</span>
+                            <p class="text-sm text-stone-600 mt-1">Règlement spécifique (Arrêté du 23 janvier 1985) pour
+                                les établissements itinérants.</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-emerald-500">
+                            <span
+                                class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Vérification
+                                Obligatoire</span>
+                            <span class="font-medium">Contrôle</span>
+                            <p class="text-sm text-stone-600 mt-1">Obligation de vérification par des organismes agréés
+                                (BVCTS) avant ouverture.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Objectifs -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Objectifs du Projet</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-rose-500">
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Mission
+                                1</span>
+                            <span class="font-medium">Améliorer la Sécurité</span>
+                            <p class="text-sm text-stone-600 mt-1">La première mission de cette plateforme est
+                                d'améliorer
+                                concrètement la sécurité dans le spectacle vivant et événementiel en traduisant des
+                                réglementations complexes en outils applicables au quotidien.
+                                Plutôt que de se contenter de référencer des textes législatifs, nous développons des
+                                interfaces intuitives qui guident pas à pas les professionnels dans la mise en
+                                conformité de leurs installations.</p>
+                        </div>
+
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-violet-500">
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Mission
+                                2</span>
+                            <span class="font-medium">Former et Informer</span>
+                            <p class="text-sm text-stone-600 mt-1">Notre approche transforme la réglementation
+                                technique,
+                                souvent perçue comme aride et complexe, en contenus pédagogiques clairs et interactifs.
+                                Nous utilisons des visualisations dynamiques, des simulateurs en temps réel et des
+                                parcours
+                                d'apprentissage progressifs pour rendre accessibles des concepts techniques pointus à
+                                l'ensemble
+                                des acteurs du spectacle, sans prérequis juridique ou technique particulier.
+                            </p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-cyan-500">
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Mission
+                                3</span>
+                            <span class="font-medium">Créer une Communauté</span>
+                            <p class="text-sm text-stone-600 mt-1">Nous construisons un écosystème ouvert où régisseurs,
+                                exploitants et contrôleurs contribuent collectivement à l'amélioration des outils. Ce
+                                modèle collaboratif permet une mise à jour continue des ressources, l'intégration de
+                                retours terrain précieux et la création d'une intelligence collective au service de la
+                                sécurité de tous les événements culturels.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Pour qui ? -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Pour qui ?</h2>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        Cette suite d'outils est conçue pour accompagner l'ensemble des acteurs professionnels du
+                        spectacle vivant et événementiel dans leurs responsabilités en matière de sécurité.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                            <i class="fas fa-user-tie text-3xl text-blue-600 mb-4"></i>
+                            <h4 class="font-bold text-gray-900 mb-2">Régisseurs</h4>
+                            <p class="text-sm text-gray-600">Techniciens responsables de la sécurité</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                            <i class="fas fa-building text-3xl text-orange-600 mb-4"></i>
+                            <h4 class="font-bold text-gray-900 mb-2">Exploitants ERP</h4>
+                            <p class="text-sm text-gray-600">Directeurs de salles et théâtres</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                            <i class="fas fa-tent text-3xl text-emerald-600 mb-4"></i>
+                            <h4 class="font-bold text-gray-900 mb-2">Organisateurs CTS</h4>
+                            <p class="text-sm text-gray-600">Chapiteaux et structures itinérantes</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 text-center">
+                            <i class="fas fa-user-graduate text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-bold text-gray-900 mb-2">Étudiants/Formateurs</h4>
+                            <p class="text-sm text-gray-600">Formation technique et sécurité</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Applications Disponibles -->
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Applications Disponibles</h2>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        Découvrez notre suite d'applications open source dédiées à la sécurité des ERP Type L et des
+                        structures itinérantes. Chaque outil a été conçu pour répondre à des besoins spécifiques des
+                        professionnels
+                        du spectacle.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                        <!-- Carte Focus Réglementation -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-search text-blue-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Focus Réglementation</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Application spécialisée pour la recherche et l'analyse réglementaire
+                                    des ERP Type L avec moteur de recherche intelligent.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Recherche réglementaire avancée</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Base de données juridique</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Veille réglementaire automatique</span>
+                                    </li>
+                                </ul>
+                                <a href="focus-reglementation/index.html"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Carte Règlementation CTS -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-scale-balanced text-orange-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Règlementation CTS</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Règlementation CTS - Dispositions applicables aux établissements de type Chapiteaux,
+                                    Tentes et Structures.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Base de données légifrance</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Recherche intelligente</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Veille réglementaire</span>
+                                    </li>
+                                </ul>
+                                <a href="reglementation-cts/index.html"
+                                    class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Carte Sécurité Incendie -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-fire text-red-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Sécurité Incendie</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Guide de la sécurité incendie pour les ERP Type L avec références
+                                    réglementaires et recommandations pratiques.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Guide réglementaire complet</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Mesures de prévention</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Protection des personnes</span>
+                                    </li>
+                                </ul>
+                                <a href="securite-incendie/index.html"
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Carte Formation Sécurité -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-graduation-cap text-emerald-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Formation Sécurité</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Formation interactive complète sur la sécurité ERP Type L avec validation
+                                    des connaissances et attestation.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>6 modules de formation</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Quiz de validation</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Attestation téléchargeable</span>
+                                    </li>
+                                </ul>
+                                <a href="formation-securite/index.html"
+                                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Carte Outils Simulation -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-calculator text-amber-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Outils Simulation</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Simulateurs pour la classification ERP, calcul des dégagements,
+                                    unités de passage et sécurité incendie.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Calculateur de catégorie ERP</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Dimensionnement des dégagements</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Graphiques interactifs</span>
+                                    </li>
+                                </ul>
+                                <a href="simulation/index.html"
+                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Carte Quiz du Régisseur -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-question-circle text-purple-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Quiz du Régisseur</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Testez vos connaissances sur la sécurité ERP Type L et CTS de manière ludique
+                                    et interactive.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Questions pratiques</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Corrections détaillées</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Progression personnalisée</span>
+                                    </li>
+                                </ul>
+                                <a href="quiz/index.html"
+                                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTE : J'ai supprimé les onglets "Chargement..." car ils ne sont plus nécessaires -->
+        <!-- Les applications s'ouvrent directement via les liens -->
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
+        <div class="max-w-8xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+
+                <!-- Section 1 -->
+                    <h4 class="text-xl mb-4 text-[#343a40]">Portail de veille juridique ERP & CTS</h4>
+                    <p class="text-[#6c757d] text-sm mb-2">
+                        Suite d'Applications destinées aux
+                        Régisseurs, Exploitants & Organismes de Formation
+                    </p>
+
+                    <p class="text-[#495057] text-sm font-medium mb-2 mt-4">
+                        L'Application ne se substitue pas :
+                    </p>
+                    <ul class="text-[#6c757d] text-sm space-y-1 mb-4">
+                        <li>• Aux textes officiels publiés</li>
+                        <li>• À l'avis d'experts certifiés</li>
+                        <li>• Aux commissions de sécurité compétentes</li>
+                        <li>• À la jurisprudence en vigueur</li>
+                    </ul>
+                    
+                    <p class="text-[#6c757d] text-sm">
+                        <small>Mise à jour : 24 décembre 2025</small>
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="md:border- md:border-[] md:pl-8">
+                    <h4 class="text-xl mb-4 text-[#343a40]">Applications</h4>
+
+                    <div class="space-y-4">
+                        <a href="https://fi-regie.github.io/Portail-Securite-CTS-ERP-Type-L/#accueil" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Suite d'Applications destinée aux
+                                    Régisseurs, Exploitants & Organismes de Formation
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="reglementation-cts/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Réglementation Spectacle Itinérant</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Outils de veille juridique & de sécurité du Spectacle Itinérant
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="simulation/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Outil de Simulation Sécurité</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Simulez votre Catégorie ERP, vos dégagements UP, Éch. de Beaufort
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="reglementation-erp/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Réglementation ERP</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Application interactive des textes officiels pour consulter rapidement la
+                                    Règlementation ERP (CCH, Arrêté du 25 juin 1980)
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="md:border- md:border-[] md:pl-8">
+                    <h4 class="text-xl mb-4 text-[#343a40]">Formation</h4>
+                    <div class="space-y-4">
+                        <a href="focus-reglementation/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Focus Réglementation</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Guide pour comprendre l'architecture de la 
+                                    réglementation officielle ERP
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="securite-incendie/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Guide de la Sécurité Incendie</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Synthése des obligations des recponsables de la sécurité incendie desERP  
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="formation-securite/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Formation Sécurité ERP</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+
+                                    Outil pédagogique destiné à la formation des responsables techniques
+                                    d'ERP Type L & CTS.
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="quiz/index.html"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Le Quiz du Régisseur</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+
+                                    Amusez-vous, apprenez, évaluez vos compétences
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-[#ced4da] text-center text-sm text-[#6c757d]">
+                <p>
+                    <i class="fas fa-gavel mr-2"></i>
+                    Portail de veille juridique CTS & ERP Type L
+                </p>
+                <p class="mt-2">
+                    ©️Open Source • Partage & Contribution • Contact :
+                    philippe.potier-regie@proton.me
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== GESTION DE LA NAVIGATION ====================
+        const tabState = {
+            current: 'accueil',
+            history: ['accueil']
+        };
+
+        // Fonction pour changer d'onglet (navigation interne du portail)
+        function switchTab(tabId) {
+            // Si déjà sur cet onglet, ne rien faire
+            if (tabState.current === tabId) return;
+
+            // Mettre à jour l'état
+            tabState.current = tabId;
+            tabState.history.push(tabId);
+
+            // Mettre à jour l'URL avec l'historique
+            history.pushState({ tab: tabId }, '', `#${tabId}`);
+            window.scrollTo(0, 0);
+
+            // Cacher tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            // Mettre à jour la navigation
+            updateTabNavigation(tabId);
+        }
+
+        // Mettre à jour la navigation
+        function updateTabNavigation(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-orange-600', 'text-orange-600');
+                btn.classList.add('border-transparent', 'text-gray-600');
+            });
+
+            const activeBtn = document.querySelector(`[onclick*="switchTab('${tabId}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-gray-600');
+                activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+            }
+        }
+
+        // Gestion de l'historique navigateur (boutons avant/arrière)
+        window.addEventListener('popstate', function (event) {
+            window.scrollTo(0, 0);
+
+            if (event.state && event.state.tab) {
+                tabState.current = event.state.tab;
+
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+
+                const targetTab = document.getElementById(event.state.tab);
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+
+                updateTabNavigation(event.state.tab);
+            } else {
+                switchTab('accueil');
+            }
+        });
+
+        // Vérifier l'hash au chargement
+        window.addEventListener('DOMContentLoaded', function () {
+            window.scrollTo(0, 0);
+
+            setTimeout(() => {
+                const hash = window.location.hash.substring(1);
+                const validTabs = ['accueil'];
+
+                if (hash && validTabs.includes(hash)) {
+                    history.replaceState({ tab: hash }, '', `#${hash}`);
+                    tabState.current = hash;
+                    tabState.history = [hash];
+
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+
+                    const targetTab = document.getElementById(hash);
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                    }
+
+                    updateTabNavigation(hash);
+                } else {
+                    history.replaceState({ tab: 'accueil' }, '', '#accueil');
+                    tabState.current = 'accueil';
+                    tabState.history = ['accueil'];
+
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+
+                    const targetTab = document.getElementById('accueil');
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                    }
+
+                    updateTabNavigation('accueil');
+                }
+
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+
+        // ==================== FONCTIONS UTILITAIRES ====================
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${type === 'error' ? 'bg-red-100 text-red-800 border-red-200' :
+                type === 'success' ? 'bg-green-100 text-green-800 border-green-200' :
+                    'bg-blue-100 text-blue-800 border-blue-200'
+                } border`;
+            alertDiv.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : type === 'success' ? 'check-circle' : 'info-circle'} mr-3"></i>
+            <span>${message}</span>
+            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+            document.body.appendChild(alertDiv);
+
+            setTimeout(() => {
+                if (alertDiv.parentElement) {
+                    alertDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Export des fonctions pour le débogage
+        window.app = {
+            switchTab,
+            showAlert,
+            state: tabState
+        };
+    </script>
+
+</body>
+</html>
