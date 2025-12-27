@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Réglementation - ERP Type L & CTS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9 !important;
+            color: var(--color-primary);
+            scroll-behavior: auto !important;
+        }
+       
+        /* Styles pour tous les onglets */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-tab.active {
+            border-bottom-color: #ea580c;
+            color: #ea580c;
+            font-weight: 600;
+        }
+
+        /* Scrollbar personnalisée */
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Pulse animation for beta badge */
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Assurer que la page commence toujours en haut */
+        html {
+            scroll-behavior: auto !important;
+        }
+
+        /* Styles spécifiques à Focus Réglementation */
+        .concept-box {
+            border-left: 4px solid #f97316;
+            background-color: #fff7ed;
+        }
+        
+        .article-tag {
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            height: 400px;
+            max-height: 450px;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+<!-- En-tête Principal (identique au portail source) -->
+<nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <span class="text-2xl mr-2"></span>
+                <h1 class="text-xl font-bold tracking-tight text-slate-700">Focus Réglementation
+                    <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">ERP Type L & CTS</span>
+                </h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="window.location.href='../../index.html#accueil';"
+                class="text-sm text-stone-500 hover:text-orange-600 transition flex items-center hidden sm:inline-flex">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Retour au Portail Principal
+            </button>
+            <div class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse" title="Application active"></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Navigation par Onglets -->
+<div class="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div class="max-w-8xl mx-auto">
+        <nav class="flex overflow-x-auto no-scrollbar">
+            <button onclick="switchTab('accueil')"
+                class="nav-tab active px-6 py-3 border-b-2 border-orange-600 text-orange-600 font-semibold whitespace-nowrap flex items-center">
+                <i class="fas fa-home mr-3"></i>
+                Accueil
+            </button>
+            <button onclick="switchTab('structure')"
+                class="nav-tab px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                <i class="fas fa-sitemap mr-3"></i>
+                Structure Règlementaire
+            </button>
+            <button onclick="switchTab('typel')"
+                class="nav-tab px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                <i class="fas fa-theater-masks mr-3"></i>
+                Spécificités Type L
+            </button>
+            <button onclick="switchTab('cts')"
+                class="nav-tab px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                <i class="fas fa-tent mr-3"></i>
+                Règlementation CTS
+            </button>
+            <button onclick="switchTab('calculs')"
+                class="nav-tab px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                <i class="fas fa-calculator mr-3"></i>
+                Outils de Calcul
+            </button>
+            <button onclick="switchTab('secours')"
+                class="nav-tab px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-red-600 whitespace-nowrap flex items-center">
+                <i class="fas fa-fire-extinguisher mr-3"></i>
+                Moyens de Secours
+            </button>
+        </nav>
+    </div>
+</div>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+    <!-- ==================== ONGLET ACCUEIL FORMATION ==================== -->
+    <div id="accueil" class="tab-content active">
+        <div class="max-w-8xl mx-auto">
+            <!-- HERO SECTION -->
+            <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl shadow-sm border border-orange-100 p-8 md:p-12 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Réglementation Sécurité ERP</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto mb-6">
+                        Programme pédagogique complet pour les organismes de formation SSIAP, régisseurs et exploitants d'ERP Type L et structures itinérantes.
+                    </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OBJECTIFS PÉDAGOGIQUES -->
+            <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-slate-700 border-b pb-3">Objectifs Pédagogiques</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-stone-50 p-5 rounded-xl border-l-4 border-blue-500">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-book text-blue-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Comprendre</h4>
+                        <p class="text-sm text-gray-600">La logique de classement des ERP selon leur type et catégorie</p>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-xl border-l-4 border-orange-500">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-cogs text-orange-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Maîtriser</h4>
+                        <p class="text-sm text-gray-600">Les exigences techniques spécifiques au Type L et aux CTS</p>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-xl border-l-4 border-emerald-500">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-calculator text-emerald-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Calculer</h4>
+                        <p class="text-sm text-gray-600">Les effectifs, dégagements et unités de passage</p>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-xl border-l-4 border-purple-500">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-purple-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Appliquer</h4>
+                        <p class="text-sm text-gray-600">Les mesures de sécurité incendie adaptées au contexte</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATISTIQUES DE FORMATION -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6">
+                    <h3 class="text-xl font-bold mb-6 text-slate-700">Répartition des Risques Principaux</h3>
+                    <div class="chart-container">
+                        <canvas id="chartAccueil"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4 text-center">
+                        La réglementation ERP cible 4 familles de risques majeurs à maîtriser
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6">
+                    <h3 class="text-xl font-bold mb-6 text-slate-700">Modules de Formation</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-blue-600 font-bold">1</span>
+                                </div>
+                                <span class="font-medium">Structure règlementaire</span>
+                            </div>
+                            <span class="text-sm text-slate-500">4 heures</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-orange-600 font-bold">2</span>
+                                </div>
+                                <span class="font-medium">Spécificités Type L</span>
+                            </div>
+                            <span class="text-sm text-slate-500">6 heures</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-emerald-600 font-bold">3</span>
+                                </div>
+                                <span class="font-medium">Règlementation CTS</span>
+                            </div>
+                            <span class="text-sm text-slate-500">5 heures</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-purple-600 font-bold">4</span>
+                                </div>
+                                <span class="font-medium">Calculs techniques</span>
+                            </div>
+                            <span class="text-sm text-slate-500">4 heures</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ONGLET STRUCTURE RÈGLEMENTAIRE ==================== -->
+    <div id="structure" class="tab-content">
+        <div class="max-w-8xl mx-auto">
+            <!-- TITRE PRINCIPAL -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-2xl shadow-lg p-8 md:p-10 mb-8">
+                <h1 class="text-3xl font-bold mb-4">Structure du Règlement de Sécurité</h1>
+                <p class="text-slate-200 text-lg max-w-4xl">
+                    Le règlement de sécurité contre les risques d'incendie et de panique est la référence absolue. 
+                    Comprendre sa structure modulaire est la première étape vers une maîtrise opérationnelle.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-orange-500 inline-block pb-1">Architecture en 4 Livres</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Le règlement n'est pas linéaire mais <strong>modulaire</strong>. Chaque "Livre" s'applique selon la nature et la catégorie de l'établissement.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white rounded-lg shadow border-l-4 border-blue-600">
+                            <h3 class="font-bold text-lg text-slate-800">Livre I : Les Principes (GN)</h3>
+                            <p class="text-sm text-slate-600">Dispositions applicables à TOUS les établissements. C'est ici que l'on classe l'ERP.</p>
+                            <span class="article-tag mt-2 inline-block">GN 1 à GN 15</span>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow border-l-4 border-orange-500">
+                            <h3 class="font-bold text-lg text-slate-800">Livre II : Le Cœur Technique (GE)</h3>
+                            <p class="text-sm text-slate-600">Règles techniques détaillées pour les catégories 1, 2, 3 et 4.</p>
+                            <span class="article-tag mt-2 inline-block">CO, AM, DF, MS, EL...</span>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow border-l-4 border-red-500">
+                            <h3 class="font-bold text-lg text-slate-800">Livre III : Petits Établissements (PE)</h3>
+                            <p class="text-sm text-slate-600">Règles allégées pour la 5ème catégorie.</p>
+                            <span class="article-tag mt-2 inline-block">PE 1 à PE 37</span>
+                        </div>
+                         <div class="p-4 bg-white rounded-lg shadow border-l-4 border-slate-500">
+                            <h3 class="font-bold text-lg text-slate-800">Livre IV : Établissements Spéciaux</h3>
+                            <p class="text-sm text-slate-600">Chapiteaux, gares, plein air, structures gonflables.</p>
+                            <span class="article-tag mt-2 inline-block">CTS, PA, SG, GA, EF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chart: Volume/Complexity Distribution -->
+                <div class="flex flex-col items-center justify-center bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-center text-slate-800">Répartition de la Complexité Réglementaire</h3>
+                    <div class="chart-container">
+                        <canvas id="structureChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-slate-500 mt-2 italic">Estimation basée sur le volume technique des articles</p>
+                </div>
+            </div>
+
+            <!-- CLASSIFICATION DES ERP -->
+            <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-12">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">La Matrice de Classification</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Chart: Categories Thresholds -->
+                    <div class="section-card p-6">
+                        <h3 class="text-xl font-bold mb-4 text-slate-800">Les Catégories (Effectif)</h3>
+                        <p class="text-sm text-slate-600 mb-6">Seuils définis par l'article R123-19 du Code de la Construction et de l'Habitation</p>
+                        <div class="chart-container h-80">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-sm bg-blue-50 p-3 rounded">
+                            <strong>Note importante :</strong> La 5ème catégorie est définie par un seuil bas spécifique à chaque Type
+                        </div>
+                    </div>
+
+                    <!-- Visual: Types (Letters) -->
+                    <div class="section-card p-6">
+                        <h3 class="text-xl font-bold mb-4 text-slate-800">Les Types (Activité)</h3>
+                        <div class="grid grid-cols-4 gap-2 text-center text-sm font-bold mb-6">
+                            <div class="col-span-4 text-left text-xs text-slate-500 uppercase tracking-widest mb-2 mt-2">Types Courants</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Salles d'auditions, conférences, réunions, spectacles">L</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Magasins de vente, centres commerciaux">M</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Restaurants et débits de boisson">N</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Hôtels et pensions de famille">O</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Salles de danse et salles de jeux">P</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Établissements d'enseignement">R</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Bibliothèques, centres de documentation">S</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Salles d'expositions">T</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Établissements de soins">U</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Établissements de culte">V</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Administrations, banques, bureaux">W</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Établissements sportifs couverts">X</div>
+                            <div class="bg-slate-100 p-3 rounded hover:bg-blue-100 transition" title="Musées">Y</div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <div class="col-span-4 text-left text-xs text-slate-500 uppercase tracking-widest mb-2">Types Spéciaux</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">PA (Plein Air)</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">CTS (Chapiteaux)</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">SG (Gonflables)</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">GA (Gares)</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">EF (Flottants)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARCHITECTURE DU LIVRE II -->
+            <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-8">
+                <h2 class="text-2xl font-bold mb-6 text-slate-800">Architecture du Livre II : Dispositions Générales</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-slate-700 mb-4">Thématiques techniques</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <span class="font-bold text-white bg-blue-600 px-2 py-1 rounded text-xs mr-3 mt-1">CO</span>
+                                <div>
+                                    <strong>Construction</strong> (Isolement, résistance au feu)
+                                    <p class="text-xs text-slate-500">Ex: CO 24 (Façades), CO 12 (Isolement)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="font-bold text-white bg-blue-600 px-2 py-1 rounded text-xs mr-3 mt-1">AM</span>
+                                <div>
+                                    <strong>Aménagements</strong> (Décoration, mobilier)
+                                    <p class="text-xs text-slate-500">Ex: AM 8 (Dépôts interdits), AM 18 (Sièges)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="font-bold text-white bg-blue-600 px-2 py-1 rounded text-xs mr-3 mt-1">DF</span>
+                                <div>
+                                    <strong>Désenfumage</strong> (Évacuation des fumées)
+                                    <p class="text-xs text-slate-500">Un pilier pour la survie des occupants</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="font-bold text-white bg-blue-600 px-2 py-1 rounded text-xs mr-3 mt-1">MS</span>
+                                <div>
+                                    <strong>Moyens de Secours</strong> (Extincteurs, SSI)
+                                    <p class="text-xs text-slate-500">Ex: MS 41 (Affichage plans), MS 70 (SSI)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-center">
+                        <div class="chart-container">
+                            <canvas id="technicalRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ONGLET SPÉCIFICITÉS TYPE L ==================== -->
+    <div id="typel" class="tab-content">
+        <div class="max-w-8xl mx-auto">
+            <!-- HERO SECTION -->
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl shadow-sm border border-purple-100 p-8 md:p-12 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Le Type L : Salles à usage multiple</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                        Salles d'auditions, de conférences, de réunions, de spectacles ou à usage multiple. Un des types les plus courants et complexes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Detailed Text Content -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Articles Clés Type L</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="font-bold text-orange-600">Article L1</div>
+                                <p class="text-sm text-slate-600">Définit le domaine d'application (Salles de spectacle, conférence, polyvalentes)</p>
+                            </div>
+                            <div>
+                                <div class="font-bold text-orange-600">Article L15</div>
+                                <p class="text-sm text-slate-600">Traite des installations électriques spécifiques aux équipements scéniques</p>
+                            </div>
+                            <div>
+                                <div class="font-bold text-orange-600">Article L31</div>
+                                <p class="text-sm text-slate-600">Impose la fixation des sièges pour les effectifs importants</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-orange-50 border border-orange-100 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-orange-900 mb-2">💡 Point de Vigilance : La Scène</h3>
+                        <p class="text-orange-800 text-sm">
+                            La distinction entre la salle et la scène est cruciale. Si la scène est intégrée (sans séparation coupe-feu), 
+                            les contraintes sur les matériaux (M0/M1) sont beaucoup plus strictes pour l'ensemble du volume.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Analyse Comparative des Risques (Type L)</h3>
+                    <p class="text-sm text-slate-500 mb-6">Comparaison de l'intensité des risques spécifiques aux salles de spectacle</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="chartTypel"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOCUS SUR LES CALCULS -->
+            <div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl border border-blue-100 p-8 mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-slate-800 border-l-4 border-orange-500 pl-4">Focus Étudiant : Le Calcul des Dégagements (Art. CO 34)</h3>
+                <p class="mb-8 text-slate-700">Le calcul des Unités de Passage (UP) est l'exercice pratique numéro 1. Il détermine la capacité d'évacuation.</p>
+                
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow w-full md:w-1/4 border-t-4 border-blue-500">
+                        <div class="text-3xl mb-4">👥</div>
+                        <h4 class="font-bold mb-2 text-lg">1. Effectif Théorique</h4>
+                        <p class="text-sm text-slate-500">Déterminé selon le TYPE (ex: Type L = 1 pers/siège)</p>
+                    </div>
+                    
+                    <!-- Arrow -->
+                    <div class="text-3xl text-slate-400 font-bold hidden md:block">→</div>
+                    <div class="text-3xl text-slate-400 font-bold md:hidden">↓</div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow w-full md:w-1/4 border-t-4 border-blue-500">
+                        <div class="text-3xl mb-4">🧮</div>
+                        <h4 class="font-bold mb-2 text-lg">2. Calcul des UP</h4>
+                        <p class="text-sm text-slate-500">Effectif arrondi au cent supérieur. 1 UP = 0.60m</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="text-3xl text-slate-400 font-bold hidden md:block">→</div>
+                    <div class="text-3xl text-slate-400 font-bold md:hidden">↓</div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow w-full md:w-1/4 border-t-4 border-blue-500">
+                        <div class="text-3xl mb-4">🚪</div>
+                        <h4 class="font-bold mb-2 text-lg">3. Répartition</h4>
+                        <p class="text-sm text-slate-500">Nombre de sorties minimales selon effectif</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARAISON CAT 1-4 vs 5 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="section-card p-8 bg-slate-800 text-white">
+                    <h2 class="text-2xl font-bold mb-4 text-orange-400">Livre III : La 5ème Catégorie</h2>
+                    <p class="mb-6 opacity-80">
+                        Les "Petits Établissements" (PE). La philosophie change : le risque est considéré comme moindre.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <span class="text-orange-400 mr-3 text-xl">✓</span>
+                            <span>Pas de Commission de Sécurité périodique (sauf locaux à sommeil)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-orange-400 mr-3 text-xl">✓</span>
+                            <span>Obligation de moyens allégée (1 extincteur / 300m²)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-orange-400 mr-3 text-xl">✓</span>
+                            <span>Alarme de type 4 souvent suffisante</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="section-card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">Comparaison des Exigences</h3>
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ONGLET RÈGLEMENTATION CTS ==================== -->
+    <div id="cts" class="tab-content">
+        <div class="max-w-8xl mx-auto">
+            <!-- HERO SECTION -->
+            <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl shadow-sm border border-emerald-100 p-8 md:p-12 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Règlementation CTS</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                        Chapiteaux, Tentes et Structures itinérantes - Arrêté du 23 janvier 1985
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Checklist Component -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Checklist d'Implantation CTS</h3>
+                    <p class="text-sm text-slate-500 mb-6">Points de contrôle obligatoires avant ouverture au public</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center space-x-3 p-3 rounded hover:bg-slate-50 border border-transparent hover:border-slate-100 cursor-pointer">
+                            <input type="checkbox" class="h-5 w-5 text-orange-600 rounded border-gray-300 focus:ring-orange-500">
+                            <span class="text-slate-700 font-medium">Distance aux tiers (> 4m)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 rounded hover:bg-slate-50 border border-transparent hover:border-slate-100 cursor-pointer">
+                            <input type="checkbox" class="h-5 w-5 text-orange-600 rounded border-gray-300 focus:ring-orange-500">
+                            <span class="text-slate-700 font-medium">Ancrage au sol (Vent 100km/h)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 rounded hover:bg-slate-50 border border-transparent hover:border-slate-100 cursor-pointer">
+                            <input type="checkbox" class="h-5 w-5 text-orange-600 rounded border-gray-300 focus:ring-orange-500">
+                            <span class="text-slate-700 font-medium">PV de réaction au feu (Toile M2)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 rounded hover:bg-slate-50 border border-transparent hover:border-slate-100 cursor-pointer">
+                            <input type="checkbox" class="h-5 w-5 text-orange-600 rounded border-gray-300 focus:ring-orange-500">
+                            <span class="text-slate-700 font-medium">Moyens d'extinction (1/200m²)</span>
+                        </label>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-emerald-50 rounded-lg">
+                        <h4 class="font-bold text-emerald-800 mb-2">📋 Vérification Technique</h4>
+                        <p class="text-sm text-emerald-700">
+                            Obligation de vérification par un organisme agréé (BVCTS) avant première ouverture au public.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Visualization -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Cycle de Vie & Contrôles</h3>
+                    <p class="text-sm text-slate-500 mb-6">Niveau de vigilance requis au fil du temps pour une structure temporaire</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="chartCts"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ÉTABLISSEMENTS SPÉCIAUX -->
+            <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-8">
+                <h2 class="text-2xl font-bold mb-6 text-slate-800">Livre IV : Risques Spéciaux</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                     <!-- CTS -->
+                     <div class="bg-white p-6 rounded-xl shadow border-t-4 border-orange-500">
+                         <div class="flex justify-between items-center mb-2">
+                             <h3 class="font-bold text-lg">CTS</h3>
+                             <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Chapiteaux</span>
+                         </div>
+                         <p class="text-sm text-slate-600">Problématique d'ancrage au sol, réaction au feu de la toile, aménagement des chaises (ligatures).</p>
+                     </div>
+                     
+                     <!-- PA -->
+                     <div class="bg-white p-6 rounded-xl shadow border-t-4 border-blue-500">
+                         <div class="flex justify-between items-center mb-2">
+                             <h3 class="font-bold text-lg">PA</h3>
+                             <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Plein Air</span>
+                         </div>
+                         <p class="text-sm text-slate-600">Stades, terrains de sport. Problématique de gestion de flux massifs, barriérage.</p>
+                     </div>
+
+                     <!-- SG -->
+                     <div class="bg-white p-6 rounded-xl shadow border-t-4 border-red-500">
+                         <div class="flex justify-between items-center mb-2">
+                             <h3 class="font-bold text-lg">SG</h3>
+                             <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Gonflables</span>
+                         </div>
+                         <p class="text-sm text-slate-600">Risque d'affaissement rapide (maintien de pression). Ancrage crucial contre le vent.</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ONGLET OUTILS DE CALCUL ==================== -->
+    <div id="calculs" class="tab-content">
+        <div class="max-w-8xl mx-auto">
+            <!-- HERO SECTION -->
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Simulateur d'Effectif & Dégagements</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                        Outil pédagogique pour s'entraîner au calcul réglementaire des capacités d'accueil (Type L)
+                    </p>
+                </div>
+            </div>
+
+            <!-- CALCULATOR -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden mb-12">
+                <div class="p-6 md:p-8 bg-slate-50 border-b border-slate-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Surface de la Salle (m²)</label>
+                            <input type="number" id="input-surface" placeholder="Ex: 200" oninput="calculateCapacity()" 
+                                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Configuration</label>
+                            <select id="input-config" onchange="calculateCapacity()" 
+                                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all bg-white">
+                                <option value="assis">Places Assises (1 pers / siège)</option>
+                                <option value="debout">Debout (3 pers / m²)</option>
+                                <option value="mixte">Restauration / Mixte (1 pers / m²)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <div id="results-area" class="opacity-50 transition-opacity duration-300">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                            <div class="p-4 bg-orange-50 rounded-lg border border-orange-100">
+                                <div class="text-sm text-orange-800 font-semibold uppercase tracking-wider mb-1">Effectif Théorique</div>
+                                <div class="text-3xl font-bold text-slate-800" id="res-effectif">-</div>
+                                <div class="text-xs text-slate-500 mt-1">Personnes</div>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                                <div class="text-sm text-blue-800 font-semibold uppercase tracking-wider mb-1">Dégagements</div>
+                                <div class="text-3xl font-bold text-slate-800" id="res-degagements">-</div>
+                                <div class="text-xs text-slate-500 mt-1">Sorties Min.</div>
+                            </div>
+                            <div class="p-4 bg-slate-100 rounded-lg border border-slate-200">
+                                <div class="text-sm text-slate-600 font-semibold uppercase tracking-wider mb-1">Unités de Passage</div>
+                                <div class="text-3xl font-bold text-slate-800" id="res-up">-</div>
+                                <div class="text-xs text-slate-500 mt-1">Largeur totale</div>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <span id="res-category" class="inline-block px-4 py-2 rounded-full bg-slate-800 text-white text-sm font-bold shadow-sm">En attente de saisie...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORMATIONS COMPLÉMENTAIRES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Règles de Calcul</h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <span class="text-orange-600 font-bold mr-2">•</span>
+                            <span><strong>Debout</strong> = Surface × 3 personnes/m²</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-600 font-bold mr-2">•</span>
+                            <span><strong>Assis</strong> = Nombre de sièges (1/m² pour l'exercice)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-600 font-bold mr-2">•</span>
+                            <span><strong>Restauration</strong> = Surface × 1 personne/m²</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-600 font-bold mr-2">•</span>
+                            <span><strong>Unités de Passage</strong> = Effectif / 100, arrondi à l'entier supérieur</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Tableau des Sorties Minimales</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-slate-600">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left">Effectif</th>
+                                    <th class="py-2 px-3 text-left">Sorties</th>
+                                    <th class="py-2 px-3 text-left">UP Minimum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-2 px-3">≤ 19 pers</td>
+                                    <td class="py-2 px-3">1</td>
+                                    <td class="py-2 px-3">1 UP</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-2 px-3">20 - 500 pers</td>
+                                    <td class="py-2 px-3">2</td>
+                                    <td class="py-2 px-3">2 UP minimum</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">> 500 pers</td>
+                                    <td class="py-2 px-3">2 + complément</td>
+                                    <td class="py-2 px-3">Calcul selon effectif</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ONGLET MOYENS DE SECOURS ==================== -->
+    <div id="secours" class="tab-content">
+        <div class="max-w-8xl mx-auto">
+            <!-- HERO SECTION -->
+            <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl shadow-sm border border-red-100 p-8 md:p-12 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Moyens de Secours & Incendie</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                        Obligation de moyens de secours adaptés : extinction, alarme, désenfumage et procédures d'évacuation
+                    </p>
+                </div>
+            </div>
+
+            <!-- EQUIPEMENTS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl border-t-4 border-red-500 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-4">🧯</div>
+                    <h3 class="text-lg font-bold text-slate-800">Extincteurs</h3>
+                    <p class="text-sm text-slate-500 mt-2">1 appareil pour 200m². Privilégier l'Eau Pulvérisée pour les feux secs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-t-4 border-yellow-500 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-4">🚨</div>
+                    <h3 class="text-lg font-bold text-slate-800">Alarme</h3>
+                    <p class="text-sm text-slate-500 mt-2">Type 1 à 4 selon la catégorie. Doit être audible en tout point.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-t-4 border-green-500 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-4">💨</div>
+                    <h3 class="text-lg font-bold text-slate-800">Désenfumage</h3>
+                    <p class="text-sm text-slate-500 mt-2">Obligatoire pour locaux > 300m² ou locaux aveugles > 100m².</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-t-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="text-lg font-bold text-slate-800">Consignes</h3>
+                    <p class="text-sm text-slate-500 mt-2">Affichage obligatoire, exercices d'évacuation annuels.</p>
+                </div>
+            </div>
+
+            <!-- STATISTIQUES -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row gap-8 items-center mb-12">
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Causes d'Incendie (Statistiques)</h3>
+                    <p class="text-slate-600 text-sm mb-4">Comprendre les origines pour mieux prévenir. Les installations électriques défectueuses restent la cause majeure.</p>
+                    <ul class="text-sm space-y-2">
+                        <li class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>Électrique</span>
+                            <span class="font-bold text-slate-800">35%</span>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>Négligence humaine</span>
+                            <span class="font-bold text-slate-800">30%</span>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>Travaux points chauds</span>
+                            <span class="font-bold text-slate-800">20%</span>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>Malveillance</span>
+                            <span class="font-bold text-slate-800">15%</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 chart-container">
+                    <canvas id="chartSecours"></canvas>
+                </div>
+            </div>
+
+            <!-- CONCLUSION -->
+            <div class="bg-slate-800 text-slate-300 p-8 rounded-xl text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">L'Essentiel à Retenir</h3>
+                <div class="max-w-2xl mx-auto text-sm leading-relaxed space-y-2">
+                    <p>La réglementation ERP vise deux objectifs fondamentaux :</p>
+                    <p class="font-bold text-orange-400">1. Permettre l'évacuation sûre et rapide des occupants</p>
+                    <p class="font-bold text-blue-400">2. Faciliter l'intervention des secours</p>
+                    <div class="mt-8 pt-8 border-t border-slate-700">
+                        <p class="text-xs">Source légale: Légifrance, Arrêté du 25 juin 1980 modifié.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Pied de page (identique au portail source) -->
+<footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
+    <div class="max-w-8xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-[#343a40]">Focus Réglementation</h4>
+                <p class="text-[#6c757d] text-sm mb-2">
+                    Outil pédagogique open source destiné à la formation des responsables techniques d'ERP Type L et structures itinérantes.
+                </p>
+
+                <p class="text-[#495057] text-sm font-medium mb-2 mt-4">
+                    L'Application ne se substitue pas :
+                </p>
+                <ul class="text-[#6c757d] text-xs space-y-1 mb-4">
+                    <li>• Aux textes officiels publiés</li>
+                    <li>• À l'avis d'experts certifiés</li>
+                    <li>• Aux commissions de sécurité compétentes</li>
+                    <li>• À la jurisprudence en vigueur</li>
+                </ul>
+
+                <p class="text-[#6c757d] text-sm">
+                    <small>Mise à jour : 22 décembre 2025</small>
+                </p>
+            </div>
+
+            <!-- Deuxième colonne avec bordure gauche -->
+            <div class="md:border-l md:border-[] md:pl-8">
+                <h4 class="text-xl font-bold mb-4 text-[#343a40]">Applications Connexes</h4>
+
+                <div class="space-y-4">
+
+                    <a href="https://fi-regie.github.io/Reglementation-Spectacle-Itinerant/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Réglementation Spectacle Itinérant </h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Portail de veille juridique & de sécurité du Spectacle Itinérant
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="https://fi-regie.github.io/Simulateur-Reglement-Securite-ERP/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Outil de Simulation Sécurité </h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Simulez votre Catégorie ERP, vos dégagements UP, Éch. de Beaufort
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="https://fi-regie.github.io/Guide-de-la-Securite-Incendie/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Guide de la Sécurité Incendie</h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Guide complet de la sécurité incendie pour les ERP Type L
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Troisième colonne avec bordure gauche -->
+            <div class="md:border-l md:border-[] md:pl-8">
+                <h4 class="text-xl font-bold mb-4 text-[#343a40]">Formation</h4>
+                <div class="space-y-4">
+                    <a href="https://fi-regie.github.io/Formation-Securite-ERP/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Formation Sécurité ERP</h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Outil pédagogique open source destiné à la formation des responsables techniques
+                                d'ERP Type L
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="https://fi-regie.github.io/reglementation-CTS-/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Règlementation CTS</h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Dispositions applicables aux établissements de type Chapiteaux, Tentes et Structures
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="https://fi-regie.github.io/Quiz-CTS/" target="_blank"
+                        class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                        <div>
+                            <h5> Le Quiz du Régisseur</h5>
+                            <p class="text-sm text-[#6c757d] mt-1">
+                                Amusez-vous, testez vos connaissances, apprenez...
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-[#ced4da] text-center text-sm text-[#6c757d]">
+            <p>
+                <i class="fas fa-gavel mr-2"></i>
+                Focus Réglementation - ERP Type L & CTS
+            </p>
+            <p class="mt-2">
+                ©️ Open Source • Partage Contribution : https://github.com/fi-regie • Contact :
+                philippe.potier-regie@proton.me
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ==================== GESTION DE LA NAVIGATION ====================
+    const tabState = {
+        current: 'accueil',
+        history: ['accueil']
+    };
+
+    // Fonction pour changer d'onglet
+    function switchTab(tabId) {
+        // Si déjà sur cet onglet, ne rien faire
+        if (tabState.current === tabId) return;
+
+        // Mettre à jour l'état
+        tabState.current = tabId;
+        tabState.history.push(tabId);
+
+        // Mettre à jour l'URL avec l'historique
+        history.pushState({ tab: tabId }, '', `#${tabId}`);
+        window.scrollTo(0, 0);
+
+        // Cacher tous les onglets
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Afficher l'onglet sélectionné
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+
+        // Mettre à jour la navigation
+        updateTabNavigation(tabId);
+
+        // Initialiser les graphiques pour l'onglet
+        setTimeout(() => {
+            initChartsForTab(tabId);
+        }, 100);
+    }
+
+    // Mettre à jour la navigation
+    function updateTabNavigation(tabId) {
+        document.querySelectorAll('.nav-tab').forEach(btn => {
+            btn.classList.remove('active', 'border-orange-600', 'text-orange-600', 'border-red-600', 'text-red-600');
+            btn.classList.add('border-transparent', 'text-gray-600');
+        });
+
+        const activeBtn = document.querySelector(`[onclick*="switchTab('${tabId}')"]`);
+        if (activeBtn) {
+            activeBtn.classList.remove('border-transparent', 'text-gray-600');
+            
+            if (tabId === 'secours') {
+                activeBtn.classList.add('active', 'border-red-600', 'text-red-600');
+            } else {
+                activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+            }
+        }
+    }
+
+    // Gestion de l'historique navigateur (boutons avant/arrière)
+    window.addEventListener('popstate', function (event) {
+        window.scrollTo(0, 0);
+
+        if (event.state && event.state.tab) {
+            tabState.current = event.state.tab;
+
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const targetTab = document.getElementById(event.state.tab);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            updateTabNavigation(event.state.tab);
+            
+            // Initialiser les graphiques
+            setTimeout(() => {
+                initChartsForTab(event.state.tab);
+            }, 100);
+        } else {
+            switchTab('accueil');
+        }
+    });
+
+    // Vérifier l'hash au chargement
+    window.addEventListener('DOMContentLoaded', function () {
+        window.scrollTo(0, 0);
+
+        setTimeout(() => {
+            const hash = window.location.hash.substring(1);
+            const validTabs = ['accueil', 'structure', 'typel', 'cts', 'calculs', 'secours'];
+
+            if (hash && validTabs.includes(hash)) {
+                history.replaceState({ tab: hash }, '', `#${hash}`);
+                tabState.current = hash;
+                tabState.history = [hash];
+
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+
+                const targetTab = document.getElementById(hash);
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+
+                updateTabNavigation(hash);
+                
+                // Initialiser les graphiques
+                setTimeout(() => {
+                    initChartsForTab(hash);
+                }, 200);
+            } else {
+                history.replaceState({ tab: 'accueil' }, '', '#accueil');
+                tabState.current = 'accueil';
+                tabState.history = ['accueil'];
+
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+
+                const targetTab = document.getElementById('accueil');
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+
+                updateTabNavigation('accueil');
+                
+                // Initialiser les graphiques
+                setTimeout(() => {
+                    initChartsForTab('accueil');
+                }, 200);
+            }
+
+            window.scrollTo(0, 0);
+        }, 100);
+    });
+
+    // ==================== GRAPHIQUES ====================
+    const charts = {};
+
+    // Configuration commune des graphiques
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#475569';
+
+    // Fonction pour initialiser les graphiques selon l'onglet
+    function initChartsForTab(tabId) {
+        switch(tabId) {
+            case 'accueil':
+                initAccueilCharts();
+                break;
+            case 'structure':
+                initStructureCharts();
+                break;
+            case 'typel':
+                initTypelCharts();
+                break;
+            case 'cts':
+                initCtsCharts();
+                break;
+            case 'secours':
+                initSecoursCharts();
+                break;
+        }
+    }
+
+    // Graphique Accueil
+    function initAccueilCharts() {
+        if (charts.accueil) charts.accueil.destroy();
+        
+        const ctx = document.getElementById('chartAccueil');
+        if (!ctx) return;
+        
+        charts.accueil = new Chart(ctx.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Incendie', 'Panique', 'Structure', 'Technique'],
+                datasets: [{
+                    data: [40, 30, 20, 10],
+                    backgroundColor: ['#f97316', '#fb923c', '#fdba74', '#94a3b8'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Graphiques Structure
+    function initStructureCharts() {
+        // Chart 1: Structure Volume (Donut)
+        if (charts.structureChart) charts.structureChart.destroy();
+        
+        const ctx1 = document.getElementById('structureChart');
+        if (ctx1) {
+            charts.structureChart = new Chart(ctx1.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Livre I (Principes)', 'Livre II (Général + Types)', 'Livre III (Cat 5)', 'Livre IV (Spéciaux)'],
+                    datasets: [{
+                        data: [10, 60, 15, 15],
+                        backgroundColor: ['#94A3B8', '#2563EB', '#F97316', '#DC2626'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12 } }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Categories (Bar)
+        if (charts.categoryChart) charts.categoryChart.destroy();
+        
+        const ctx2 = document.getElementById('categoryChart');
+        if (ctx2) {
+            charts.categoryChart = new Chart(ctx2.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['1ère Catégorie', '2ème Catégorie', '3ème Catégorie', '4ème Catégorie', '5ème Catégorie'],
+                    datasets: [{
+                        label: 'Effectif Maximum (Personnes)',
+                        data: [50000, 1500, 700, 300, 199],
+                        backgroundColor: ['#1E3A8A', '#1D4ED8', '#2563EB', '#3B82F6', '#F97316'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: { display: true, text: 'Effectif (Échelle Logarithmique)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.dataIndex === 0) return '> 1500 personnes';
+                                    if (context.dataIndex === 1) return '701 à 1500 personnes';
+                                    if (context.dataIndex === 2) return '301 à 700 personnes';
+                                    if (context.dataIndex === 3) return '< 300 personnes';
+                                    if (context.dataIndex === 4) return 'Au dessous du seuil';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 3: Technical Radar (Radar)
+        if (charts.technicalRadarChart) charts.technicalRadarChart.destroy();
+        
+        const ctx3 = document.getElementById('technicalRadarChart');
+        if (ctx3) {
+            charts.technicalRadarChart = new Chart(ctx3.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['Construction (CO)', 'Aménagements (AM)', 'Désenfumage (DF)', 'Chauffage (CH)', 'Électricité (EL)', 'Moyens Secours (MS)'],
+                    datasets: [{
+                        label: 'Niveau de Contrainte',
+                        data: [9, 7, 8, 5, 6, 9],
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: '#2563EB',
+                        pointBackgroundColor: '#F97316',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#F97316'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E2E8F0' },
+                            grid: { color: '#E2E8F0' },
+                            pointLabels: { font: { size: 11, weight: 'bold' } },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // Graphique Type L
+    function initTypelCharts() {
+        if (charts.chartTypel) charts.chartTypel.destroy();
+        
+        const ctx = document.getElementById('chartTypel');
+        if (!ctx) return;
+        
+        charts.chartTypel = new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Risques Scéniques', 'Mouvements de Foule', 'Obscurité', 'Décors Inflammables'],
+                datasets: [{
+                    label: 'Indice de Risque',
+                    data: [85, 60, 45, 70],
+                    backgroundColor: '#f97316',
+                    borderRadius: 6,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Comparison Chart
+        if (charts.comparisonChart) charts.comparisonChart.destroy();
+        
+        const ctx2 = document.getElementById('comparisonChart');
+        if (ctx2) {
+            charts.comparisonChart = new Chart(ctx2.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Visites Périodiques', 'Extincteurs', 'Alarme Incendie', 'Résistance Feu'],
+                    datasets: [
+                        {
+                            label: 'Catégories 1 à 4',
+                            data: [9, 8, 9, 9],
+                            backgroundColor: '#2563EB'
+                        },
+                        {
+                            label: 'Catégorie 5 (PE)',
+                            data: [1, 4, 3, 5],
+                            backgroundColor: '#F97316'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: { display: false },
+                            title: { display: true, text: "Niveau d'Exigence" }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // Graphique CTS
+    function initCtsCharts() {
+        if (charts.chartCts) charts.chartCts.destroy();
+        
+        const ctx = document.getElementById('chartCts');
+        if (!ctx) return;
+        
+        charts.chartCts = new Chart(ctx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Implantation', 'Ouverture', '6 Mois', '1 An', '2 Ans'],
+                datasets: [{
+                    label: 'Vigilance / Contrôles',
+                    data: [100, 90, 80, 85, 80],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#10b981'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { min: 0, max: 120, display: false }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
+    // Graphique Secours
+    function initSecoursCharts() {
+        if (charts.chartSecours) charts.chartSecours.destroy();
+        
+        const ctx = document.getElementById('chartSecours');
+        if (!ctx) return;
+        
+        charts.chartSecours = new Chart(ctx.getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ['Électrique', 'Négligence Humaine', 'Travaux points chauds', 'Malveillance'],
+                datasets: [{
+                    data: [35, 30, 20, 15],
+                    backgroundColor: ['#ef4444', '#f97316', '#3b82f6', '#94a3b8'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // ==================== CALCULATEUR DE CAPACITÉ ====================
+    function calculateCapacity() {
+        const surface = parseFloat(document.getElementById('input-surface').value);
+        const config = document.getElementById('input-config').value;
+        const resultsArea = document.getElementById('results-area');
+
+        if (!surface || surface <= 0) {
+            resultsArea.classList.add('opacity-50');
+            return;
+        }
+
+        resultsArea.classList.remove('opacity-50');
+
+        let effectif = 0;
+        if (config === 'assis') effectif = Math.floor(surface * 1);
+        else if (config === 'debout') effectif = Math.floor(surface * 3);
+        else effectif = Math.floor(surface * 1);
+
+        // Calcul des dégagements (simplifié)
+        let degagements = 0;
+        let up = 0;
+
+        if (effectif <= 19) { degagements = 1; up = 1; }
+        else if (effectif <= 500) { 
+            degagements = 2; 
+            up = Math.ceil(effectif/100) < 2 ? 2 : Math.ceil(effectif/100); 
+        } else { 
+            degagements = 2 + Math.ceil((effectif - 500) / 500); 
+            up = Math.ceil(effectif / 100);
+        }
+        
+        if(effectif > 0 && effectif <= 500 && up < 2) up = 2;
+
+        // Catégorie
+        let category = "5ème Catégorie";
+        if (effectif > 1500) category = "1ère Catégorie";
+        else if (effectif > 700) category = "2ème Catégorie";
+        else if (effectif > 300) category = "3ème Catégorie";
+        else if (effectif >= 200) category = "4ème Catégorie";
+
+        // Mise à jour DOM
+        document.getElementById('res-effectif').innerText = effectif;
+        document.getElementById('res-degagements').innerText = degagements;
+        document.getElementById('res-up').innerText = up + " UP";
+        document.getElementById('res-category').innerText = `Classement : ERP de ${category}`;
+    }
+
+    // ==================== INITIALISATION ====================
+    window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+        
+        // Initialiser les graphiques de l'onglet actif
+        setTimeout(() => {
+            initChartsForTab(tabState.current);
+        }, 300);
+    });
+
+    // Export des fonctions pour le débogage
+    window.app = {
+        switchTab,
+        calculateCapacity,
+        initChartsForTab,
+        state: tabState
+    };
+</script>
+
+</body>
+</html>
