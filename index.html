@@ -100,32 +100,6 @@
         html {
             scroll-behavior: auto !important;
         }
-        
-        /* Styles pour les liens de navigation */
-        .nav-tab {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            border-bottom: 2px solid transparent;
-            color: #4b5563;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .nav-tab:hover {
-            color: #ea580c;
-        }
-        
-        .nav-tab.active {
-            border-bottom-color: #ea580c;
-            color: #ea580c;
-            font-weight: 600;
-        }
     </style>
 </head>
 
@@ -163,41 +137,41 @@
                     <i class="fas fa-home mr-2"></i>
                     Accueil
                 </button>
-                <a href="focus-reglementation/index.html"
+                <button onclick="openFocusReglementationApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-search mr-2"></i>
                     Focus Réglementation
-                </a>
-                <a href="reglementation-cts/index.html"
+                </button>
+                <button onclick="openStructuresApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-scale-balanced mr-2"></i>
                     Règlementation CTS
-                </a>
-                <a href="securite-incendie/index.html"
+                </button>
+                <button onclick="openIncendieApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-red-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-fire mr-2"></i>
                     Sécurité Incendie
-                </a>
-                <a href="formation-securite/index.html"
+                </button>
+                <button onclick="openFormationApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-emerald-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-graduation-cap mr-2"></i>
                     Formation Sécurité
-                </a>
-                <a href="simulation/index.html"
+                </button>
+                <button onclick="openSimulationApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-calculator mr-2"></i>
                     Outils Simulation
-                </a>
-                <a href="reglementation-erp/index.html"
+                </button>
+                <button onclick="openReglementationApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-amber-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-book mr-2"></i>
                     Règlementation ERP
-                </a>
-                <a href="quiz/index.html"
+                </button>
+                <button onclick="openQuizApp()"
                     class="nav-tab px-3 py-3 border-b-2 border-transparent text-gray-600 hover:text-purple-600 whitespace-nowrap flex items-center">
                     <i class="fas fa-question-circle mr-2"></i>
                     Quiz du Régisseur
-                </a>
+                </button>
             </nav>
         </div>
     </div>
@@ -372,10 +346,10 @@
                                         <span>Veille réglementaire automatique</span>
                                     </li>
                                 </ul>
-                                <a href="focus-reglementation/index.html"
-                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openFocusReglementationApp()"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -408,10 +382,10 @@
                                         <span>Veille réglementaire</span>
                                     </li>
                                 </ul>
-                                <a href="reglementation-cts/index.html"
-                                    class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openStructuresApp()"
+                                    class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -443,10 +417,10 @@
                                         <span>Protection des personnes</span>
                                     </li>
                                 </ul>
-                                <a href="securite-incendie/index.html"
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openIncendieApp()"
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -479,10 +453,10 @@
                                         <span>Attestation téléchargeable</span>
                                     </li>
                                 </ul>
-                                <a href="formation-securite/index.html"
-                                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openFormationApp()"
+                                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -515,10 +489,10 @@
                                         <span>Graphiques interactifs</span>
                                     </li>
                                 </ul>
-                                <a href="simulation/index.html"
-                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openSimulationApp()"
+                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -551,10 +525,10 @@
                                         <span>Progression personnalisée</span>
                                     </li>
                                 </ul>
-                                <a href="quiz/index.html"
-                                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                                <button onclick="openQuizApp()"
+                                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -562,12 +536,206 @@
             </div>
         </div>
 
-        <!-- NOTE : J'ai supprimé les onglets "Chargement..." car ils ne sont plus nécessaires -->
-        <!-- Les applications s'ouvrent directement via les liens -->
+        <!-- ==================== ONGLET FOCUS RÉGLEMENTATION ==================== -->
+        <div id="focus-reglementation" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-blue-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-blue-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-blue-700 mb-6">
+                            Redirection vers l'application "Focus Réglementation"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-blue-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openFocusReglementationApp()"
+                                class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET STRUCTURES ITINÉRANTES ==================== -->
+        <div id="structures" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-orange-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-orange-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-orange-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-orange-700 mb-6">
+                            Redirection vers l'application "Règlementation CTS"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-orange-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openStructuresApp()"
+                                class="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET SÉCURITÉ INCENDIE ==================== -->
+        <div id="incendie" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-red-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-red-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-red-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-red-700 mb-6">
+                            Redirection vers l'application "Sécurité Incendie"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-red-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openIncendieApp()"
+                                class="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET FORMATION SÉCURITÉ ==================== -->
+        <div id="formation" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-emerald-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-emerald-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-emerald-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-emerald-700 mb-6">
+                            Redirection vers l'application "Formation Sécurité"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-emerald-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openFormationApp()"
+                                class="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET SIMULATION SÉCURITÉ ==================== -->
+        <div id="simulation" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-amber-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-amber-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-amber-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-amber-700 mb-6">
+                            Redirection vers l'application "Outils Simulation"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-amber-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openSimulationApp()"
+                                class="inline-flex items-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET RÈGLEMENTATION CTS ==================== -->
+        <div id="reglementation" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-slate-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-slate-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-slate-700 mb-6">
+                            Redirection vers l'application "Règlementation ERP"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-slate-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openReglementationApp()"
+                                class="inline-flex items-center bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET QUIZ DU RÉGISSEUR ==================== -->
+        <div id="quiz" class="tab-content">
+            <div class="max-w-8xl mx-auto">
+                <div class="text-center py-12">
+                    <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-8 md:p-12 inline-block">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-purple-100 rounded-full mb-6">
+                            <i class="fas fa-spinner fa-spin text-3xl text-purple-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-800 mb-4">Chargement de l'application...</h2>
+                        <p class="text-lg text-purple-700 mb-6">
+                            Redirection vers l'application "Quiz du Régisseur"
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-purple-600 mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Si la redirection ne fonctionne pas automatiquement :
+                            </p>
+                            <button onclick="openQuizApp()"
+                                class="inline-flex items-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Cliquez ici pour accéder à l'application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
     <!-- Pied de page -->
+
     <footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
         <div class="max-w-8xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -604,15 +772,14 @@
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
-                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>
-                                <p class="text-sm text-[#6c757d] mt-1">
+                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>                                <p class="text-sm text-[#6c757d] mt-1">
                                     Suite d'Applications destinée aux
                                     Régisseurs, Exploitants & Organismes de Formation
                                 </p>
                             </div>
                         </a>
 
-                        <a href="reglementation-cts/index.html"
+                        <a href="https://fi-regie.github.io/Reglementation-Spectacle-Itinerant/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -623,7 +790,7 @@
                             </div>
                         </a>
 
-                        <a href="simulation/index.html"
+                        <a href="https://fi-regie.github.io/Simulateur-Reglement-Securite-ERP/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -634,7 +801,7 @@
                             </div>
                         </a>
 
-                        <a href="reglementation-erp/index.html"
+                        <a href="https://fi-regie.github.io/reglementation-CTS-/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -652,7 +819,7 @@
                 <div class="md:border- md:border-[] md:pl-8">
                     <h4 class="text-xl mb-4 text-[#343a40]">Formation</h4>
                     <div class="space-y-4">
-                        <a href="focus-reglementation/index.html"
+                        <a href="https://fi-regie.github.io/Focus-Reglementation-ERP/#accuei" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -664,7 +831,7 @@
                             </div>
                         </a>
 
-                        <a href="securite-incendie/index.html"
+                        <a href="https://fi-regie.github.io/Guide-de-la-Securite-Incendie/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -675,7 +842,7 @@
                             </div>
                         </a>
 
-                        <a href="formation-securite/index.html"
+                        <a href="https://fi-regie.github.io/Formation-Securite-ERP/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -688,7 +855,7 @@
                             </div>
                         </a>
 
-                        <a href="quiz/index.html"
+                        <a href="https://fi-regie.github.io/Quiz-CTS/" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -723,7 +890,49 @@
             history: ['accueil']
         };
 
-        // Fonction pour changer d'onglet (navigation interne du portail)
+        // Fonction pour ouvrir l'application Focus Réglementation
+        function openFocusReglementationApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Focus-Reglementation-ERP/';
+        }
+
+        // Fonction pour ouvrir l'application Règlementation CTS
+        function openStructuresApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Reglementation-Spectacle-Itinerant/';
+        }
+
+        // Fonction pour ouvrir l'application Outils Simulation
+        function openSimulationApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Simulateur-Reglement-Securite-ERP/';
+        }
+
+        // Fonction pour ouvrir l'application Sécurité Incendie
+        function openIncendieApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Guide-de-la-Securite-Incendie/';
+        }
+
+        // Fonction pour ouvrir l'application Formation Sécurité
+        function openFormationApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Formation-Securite-ERP/';
+        }
+
+        // Fonction pour ouvrir l'application Règlementation ERP
+        function openReglementationApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/reglementation-CTS-/';
+        }
+
+        // Fonction pour ouvrir l'application Quiz du Régisseur
+        function openQuizApp() {
+            // Rediriger vers l'application externe dans la même page
+            window.location.href = 'https://fi-regie.github.io/Quiz-CTS/';
+        }
+
+        // Fonction pour changer d'onglet
         function switchTab(tabId) {
             // Si déjà sur cet onglet, ne rien faire
             if (tabState.current === tabId) return;
@@ -734,7 +943,7 @@
 
             // Mettre à jour l'URL avec l'historique
             history.pushState({ tab: tabId }, '', `#${tabId}`);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); // ← AJOUT: S'assurer qu'on reste en haut de la page
 
             // Cacher tous les onglets
             document.querySelectorAll('.tab-content').forEach(tab => {
@@ -749,57 +958,106 @@
 
             // Mettre à jour la navigation
             updateTabNavigation(tabId);
+
+            // Charger le contenu dynamique si nécessaire
+            loadTabContent(tabId);
         }
 
         // Mettre à jour la navigation
         function updateTabNavigation(tabId) {
             document.querySelectorAll('.nav-tab').forEach(btn => {
-                btn.classList.remove('active', 'border-orange-600', 'text-orange-600');
+                btn.classList.remove('active', 'border-orange-600', 'text-orange-600',
+                    'border-emerald-600', 'text-emerald-600',
+                    'border-red-600', 'text-red-600',
+                    'border-blue-600', 'text-blue-600',
+                    'border-amber-600', 'text-amber-600',
+                    'border-purple-600', 'text-purple-600',
+                    'border-slate-600', 'text-slate-600');
                 btn.classList.add('border-transparent', 'text-gray-600');
             });
 
-            const activeBtn = document.querySelector(`[onclick*="switchTab('${tabId}')"]`);
+            const activeBtn = document.querySelector(`[onclick*="${tabId}"]`);
             if (activeBtn) {
                 activeBtn.classList.remove('border-transparent', 'text-gray-600');
-                activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+
+                // Appliquer les couleurs selon l'onglet
+                switch (tabId) {
+                    case 'accueil':
+                        activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+                        break;
+                    case 'focus-reglementation':
+                        activeBtn.classList.add('active', 'border-blue-600', 'text-blue-600');
+                        break;
+                    case 'structures':
+                        activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+                        break;
+                    case 'incendie':
+                        activeBtn.classList.add('active', 'border-red-600', 'text-red-600');
+                        break;
+                    case 'formation':
+                        activeBtn.classList.add('active', 'border-emerald-600', 'text-emerald-600');
+                        break;
+                    case 'simulation':
+                        activeBtn.classList.add('active', 'border-amber-600', 'text-amber-600');
+                        break;
+                    case 'reglementation':
+                        activeBtn.classList.add('active', 'border-slate-600', 'text-slate-600');
+                        break;
+                    case 'quiz':
+                        activeBtn.classList.add('active', 'border-purple-600', 'text-purple-600');
+                        break;
+                    default:
+                        activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
+                }
             }
         }
 
         // Gestion de l'historique navigateur (boutons avant/arrière)
         window.addEventListener('popstate', function (event) {
+            // S'assurer qu'on reste en haut de la page
             window.scrollTo(0, 0);
 
             if (event.state && event.state.tab) {
+                // Mettre à jour l'état sans ajouter à l'historique (pour éviter les boucles)
                 tabState.current = event.state.tab;
 
+                // Cacher tous les onglets
                 document.querySelectorAll('.tab-content').forEach(tab => {
                     tab.classList.remove('active');
                 });
 
+                // Afficher l'onglet sélectionné
                 const targetTab = document.getElementById(event.state.tab);
                 if (targetTab) {
                     targetTab.classList.add('active');
                 }
 
+                // Mettre à jour la navigation
                 updateTabNavigation(event.state.tab);
             } else {
+                // Par défaut, retour à l'accueil
                 switchTab('accueil');
             }
         });
 
-        // Vérifier l'hash au chargement
+        // CORRECTION: Vérifier l'hash au chargement
         window.addEventListener('DOMContentLoaded', function () {
+            // S'assurer que la page commence toujours en haut
             window.scrollTo(0, 0);
 
+            // Attendre que tout soit chargé avant de vérifier l'hash
             setTimeout(() => {
                 const hash = window.location.hash.substring(1);
-                const validTabs = ['accueil'];
+                const validTabs = ['accueil', 'focus-reglementation', 'structures', 'simulation',
+                    'incendie', 'formation', 'reglementation', 'quiz'];
 
                 if (hash && validTabs.includes(hash)) {
+                    // Définir l'état initial dans l'historique
                     history.replaceState({ tab: hash }, '', `#${hash}`);
                     tabState.current = hash;
                     tabState.history = [hash];
 
+                    // Afficher l'onglet correspondant
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         tab.classList.remove('active');
                     });
@@ -810,7 +1068,16 @@
                     }
 
                     updateTabNavigation(hash);
+
+                    // Forcer le retour en haut après le changement d'onglet
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'instant'
+                        });
+                    }, 50);
                 } else {
+                    // Définir l'état initial
                     history.replaceState({ tab: 'accueil' }, '', '#accueil');
                     tabState.current = 'accueil';
                     tabState.history = ['accueil'];
@@ -825,11 +1092,90 @@
                     }
 
                     updateTabNavigation('accueil');
+
+                    // S'assurer qu'on est en haut
+                    window.scrollTo(0, 0);
                 }
 
-                window.scrollTo(0, 0);
-            }, 100);
+                // Initialiser les événements
+                initEventListeners();
+            }, 100); // Petit délai pour assurer le chargement
         });
+
+        // CORRECTION: Ajouter aussi un événement pour s'assurer qu'au chargement complet on est en haut
+        window.addEventListener('load', function () {
+            window.scrollTo(0, 0);
+
+            // Correction supplémentaire pour certains navigateurs
+            if (window.location.hash) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'instant'
+                    });
+                }, 10);
+            }
+        });
+
+        // Chargement dynamique du contenu
+        function loadTabContent(tabId) {
+            // Cette fonction peut être utilisée pour charger du contenu dynamiquement
+            console.log(`Chargement de l'onglet: ${tabId}`);
+
+            // Pour l'onglet focus-réglementation, redirection automatique après un délai
+            if (tabId === 'focus-reglementation') {
+                setTimeout(() => {
+                    openFocusReglementationApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet structures, redirection automatique après un délai
+            if (tabId === 'structures') {
+                setTimeout(() => {
+                    openStructuresApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet incendie, redirection automatique après un délai
+            if (tabId === 'incendie') {
+                setTimeout(() => {
+                    openIncendieApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet formation, redirection automatique après un délai
+            if (tabId === 'formation') {
+                setTimeout(() => {
+                    openFormationApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet simulation, redirection automatique après un délai
+            if (tabId === 'simulation') {
+                setTimeout(() => {
+                    openSimulationApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet règlementation, redirection automatique après un délai
+            if (tabId === 'reglementation') {
+                setTimeout(() => {
+                    openReglementationApp();
+                }, 1000);
+            }
+
+            // Pour l'onglet quiz, redirection automatique après un délai
+            if (tabId === 'quiz') {
+                setTimeout(() => {
+                    openQuizApp();
+                }, 1000);
+            }
+        }
+
+        // Initialiser les événements
+        function initEventListeners() {
+            // Ajouter des écouteurs d'événements si nécessaire
+        }
 
         // ==================== FONCTIONS UTILITAIRES ====================
         function showAlert(message, type = 'info') {
@@ -856,13 +1202,57 @@
             }, 5000);
         }
 
+        // ==================== INITIALISATION DES APPLICATIONS ====================
+        function initFocusReglementationApp() {
+            console.log('Application Focus Réglementation - Redirection en cours');
+        }
+
+        function initStructuresApp() {
+            console.log('Application Règlementation CTS - Redirection en cours');
+        }
+
+        function initSimulationApp() {
+            console.log('Application Outils Simulation - Redirection en cours');
+        }
+
+        function initIncendieApp() {
+            console.log('Application Sécurité Incendie - Redirection en cours');
+        }
+
+        function initFormationApp() {
+            console.log('Application Formation Sécurité - Redirection en cours');
+        }
+
+        function initReglementationApp() {
+            console.log('Application Règlementation ERP - Redirection en cours');
+        }
+
+        function initQuizApp() {
+            console.log('Application Quiz du Régisseur - Redirection en cours');
+        }
+
         // Export des fonctions pour le débogage
         window.app = {
             switchTab,
+            openFocusReglementationApp,
+            openStructuresApp,
+            openSimulationApp,
+            openIncendieApp,
+            openFormationApp,
+            openReglementationApp,
+            openQuizApp,
             showAlert,
+            initFocusReglementationApp,
+            initStructuresApp,
+            initSimulationApp,
+            initIncendieApp,
+            initFormationApp,
+            initReglementationApp,
+            initQuizApp,
             state: tabState
         };
     </script>
 
 </body>
+
 </html>
