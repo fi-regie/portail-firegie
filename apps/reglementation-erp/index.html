@@ -717,11 +717,23 @@
 </head>
 
 <body>
+
     <div class="app-header">
         <button id="menuToggle">☰</button>
-        <span style="margin-left: 15px; font-weight: bold;">Réglementation CTS</span>
-    </div>
 
+        <div class="flex items-center space-x-4">
+            <button
+                onclick="window.location.href='https://fi-regie.github.io/portail-firegie/index.html#accueil';"
+                class="text-sm text-stone-500 hover:text-orange-600 transition flex items-center hidden sm:inline-flex">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Retour au Portail
+            </button>
+            <div class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse" title="Application active"></div>
+        </div>
+    </div>
+</div>
+</nav>
+    
     <aside class="sidebar" id="sidebar">
         <h3>Navigation</h3>
         <div id="navigationTree"></div>
