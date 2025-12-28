@@ -54,100 +54,175 @@
 
     <style>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fafaf9 !important;
-            color: var(--color-primary);
-            scroll-behavior: auto !important;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafaf9 !important;
+    color: var(--color-primary);
+    scroll-behavior: auto !important;
+}
 
-        /* Custom Chart Container Styling */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
+/* Custom Chart Container Styling */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 400px;
+}
 
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
 
-        /* Hide scrollbar */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 
-        /* Animation for fade in */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+/* Animation for fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
 
-            to {
-                opacity: 1;
-            }
-        }
+    to {
+        opacity: 1;
+    }
+}
 
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
 
-        /* Professional Chart Containers */
-        .chart-container-professional {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            height: 400px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+/* Professional Chart Containers */
+.chart-container-professional {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
 
-        /* Tab transitions */
-        .tab-content {
-            display: none;
-        }
+/* Tab transitions */
+.tab-content {
+    display: none;
+}
 
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
 
-        /* Quiz specific styles */
-        .quiz-option {
-            transition: all 0.2s ease;
-        }
+/* Quiz specific styles */
+.quiz-option {
+    transition: all 0.2s ease;
+}
 
-        .quiz-option:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1);
-        }
+.quiz-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1);
+}
 
-        .quiz-option.selected {
-            border-color: #059669;
-            background-color: #f0fdf4;
-        }
+.quiz-option.selected {
+    border-color: #059669;
+    background-color: #f0fdf4;
+}
 
-        .quiz-option.correct {
-            border-color: #059669;
-            background-color: #f0fdf4;
-        }
+.quiz-option.correct {
+    border-color: #059669;
+    background-color: #f0fdf4;
+}
 
-        .quiz-option.incorrect {
-            border-color: #dc2626;
-            background-color: #fef2f2;
-        }
+.quiz-option.incorrect {
+    border-color: #dc2626;
+    background-color: #fef2f2;
+}
+
+/* Level indicators */
+.level-student {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.level-pro {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.level-expert {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+/* CONFIGURATION PAGE - CORRECTIONS */
+/* Options de configuration (questions et niveau) */
+.question-option.selected,
+.level-option.selected {
+    border-color: #ea580c !important;
+    background-color: #fff7ed !important;
+}
+
+/* Cercles de sélection */
+.question-option .selector-circle,
+.level-option .selector-circle {
+    border: 2px solid #d6d3d1 !important;
+    background-color: transparent !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+}
+
+.question-option.selected .selector-circle,
+.level-option.selected .selector-circle {
+    border-color: #ea580c !important;
+    background-color: #ea580c !important;
+}
+
+/* Options de thèmes */
+.theme-option.selected {
+    border-color: #059669 !important;
+    background-color: #f0fdf4 !important;
+}
+
+.theme-option.selected i:first-child {
+    color: #059669 !important;
+}
+
+.theme-option.selected span {
+    color: #065f46 !important;
+    font-weight: 500;
+}
+
+/* Icônes +/check des thèmes */
+.theme-option i:last-child {
+    color: #a8a29e !important;
+}
+
+.theme-option.selected i:last-child {
+    color: #059669 !important;
+}
+
+/* Bouton de démarrage */
+#startBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#startBtn:disabled:hover {
+    transform: none !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}    
     </style>
 </head>
 
@@ -159,10 +234,12 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <span class="text-2xl mr-2"></span>
-                    <h1 class="text-xl font-bold tracking-tight text-slate-700"> Quiz du Régisseur 
-                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">CTS & ERP Type L</span></h1>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-700"> Quiz du Régisseur
+                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">CTS & ERP Type
+                            L</span>
+                    </h1>
                 </div>
-                    <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-4">
                     <button
                         onclick="window.location.href='https://fi-regie.github.io/portail-firegie/index.html#accueil';"
                         class="text-sm text-stone-500 hover:text-orange-600 transition flex items-center hidden sm:inline-flex">
@@ -175,15 +252,19 @@
         </div>
     </nav>
 
-
     <!-- Navigation professionnelle -->
     <div class="bg-white border-b border-stone-200">
         <div class="max-w-8xl mx-auto">
             <nav class="flex overflow-x-auto no-scrollbar px-4">
                 <button onclick="switchTab('config')"
-                    class="nav-btn px-4 py-3 border-b-2 border-transparent hover:border-orange-600 hover:text-orange-600 whitespace-nowrap flex items-center"
+                    class="nav-btn px-4 py-3 border-b-2 border-orange-600 text-orange-600 whitespace-nowrap flex items-center active"
                     id="btn-config">
                     <i class="fas fa-cog mr-2"></i>Configuration
+                </button>
+                <button onclick="switchTab('quiz')"
+                    class="nav-btn px-4 py-3 border-b-2 border-transparent hover:border-orange-600 hover:text-orange-600 whitespace-nowrap flex items-center"
+                    id="btn-quiz">
+                    <i class="fas fa-question-circle mr-2"></i>Quiz
                 </button>
                 <button onclick="switchTab('resultats')"
                     class="nav-btn px-4 py-3 border-b-2 border-transparent hover:border-emerald-600 hover:text-emerald-600 whitespace-nowrap flex items-center"
@@ -203,20 +284,25 @@
                 <div class="bg-white rounded-xl shadow-sm border border-stone-100 p-6 md:p-8 mb-8">
                     <h2 class="text-2xl font-semibold mb-4 text-slate-700">🚀 Configuration du Quiz CTS Pro</h2>
                     <p class="text-stone-600 leading-relaxed mb-6">
-                        Personnalisez votre session d'entraînement selon vos besoins. Ce quiz interactif vous permet de tester vos connaissances sur la réglementation des Chapiteaux, Tentes et Structures (CTS) de manière progressive et pédagogique.
+                        Personnalisez votre session d'entraînement selon vos besoins. Ce quiz interactif vous permet de
+                        tester vos connaissances sur la réglementation des Chapiteaux, Tentes et Structures (CTS) de
+                        manière progressive et pédagogique.
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                         <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-orange-500">
-                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif 1</span>
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif
+                                1</span>
                             <span class="font-medium">Valider vos connaissances CTS</span>
                         </div>
                         <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-slate-600">
-                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif 2</span>
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif
+                                2</span>
                             <span class="font-medium">Identifier vos points d'amélioration</span>
                         </div>
                         <div class="bg-stone-50 p-4 rounded-lg border-l-4 border-emerald-500">
-                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif 3</span>
+                            <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Objectif
+                                3</span>
                             <span class="font-medium">Obtenir une certification professionnelle</span>
                         </div>
                     </div>
@@ -269,15 +355,15 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="configSummary">
                         <div>
                             <div class="font-bold text-stone-700">Questions :</div>
-                            <div class="text-emerald-700 font-medium" id="summaryQuestions">20</div>
+                            <div class="text-emerald-700 font-medium" id="summaryQuestions">0</div>
                         </div>
                         <div>
                             <div class="font-bold text-stone-700">Niveau :</div>
-                            <div class="text-emerald-700 font-medium" id="summaryLevel">Professionnel</div>
+                            <div class="text-emerald-700 font-medium" id="summaryLevel">Non sélectionné</div>
                         </div>
                         <div>
                             <div class="font-bold text-stone-700">Thèmes :</div>
-                            <div class="text-emerald-700 font-medium" id="summaryThemes">4 sélectionnés</div>
+                            <div class="text-emerald-700 font-medium" id="summaryThemes">0 sélectionné</div>
                         </div>
                     </div>
                 </div>
@@ -285,13 +371,14 @@
                 <!-- Bouton de démarrage -->
                 <div class="mt-12 text-center">
                     <button onclick="startQuiz()"
-                            class="bg-gradient-to-r from-orange-600 to-orange-700 text-white font-bold py-4 px-12 rounded-lg hover:from-orange-700 hover:to-orange-800 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        class="bg-gradient-to-r from-orange-600 to-orange-700 text-white font-bold py-4 px-12 rounded-lg hover:from-orange-700 hover:to-orange-800 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        id="startBtn">
                         <i class="fas fa-rocket mr-3"></i>
                         🚀 Démarrer le quiz
                     </button>
                     <p class="text-sm text-stone-500 mt-4">
                         <i class="fas fa-info-circle mr-2"></i>
-                        Temps estimé : <span id="estimatedTime" class="font-bold">10-15 minutes</span>
+                        Temps estimé : <span id="estimatedTime" class="font-bold">--</span>
                     </p>
                 </div>
             </div>
@@ -304,7 +391,7 @@
                 <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                         <div class="text-center p-4 bg-stone-50 rounded-lg border border-stone-200">
-                            <div class="text-2xl font-bold text-slate-800" id="currentQuestion">1/20</div>
+                            <div class="text-2xl font-bold text-slate-800" id="currentQuestion">0/0</div>
                             <div class="text-sm text-stone-600">Question</div>
                         </div>
                         <div class="text-center p-4 bg-emerald-50 rounded-lg border border-emerald-200">
@@ -316,7 +403,7 @@
                             <div class="text-sm text-blue-700">Score</div>
                         </div>
                         <div class="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
-                            <div class="text-2xl font-bold text-orange-800" id="questionsLeft">20</div>
+                            <div class="text-2xl font-bold text-orange-800" id="questionsLeft">0</div>
                             <div class="text-sm text-orange-700">Restantes</div>
                         </div>
                     </div>
@@ -328,7 +415,9 @@
                             <span id="progressText">0%</span>
                         </div>
                         <div class="h-3 bg-stone-200 rounded-full overflow-hidden">
-                            <div id="progressBar" class="h-full bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-500" style="width: 0%"></div>
+                            <div id="progressBar"
+                                class="h-full bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-500"
+                                style="width: 0%"></div>
                         </div>
                     </div>
                 </div>
@@ -337,8 +426,10 @@
                 <div class="bg-white rounded-xl shadow-sm p-8 mb-8">
                     <div class="flex justify-between items-start mb-6">
                         <div>
-                            <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-bold mb-3" id="questionTheme">SÉCURITÉ</div>
-                            <h3 class="text-2xl font-bold text-slate-800" id="questionText">Chargement de la question...</h3>
+                            <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-bold mb-3"
+                                id="questionTheme">THÈME</div>
+                            <h3 class="text-2xl font-bold text-slate-800" id="questionText">Configurez et démarrez le
+                                quiz pour commencer...</h3>
                         </div>
                         <div class="text-right">
                             <div class="text-sm text-stone-500 mb-1">Difficulté</div>
@@ -387,7 +478,8 @@
                             Référence légale
                         </h4>
                         <p class="text-sm text-stone-600" id="referenceText"></p>
-                        <a href="#" target="_blank" class="text-sm text-blue-600 hover:underline inline-block mt-2" id="referenceLink">
+                        <a href="#" target="_blank" class="text-sm text-blue-600 hover:underline inline-block mt-2"
+                            id="referenceLink">
                             <i class="fas fa-external-link-alt mr-1"></i>
                             Consulter le texte
                         </a>
@@ -398,22 +490,22 @@
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="flex space-x-4">
                         <button onclick="showHint()"
-                                class="flex items-center px-5 py-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition">
+                            class="flex items-center px-5 py-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition">
                             <i class="fas fa-lightbulb mr-2"></i>
                             Afficher un indice
                         </button>
                     </div>
-                    
+
                     <div class="flex space-x-4">
                         <button onclick="previousQuestion()"
-                                class="flex items-center px-6 py-3 bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                                id="prevBtn" disabled>
+                            class="flex items-center px-6 py-3 bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            id="prevBtn" disabled>
                             <i class="fas fa-arrow-left mr-2"></i>
                             Précédent
                         </button>
                         <button onclick="nextQuestionOrFinish()"
-                                class="flex items-center px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition"
-                                id="nextBtn">
+                            class="flex items-center px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition"
+                            id="nextBtn">
                             Suivant
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -422,93 +514,7 @@
             </div>
         </div>
 
-        <!-- ONGLET 3 : ÉTUDES DE CAS RÉELS -->
-        <div id="cas_reels" class="tab-content">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Études de Cas Réels - CTS</h2>
-                    <p class="text-stone-600 mb-6">
-                        Analysez des situations réelles issues de jurisprudence. Ces cas concrets illustrent les conséquences des non-conformités et renforcent votre compréhension opérationnelle.
-                    </p>
-                </div>
-
-                <!-- Cas réels - Contenu dynamique -->
-                <div id="caseStudiesContent">
-                    <!-- Les études de cas seront chargées dynamiquement -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 4 : CLASSIFICATION & RESPONSABILITÉ -->
-        <div id="classification" class="tab-content">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Classification CTS & Responsabilité</h2>
-                    <p class="text-stone-600 mb-6">
-                        La classification des CTS détermine les obligations réglementaires spécifiques.
-                        En tant que responsable, votre vigilance conditionne la sécurité des personnes.
-                    </p>
-                </div>
-
-                <!-- Contenu dynamique -->
-                <div id="classificationContent">
-                    <!-- Le contenu sera chargé dynamiquement -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 5 : DÉGAGEMENTS -->
-        <div id="degagements" class="tab-content">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Dégagements CTS : La Vie en Jeu</h2>
-                    <p class="text-stone-600 mb-6">
-                        Les dégagements dans les CTS présentent des particularités liées à la nature temporaire et textile des structures.
-                    </p>
-                </div>
-
-                <!-- Contenu dynamique -->
-                <div id="degagementsContent">
-                    <!-- Le contenu sera chargé dynamiquement -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 6 : MATÉRIAUX -->
-        <div id="materiaux" class="tab-content">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Matériaux CTS : L'Expertise Technique</h2>
-                    <p class="text-stone-600 mb-6">
-                        Les matériaux utilisés dans les CTS doivent répondre à des exigences particulières de réaction au feu.
-                    </p>
-                </div>
-
-                <!-- Contenu dynamique -->
-                <div id="materiauxContent">
-                    <!-- Le contenu sera chargé dynamiquement -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 7 : SECOURS -->
-        <div id="secours" class="tab-content">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Organisation des Secours en CTS</h2>
-                    <p class="text-stone-600 mb-6">
-                        L'organisation des secours dans les CTS nécessite une adaptation aux contraintes spécifiques des structures démontables.
-                    </p>
-                </div>
-
-                <!-- Contenu dynamique -->
-                <div id="secoursContent">
-                    <!-- Le contenu sera chargé dynamiquement -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ONGLET 8 : RÉSULTATS -->
+        <!-- ONGLET 3 : RÉSULTATS -->
         <div id="resultats" class="tab-content">
             <div class="max-w-6xl mx-auto">
                 <!-- Sceau de validation -->
@@ -564,9 +570,11 @@
                             <h3 class="text-2xl font-bold mb-6">Certificat de Formation</h3>
                             <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
                                 <p class="mb-4">Atteste que</p>
-                                <div class="text-3xl font-bold mb-6 border-b border-white/30 pb-4" contenteditable="true" id="certificateName">[VOTRE NOM]</div>
+                                <div class="text-3xl font-bold mb-6 border-b border-white/30 pb-4"
+                                    contenteditable="true" id="certificateName">[VOTRE NOM]</div>
                                 <p class="mb-2">a suivi avec succès la formation</p>
-                                <p class="text-xl font-bold mb-6">"Quiz CTS Pro - Réglementation Chapiteaux, Tentes et Structures"</p>
+                                <p class="text-xl font-bold mb-6">"Quiz CTS Pro - Réglementation Chapiteaux, Tentes et
+                                    Structures"</p>
                                 <div class="grid grid-cols-2 gap-6 text-sm">
                                     <div>
                                         <div class="font-bold text-emerald-300">Score obtenu</div>
@@ -584,12 +592,12 @@
                     <!-- Boutons d'action -->
                     <div class="flex flex-col md:flex-row justify-center gap-4">
                         <button onclick="downloadCertificate()"
-                                class="bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-emerald-700 transition flex items-center justify-center">
+                            class="bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-emerald-700 transition flex items-center justify-center">
                             <i class="fas fa-download mr-2"></i>
                             Télécharger le certificat
                         </button>
                         <button onclick="restartQuiz()"
-                                class="bg-slate-800 text-white font-bold py-3 px-8 rounded-lg hover:bg-slate-900 transition flex items-center justify-center">
+                            class="bg-slate-800 text-white font-bold py-3 px-8 rounded-lg hover:bg-slate-900 transition flex items-center justify-center">
                             <i class="fas fa-redo mr-2"></i>
                             Nouveau quiz
                         </button>
@@ -602,7 +610,7 @@
                     <h4 class="text-xl font-bold text-stone-600">Aucun résultat disponible</h4>
                     <p class="text-stone-500">Commencez un quiz pour voir vos résultats ici</p>
                     <button onclick="switchTab('config')"
-                            class="mt-6 bg-orange-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-700 transition">
+                        class="mt-6 bg-orange-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-700 transition">
                         <i class="fas fa-cog mr-2"></i>
                         Configurer un quiz
                     </button>
@@ -612,13 +620,13 @@
 
     </main>
 
-        <!-- Pied de page -->
+    <!-- Pied de page -->
     <footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
         <div class="max-w-8xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
 
-                <!-- Section 1 -->
+                    <!-- Section 1 -->
                     <h4 class="text-xl mb-4 text-[#343a40]">Portail de veille juridique ERP & CTS</h4>
                     <p class="text-[#6c757d] text-sm mb-2">
                         Suite d'Applications destinées aux
@@ -634,7 +642,7 @@
                         <li>• Aux commissions de sécurité compétentes</li>
                         <li>• À la jurisprudence en vigueur</li>
                     </ul>
-                    
+
                     <p class="text-[#6c757d] text-sm">
                         <small>Mise à jour : 27 décembre 2025</small>
                     </p>
@@ -649,15 +657,16 @@
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
-                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>                                <p class="text-sm text-[#6c757d] mt-1">
+                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
                                     Suite d'Applications destinée aux
                                     Régisseurs, Exploitants & Organismes de Formation
                                 </p>
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/reglementation-cts/index.html" target="_blank"
-                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://fi-regie.github.io/portail-firegie/apps/reglementation-cts/index.html"
+                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Réglementation Spectacle Itinérant</h5>
@@ -678,8 +687,8 @@
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/reglementation-erp/index.html" target="_blank"
-                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://fi-regie.github.io/portail-firegie/apps/reglementation-erp/index.html"
+                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Réglementation ERP</h5>
@@ -696,31 +705,31 @@
                 <div class="md:border- md:border-[] md:pl-8">
                     <h4 class="text-xl mb-4 text-[#343a40]">Formation</h4>
                     <div class="space-y-4">
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/focus-reglementation/index.html" target="_blank"
-                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://fi-regie.github.io/portail-firegie/apps/focus-reglementation/index.html"
+                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5 class="text-[0.95rem] font-medium">Focus Réglementation</h5>
                                 <p class="text-sm text-[#6c757d] mt-1">
-                                    Guide pour comprendre l'architecture de la 
+                                    Guide pour comprendre l'architecture de la
                                     réglementation officielle ERP
                                 </p>
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/securite-incendie/index.html" target="_blank"
-                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://fi-regie.github.io/portail-firegie/apps/securite-incendie/index.html"
+                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Guide de la Sécurité Incendie</h5>
                                 <p class="text-sm text-[#6c757d] mt-1">
-                                    Synthése des obligations des recponsables de la sécurité incendie ERP  
+                                    Synthése des obligations des recponsables de la sécurité incendie ERP
                                 </p>
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/formation-securite/index.html" target="_blank"
-                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://fi-regie.github.io/portail-firegie/apps/formation-securite/index.html"
+                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Formation Sécurité ERP</h5>
@@ -759,1323 +768,1602 @@
     </footer>
 
     <script>
-        // --- CONFIGURATION SIMPLIFIÉE ---
-        
-        // Options de configuration
-        const configOptions = {
-            questionCounts: [
-                { value: 10, label: "10 questions", time: "5-10 min", default: false },
-                { value: 20, label: "20 questions", time: "10-15 min", default: true },
-                { value: 30, label: "30 questions", time: "15-20 min", default: false }
-            ],
-            levels: [
-                { value: "student", label: "Étudiant", icon: "fa-user-graduate", default: false },
-                { value: "pro", label: "Professionnel", icon: "fa-user-tie", default: true },
-                { value: "expert", label: "Expert", icon: "fa-crown", default: false }
-            ],
-            themes: [
-                { value: "general", label: "Généralités CTS", icon: "🏗️", default: true },
-                { value: "construction", label: "Construction", icon: "🔨", default: true },
-                { value: "electricity", label: "Électricité", icon: "⚡", default: true },
-                { value: "safety", label: "Sécurité", icon: "🚨", default: true }
-            ]
-        };
-
-        // État de configuration
-        const quizConfig = {
-            questionCount: 20,
-            level: "pro",
-            selectedThemes: ["general", "construction", "electricity", "safety"]
-        };
-
-        // --- INITIALISATION DE LA CONFIGURATION ---
-        function initConfiguration() {
-            // Générer les options de nombre de questions
-            const questionCountContainer = document.getElementById('questionCountOptions');
-            configOptions.questionCounts.forEach(option => {
-                const isSelected = quizConfig.questionCount === option.value;
-                const div = document.createElement('div');
-                div.className = `quiz-option p-4 border rounded-lg cursor-pointer transition ${isSelected ? 'border-orange-500 bg-orange-50' : 'border-stone-300 hover:bg-stone-50'}`;
-                div.dataset.value = option.value;
-                div.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <div class="font-medium">${option.label}</div>
-                            <div class="text-sm text-stone-500">${option.time}</div>
-                        </div>
-                        ${isSelected ? '<i class="fas fa-check text-orange-600"></i>' : ''}
+        // BASE DE DONNÉES COMPLÈTE DES QUESTIONS
+        const allQuestions = [
+            // THÈME : GÉNÉRALITÉS (10 questions)
+            {
+                id: 1,
+                question: "À partir de quelle superficie un établissement CTS est-il soumis à la réglementation ?",
+                answers: [
+                    "À partir de 16 m²",
+                    "À partir de 25 m²",
+                    "À partir de 50 m²",
+                    "À partir de 100 m²"
+                ],
+                correctAnswer: 0,
+                level: "student",
+                theme: "general",
+                hint: "Consultez l'article CTS 1, paragraphe 2",
+                explanation: "Selon l'article CTS 1 §2, la réglementation s'applique aux établissements destinés à être clos, possédant une couverture souple, d'une superficie supérieure ou égale à 16 m².",
+                reference: "Article CTS 1 §2 : 'Les dispositions du présent règlement s'appliquent aux établissements [...] d'une superficie supérieure ou égale à 16 m².'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📐 Surface minimale : 16 m²</strong><br>
+                        • Chapiteaux, tentes, structures<br>
+                        • Établissements itinérants<br>
+                        • Couverture souple<br>
+                        • Destinés à être clos
                     </div>
+                    <div class="example">
+                        <strong>📝 Exemple :</strong><br>
+                        Une tente de 4m x 4m = 16 m² → Règlement applicable<br>
+                        Une tente de 3m x 3m = 9 m² → Règlement non applicable
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                question: "Quelle est la distance minimale entre deux établissements CTS pour qu'ils soient considérés comme distincts ?",
+                answers: [
+                    "3 mètres",
+                    "5 mètres",
+                    "8 mètres",
+                    "10 mètres"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "general",
+                hint: "Article CTS 1, paragraphe 6",
+                explanation: "L'article CTS 1 §6 précise que les établissements distants de 8 m au moins sont considérés comme distincts.",
+                reference: "Article CTS 1 §6 : 'Les établissements distants entre eux de 8 m au moins sont considérés comme autant d'établissements distincts.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📏 Distance entre établissements :</strong><br>
+                        • 8 m minimum pour établissements distincts<br>
+                        • 5 m pour établissements de 16-50 m²<br>
+                        • Mesuré entre les enveloppes
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                question: "Qui délivre le registre de sécurité d'un établissement CTS ?",
+                answers: [
+                    "Le maire de la commune",
+                    "Le préfet du département",
+                    "Le fabricant",
+                    "L'organisme de vérification technique"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "general",
+                hint: "Article CTS 3, paragraphe 1",
+                explanation: "Le registre de sécurité est délivré par le préfet du département (ou le préfet de Police pour Paris) après avis de la commission consultative départementale.",
+                reference: "Article CTS 3 §1 : 'Le registre de sécurité est délivré par le préfet du département [...] après avis de la commission consultative départementale de sécurité et d'accessibilité.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📋 Procédure d'obtention :</strong><br>
+                        1. Demande par le propriétaire/fabricant<br>
+                        2. Vérification par organisme agréé CTS<br>
+                        3. Transmission au préfet<br>
+                        4. Délivrance du registre
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                question: "Quels types d'établissements ne sont pas visés par la réglementation CTS ?",
+                answers: [
+                    "Les chapiteaux de cirque",
+                    "Les campings et manèges forains",
+                    "Les structures gonflables",
+                    "Les tentes de réception"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "general",
+                hint: "Article CTS 1, paragraphe 5",
+                explanation: "L'article CTS 1 §5 exclut spécifiquement les campings et les manèges forains du champ d'application.",
+                reference: "Article CTS 1 §5 : 'Les campings et les manèges forains ne sont pas visés par le présent type.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🚫 Exclusions :</strong><br>
+                        ✅ Campings (règlement spécifique)<br>
+                        ✅ Manèges forains<br>
+                        ❌ Chapiteaux de cirque (inclus)<br>
+                        ❌ Tentes événementielles (incluses)
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                question: "Pour les établissements de 16 à 50 m², quelles dispositions s'appliquent ?",
+                answers: [
+                    "Toutes les dispositions du CTS",
+                    "Seules les dispositions de base",
+                    "Aucune disposition",
+                    "Uniquement les dispositions électriques"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "general",
+                hint: "Article CTS 1, paragraphe 3",
+                explanation: "Ces établissements ne sont soumis qu'aux dispositions de base spécifiées à l'article CTS 1 §3.",
+                reference: "Article CTS 1 §3 : 'Les établissements d'une superficie supérieure ou égale à 16 m² mais inférieure à 50 m² sont soumis aux seules dispositions des paragraphes 1 et 6 du présent article...'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📊 Règlementation par superficie :</strong><br>
+                        • < 16 m² : Hors champ (sauf si cumul ≥ 16 m²)<br>
+                        • 16-50 m² : Dispositions de base<br>
+                        • ≥ 50 m² : Règlement complet
+                    </div>
+                `
+            },
+
+            // THÈME : CONSTRUCTION (10 questions)
+            {
+                id: 6,
+                question: "Quelle pression dynamique de base doit être considérée pour le calcul de stabilité au vent ?",
+                answers: [
+                    "0,25 KN/m²",
+                    "0,47 KN/m²",
+                    "0,75 KN/m²",
+                    "1,00 KN/m²"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "construction",
+                hint: "Article CTS 7, paragraphe 1",
+                explanation: "L'article CTS 7 §1 impose une pression dynamique de base de 0,47 KN/m² correspondant à un vent normal.",
+                reference: "Article CTS 7 §1 : 'Tous les établissements doivent être conçus et installés pour rester stables sous les effets simultanés d'un vent normal correspondant à une pression dynamique de base de 0,47 KN par mètre carré.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>💨 Calcul de résistance au vent :</strong><br>
+                        Pression de base : 0,47 KN/m²<br>
+                        Coefficient dynamique : 1,25<br>
+                        Hauteur : prise en compte<br>
+                        Site : normal (ks = 1)
+                    </div>
+                    <div class="example">
+                        <strong>📝 Exemple pour 100 m² :</strong><br>
+                        Force = 0,47 × 100 = 47 KN<br>
+                        ≈ 4 700 kg de poussée au vent
+                    </div>
+                `
+            },
+            {
+                id: 7,
+                question: "À quelle vitesse de vent faut-il évacuer le public d'un établissement CTS ?",
+                answers: [
+                    "60 km/h",
+                    "80 km/h",
+                    "100 km/h",
+                    "120 km/h"
+                ],
+                correctAnswer: 2,
+                level: "pro",
+                theme: "construction",
+                hint: "Article CTS 7, paragraphe 2",
+                explanation: "L'article CTS 7 §2 prévoit l'évacuation lorsque le vent dépasse 100 km/h.",
+                reference: "Article CTS 7 §2 : 'L'établissement doit être évacué [...] si le vent normal dépasse 100 km/h.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🌪️ Critères d'évacuation :</strong><br>
+                        ✅ Vent > 100 km/h<br>
+                        ✅ Neige > 4 cm non déblayée<br>
+                        ✅ Circonstances exceptionnelles<br>
+                        ⚠️ Anémomètre obligatoire pour surveillance
+                    </div>
+                `
+            },
+            {
+                id: 8,
+                question: "Quelle catégorie de matériaux est exigée pour la couverture des CTS ?",
+                answers: [
+                    "M0",
+                    "M1",
+                    "M2",
+                    "M3"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "construction",
+                hint: "Article CTS 8, paragraphe 2",
+                explanation: "La couverture, la double couverture intérieure éventuelle et la ceinture de l'établissement doivent être en matériaux de catégorie M2.",
+                reference: "Article CTS 8 §2 : 'La couverture, la double couverture intérieure éventuelle et la ceinture de l'établissement doivent être réalisées en matériaux de catégorie M2.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🔥 Classification M2 :</strong><br>
+                        • Non inflammable<br>
+                        • Pas de gouttes enflammées<br>
+                        • Propagation limitée<br>
+                        • Marquage NF obligatoire
+                    </div>
+                    <div class="example">
+                        <strong>✅ Matériaux acceptés :</strong><br>
+                        • Toiles polyester enduites PVC<br>
+                        • Membranes polyester/PVC<br>
+                        • Toiles classées M2 avec marquage
+                    </div>
+                `
+            },
+            {
+                id: 9,
+                question: "Que doit-on faire des câbles de contreventement situés à moins de 2 mètres du sol ?",
+                answers: [
+                    "Les supprimer",
+                    "Les signaler et les protéger",
+                    "Les peindre en rouge",
+                    "Les renforcer"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "construction",
+                hint: "Article CTS 8, paragraphe 4",
+                explanation: "Les câbles à moins de 2 m doivent être protégés et signalés pour éviter les accidents.",
+                reference: "Article CTS 8 §4 : 'Toutes dispositions doivent être prises pour que les câbles de contreventement situés à une hauteur inférieure à 2 mètres [...] ne puissent pas constituer un risque pour les personnes.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>⚠️ Protection des câbles :</strong><br>
+                        Hauteur < 2 m → Protection obligatoire<br>
+                        Options :<br>
+                        • Gaines de protection<br>
+                        • Signalisation visible<br>
+                        • Balisage lumineux nocturne
+                    </div>
+                `
+            },
+            {
+                id: 10,
+                question: "Quelle est la composition du numéro d'identification d'un CTS ?",
+                answers: [
+                    "Uniquement le département",
+                    "Type, département, année et numéro de série",
+                    "Uniquement le type et l'année",
+                    "Le nom du propriétaire"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "construction",
+                hint: "Article CTS 9, paragraphe 1",
+                explanation: "Le numéro comprend : lettre du type (C/T/S/SE), numéro de département, année et numéro de série.",
+                reference: "Article CTS 9 §1 : 'Le numéro d'identification comprend : une lettre : C pour chapiteau, T pour tente, S pour structure et SE pour structure à étage ; 2 ou 3 chiffres correspondant au numéro du département ; 4 chiffres correspondant à l'année de délivrance ; 3 chiffres correspondant au numéro de série.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🔢 Format du numéro :</strong><br>
+                        S - 972 - 2009 - 002<br><br>
+                        S = Structure<br>
+                        972 = Martinique<br>
+                        2009 = Année<br>
+                        002 = Numéro de série
+                    </div>
+                `
+            },
+
+            // THÈME : ÉLECTRICITÉ (10 questions)
+            {
+                id: 11,
+                question: "Quelle norme doit respecter l'installation électrique d'un CTS ?",
+                answers: [
+                    "NF C 14-100",
+                    "NF C 15-100",
+                    "NF C 16-100",
+                    "NF C 17-100"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "electricity",
+                hint: "Article CTS 16, paragraphe 2",
+                explanation: "Les installations doivent être conformes à la norme NF C 15-100.",
+                reference: "Article CTS 16 §2 : 'Les installations électriques doivent être conformes aux normes homologuées les concernant et notamment à la norme NF C 15-100.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>⚡ Norme NF C 15-100 :</strong><br>
+                        • Installations basse tension<br>
+                        • Protection différentielle obligatoire<br>
+                        • Schémas de liaison à la terre<br>
+                        • Dispositifs de protection
+                    </div>
+                `
+            },
+            {
+                id: 12,
+                question: "Comment doivent être protégés les circuits des installations ajoutées par les utilisateurs ?",
+                answers: [
+                    "Par des fusibles",
+                    "Par des disjoncteurs différentiels haute sensibilité",
+                    "Par des parafoudres",
+                    "Par des sectionneurs"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "electricity",
+                hint: "Article CTS 18, paragraphe 1",
+                explanation: "Les circuits doivent être protégés par des dispositifs à courant différentiel-résiduel à haute sensibilité (30 mA).",
+                reference: "Article CTS 18 §1 : 'Les circuits alimentés à partir de ces tableaux doivent être protégés dans tous les cas par des dispositifs de protection à courant différentiel-résiduel à haute sensibilité.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🔒 Protection différentielle :</strong><br>
+                        • Haute sensibilité : 30 mA<br>
+                        • Obligatoire pour tous circuits<br>
+                        • Dispositif type S pour amont<br>
+                        • Test mensuel recommandé
+                    </div>
+                `
+            },
+            {
+                id: 13,
+                question: "À quelle hauteur minimale doivent être placés les appareils d'éclairage ?",
+                answers: [
+                    "2,00 m",
+                    "2,25 m",
+                    "2,50 m",
+                    "2,75 m"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "electricity",
+                hint: "Article CTS 21, paragraphe 1",
+                explanation: "La partie inférieure des appareils d'éclairage doit être à au moins 2,25 m du sol.",
+                reference: "Article CTS 21 §1 : 'Les appareils d'éclairage ne doivent pas faire obstacle à la circulation du public ; leur partie inférieure doit être placée à une hauteur minimale de 2,25 mètres au-dessus des emplacements accessible au public.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📏 Hauteur des luminaires :</strong><br>
+                        ┌───────────────┐<br>
+                        │               │<br>
+                        │   Luminaire   │<br>
+                        │               │<br>
+                        └───────────────┘<br>
+                        │<br>
+                        │ 2,25 m minimum<br>
+                        │<br>
+                        ┌───────────────┐<br>
+                        │    Sol        │<br>
+                        └───────────────┘
+                    </div>
+                `
+            },
+            {
+                id: 14,
+                question: "Combien de circuits minimum pour l'éclairage normal ?",
+                answers: [
+                    "1 circuit",
+                    "2 circuits",
+                    "3 circuits",
+                    "4 circuits"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "electricity",
+                hint: "Article CTS 21, paragraphe 2",
+                explanation: "L'éclairage normal doit être alimenté par au moins deux circuits protégés sélectivement.",
+                reference: "Article CTS 21 §2 : 'L'installation de l'éclairage normal doit être alimentée par au moins deux circuits protégés sélectivement contre les surintensités et contre les contacts indirects.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🔌 Circuits d'éclairage :</strong><br>
+                        Tableau principal<br>
+                        ├── Circuit 1 (Nord/Est)<br>
+                        └── Circuit 2 (Sud/Ouest)<br><br>
+                        • Sélectivité des protections<br>
+                        • Redondance en cas de panne
+                    </div>
+                `
+            },
+            {
+                id: 15,
+                question: "Quelle norme pour les guirlandes électriques ?",
+                answers: [
+                    "NF EN 60598-1",
+                    "NF EN 60598-2-20",
+                    "NF EN 61347",
+                    "NF EN 62031"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "electricity",
+                hint: "Article CTS 19, paragraphe 2",
+                explanation: "Les guirlandes électriques doivent répondre à la norme NF EN 60598-2-20.",
+                reference: "Article CTS 19 §2 : 'Les guirlandes électriques doivent répondre aux dispositions de la norme NF EN 60598-2-20.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>✨ Norme guirlandes :</strong><br>
+                        NF EN 60598-2-20 :<br>
+                        • Protection contre les chocs<br>
+                        • Résistance mécanique<br>
+                        • Température admissible<br>
+                        • Marquage CE obligatoire
+                    </div>
+                `
+            },
+
+            // THÈME : SÉCURITÉ (10 questions)
+            {
+                id: 16,
+                question: "Quel flux lumineux minimal pour l'éclairage d'ambiance ?",
+                answers: [
+                    "3 lumens/m²",
+                    "5 lumens/m²",
+                    "7 lumens/m²",
+                    "10 lumens/m²"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "safety",
+                hint: "Article CTS 22, paragraphe 2",
+                explanation: "L'éclairage d'ambiance doit fournir 5 lumens/m² minimum sur la surface des circulations.",
+                reference: "Article CTS 22 §2 : 'L'éclairage d'ambiance doit être basé sur un flux lumineux minimal de cinq lumens par mètre carré calculé en fonction de la surface des circulations.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>💡 Calcul du flux lumineux :</strong><br>
+                        Surface circulation : 100 m²<br>
+                        Flux nécessaire : 5 × 100 = 500 lm<br><br>
+                        Exemple :<br>
+                        10 blocs de 50 lm = 500 lm
+                    </div>
+                `
+            },
+            {
+                id: 17,
+                question: "Quelle autonomie minimale pour la source de sécurité ?",
+                answers: [
+                    "30 minutes",
+                    "45 minutes",
+                    "60 minutes",
+                    "90 minutes"
+                ],
+                correctAnswer: 2,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 24, paragraphe 2",
+                explanation: "La source de sécurité (groupe ou batteries) doit assurer une autonomie minimale d'une heure.",
+                reference: "Article CTS 24 §2 : 'La source de sécurité (groupe électrogène ou source centralisée constituée d'une batterie d'accumulateurs) doit assurer une autonomie minimale d'une heure.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🔋 Autonomie sécurité :</strong><br>
+                        Durée : 1 heure minimum<br>
+                        Options :<br>
+                        • Groupes électrogènes<br>
+                        • Batteries d'accumulateurs<br>
+                        • Chargeur automatique
+                    </div>
+                `
+            },
+            {
+                id: 18,
+                question: "Quel type d'extincteur est exigé à chaque sortie ?",
+                answers: [
+                    "Extincteur à CO2 2 kg",
+                    "Extincteur à poudre 6 kg",
+                    "Extincteur à eau pulvérisée 6 L",
+                    "Extincteur à mousse 9 L"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "safety",
+                hint: "Article CTS 26, paragraphe 1",
+                explanation: "Un extincteur portatif à eau pulvérisée de 6 L minimum par sortie.",
+                reference: "Article CTS 26 §1 : 'La défense contre l'incendie doit être assurée : par des extincteurs portatifs à eau pulvérisée, de 6 litres minimum, bien visibles, facilement accessibles et rapidement décrochables, à raison d'un appareil par sortie.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>🧯 Extincteurs obligatoires :</strong><br>
+                        Par sortie : 1 extincteur eau 6L<br>
+                        Risques particuliers : extincteurs adaptés<br>
+                        Signalisation : visible<br>
+                        Accessibilité : facile
+                    </div>
+                    <div class="example">
+                        <strong>✅ Installation :</strong><br>
+                        • Hauteur 1 à 1,30 m<br>
+                        • Pas d'obstacle devant<br>
+                        • Signalisation permanente<br>
+                        • Vérification annuelle
+                    </div>
+                `
+            },
+            {
+                id: 19,
+                question: "À partir de quel effectif faut-il un système de sonorisation pour l'alarme ?",
+                answers: [
+                    "300 personnes",
+                    "500 personnes",
+                    "700 personnes",
+                    "1000 personnes"
+                ],
+                correctAnswer: 2,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 28, paragraphe 2",
+                explanation: "Pour plus de 700 personnes, l'alarme doit être diffusée par un système de sonorisation permettant une diffusion verbale audible de tout point.",
+                reference: "Article CTS 28 §2 : 'Dans les établissements recevant plus de 700 personnes, la diffusion de l'alarme générale doit être obtenue à partir d'un système de sonorisation permettant une diffusion verbale audible de tout point de l'établissement.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>📢 Système d'alarme :</strong><br>
+                        < 700 personnes : moyen sonore simple<br>
+                        > 700 personnes : sonorisation obligatoire<br>
+                        Options :<br>
+                        • Système fixe avec secours<br>
+                        • Mégaphone autonome
+                    </div>
+                `
+            },
+            {
+                id: 20,
+                question: "Combien d'agents de sécurité pour un établissement de 3000 personnes avec espace scénique ?",
+                answers: [
+                    "1 agent",
+                    "2 agents",
+                    "3 agents",
+                    "4 agents"
+                ],
+                correctAnswer: 2,
+                level: "expert",
+                theme: "safety",
+                hint: "Article CTS 27, paragraphe 1-c",
+                explanation: "Pour plus de 2500 personnes avec espace scénique : minimum 3 agents de sécurité incendie.",
+                reference: "Article CTS 27 §1-c : 'Etablissements recevant plus de 2 500 personnes et comportant un espace scénique : par des agents de sécurité incendie fournis par l'organisateur avec un minimum de trois.'",
+                visualAid: `
+                    <div class="schema">
+                        <strong>👷 Effectifs sécurité :</strong><br>
+                        • ≤ 2500 pers : 1-2 agents<br>
+                        • > 2500 pers sans scène : 2 agents min<br>
+                        • > 2500 pers avec scène : 3 agents min<br>
+                        • +1 agent par 2500 pers supplémentaires
+                    </div>
+                `
+            },
+
+            // QUESTIONS SUPPLEMENTAIRES
+            {
+                id: 21,
+                question: "Quelle est la fréquence de la vérification périodique des établissements CTS ?",
+                answers: [
+                    "Annuelle",
+                    "Tous les 2 ans",
+                    "Tous les 3 ans",
+                    "Tous les 5 ans"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "general",
+                hint: "Article CTS 34, paragraphe 1",
+                explanation: "Vérification technique tous les 2 ans par un organisme agréé CTS.",
+                reference: "Article CTS 34 §1 : 'Des vérifications techniques et documentaires sont effectuées tous les deux ans par un organisme agréé de vérification technique CTS.'",
+                visualAid: null
+            },
+            {
+                id: 22,
+                question: "Quelle distance minimale entre un CTS et un bâtiment à risques particuliers ?",
+                answers: [
+                    "4 mètres",
+                    "6 mètres",
+                    "8 mètres",
+                    "10 mètres"
+                ],
+                correctAnswer: 2,
+                level: "expert",
+                theme: "construction",
+                hint: "Article CTS 39",
+                explanation: "Distance minimale de 8 mètres pour un établissement à risques particuliers.",
+                reference: "Article CTS 39 : 'l'établissement doit être implanté à plus de : huit mètres d'un autre bâtiment ou d'une autre structure si l'un au moins des deux établissements est à risques particuliers.'",
+                visualAid: null
+            },
+            {
+                id: 23,
+                question: "Quelle est la largeur minimale des circulations entre rangées de sièges ?",
+                answers: [
+                    "0,90 m",
+                    "1,00 m",
+                    "1,20 m",
+                    "1,40 m"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "construction",
+                hint: "Article CTS 11, paragraphe 2",
+                explanation: "Les circulations doivent avoir une largeur minimale de 1,20 m.",
+                reference: "Article CTS 11 §2 : 'Les sièges doivent être disposés de manière à former des ensembles desservis par des circulations ayant une largeur minimale de 1,20 mètre.'",
+                visualAid: null
+            },
+            {
+                id: 24,
+                question: "Quelle catégorie de matériaux pour les décors scéniques ?",
+                answers: [
+                    "M0",
+                    "M1",
+                    "M2",
+                    "M3"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "construction",
+                hint: "Article CTS 13, paragraphe 1",
+                explanation: "Les décors pour aménagements scéniques doivent être en matériaux de catégorie M1.",
+                reference: "Article CTS 13 §1 : 'Les décors pour aménagements scéniques doivent être réalisés en matériaux de catégorie M 1.'",
+                visualAid: null
+            },
+            {
+                id: 25,
+                question: "Quelle est la capacité maximale de stockage de gaz par emplacement ?",
+                answers: [
+                    "100 kg",
+                    "150 kg",
+                    "210 kg",
+                    "300 kg"
+                ],
+                correctAnswer: 2,
+                level: "expert",
+                theme: "safety",
+                hint: "Article CTS 15, paragraphe 5",
+                explanation: "Le stockage est limité à 210 kg par emplacement, avec distance de 10 m entre emplacements.",
+                reference: "Article CTS 15 §5 : 'Il doit être situé à une distance minimale de 3 mètres de l'établissement et il est limité à 210 kilogrammes par emplacement.'",
+                visualAid: null
+            },
+            {
+                id: 26,
+                question: "Quel délai maximal pour la mise en service d'un groupe électrogène de secours ?",
+                answers: [
+                    "5 secondes",
+                    "10 secondes",
+                    "15 secondes",
+                    "30 secondes"
+                ],
+                correctAnswer: 2,
+                level: "expert",
+                theme: "electricity",
+                hint: "Article CTS 24, paragraphe 5",
+                explanation: "Le groupe doit pouvoir prendre en charge les circuits en moins de 15 secondes.",
+                reference: "Article CTS 24 §5 : 'celui-ci peut être arrêté en position d'attente sous réserve de pouvoir prendre automatiquement en charge la totalité des circuits dans un délai maximal de 15 secondes.'",
+                visualAid: null
+            },
+            {
+                id: 27,
+                question: "Quelle doit être la première action lors du déclenchement de l'alarme ?",
+                answers: [
+                    "Évacuer immédiatement",
+                    "Appeler les pompiers",
+                    "Arrêter la diffusion sonore",
+                    "Allumer l'éclairage de sécurité"
+                ],
+                correctAnswer: 2,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 28, paragraphe 3",
+                explanation: "L'alarme doit être précédée de l'arrêt de la diffusion sonore et, si possible, du rétablissement de l'éclairage normal.",
+                reference: "Article CTS 28 §3 : 'Le fonctionnement de l'alarme générale doit être précédé de l'arrêt de la diffusion sonore et, dans la mesure du possible, du rétablissement de l'éclairage normal.'",
+                visualAid: null
+            },
+            {
+                id: 28,
+                question: "Quand faut-il une liaison téléphonique avec les sapeurs-pompiers ?",
+                answers: [
+                    "Toujours",
+                    "À partir de 300 personnes",
+                    "À partir de 700 personnes",
+                    "À partir de 1000 personnes"
+                ],
+                correctAnswer: 2,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 29, paragraphe 1",
+                explanation: "Une liaison téléphonique est exigée pour les établissements de plus de 700 personnes.",
+                reference: "Article CTS 29 §1 : 'La liaison avec les sapeurs-pompiers doit être réalisée par téléphone urbain dans les établissements (ou à proximité des établissements) recevant plus de 700 personnes.'",
+                visualAid: null
+            },
+            {
+                id: 29,
+                question: "Quelle est la fréquence de vérification de l'installation électrique ?",
+                answers: [
+                    "Tous les 6 mois",
+                    "Annuelle",
+                    "Tous les 2 ans",
+                    "Tous les 3 ans"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "electricity",
+                hint: "Article CTS 35, paragraphe 1",
+                explanation: "Vérification annuelle en alternance pour les installations électriques.",
+                reference: "Article CTS 35 §1 : 'L'ensemble des installations électriques propres à l'établissement est vérifié annuellement, en alternance, par des personnes ou des organismes agréés et par des techniciens compétents.'",
+                visualAid: null
+            },
+            {
+                id: 30,
+                question: "Combien de niveaux maximum pour une structure à étage ?",
+                answers: [
+                    "1 niveau",
+                    "2 niveaux",
+                    "3 niveaux",
+                    "4 niveaux"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "construction",
+                hint: "Article CTS 53, paragraphe 1",
+                explanation: "Maximum 2 niveaux pour les structures à étage.",
+                reference: "Article CTS 53 §1 : 'Les dispositions du présent sous chapitre ne s'appliquent qu'aux établissements itinérants [...] comportant deux niveaux au plus.'",
+                visualAid: null
+            },
+            {
+                id: 31,
+                question: "Quelle largeur minimale pour les sorties d'un établissement de 100 personnes ?",
+                answers: [
+                    "0,90 m par sortie",
+                    "1,00 m par sortie",
+                    "1,40 m par sortie",
+                    "1,80 m par sortie"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "construction",
+                hint: "Article CTS 10, paragraphe 1",
+                explanation: "Pour 50 à 200 personnes : 2 sorties de 1,40 m chacune.",
+                reference: "Article CTS 10 §1 : 'De 50 à 200 personnes : par deux sorties ayant chacune une largeur de 1,40 mètre.'",
+                visualAid: null
+            },
+            {
+                id: 32,
+                question: "Quelle est la durée d'implantation maximale pour les établissements à implantation prolongée ?",
+                answers: [
+                    "3 mois",
+                    "6 mois",
+                    "1 an",
+                    "2 ans"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "general",
+                hint: "Article CTS 38",
+                explanation: "Les établissements implantés plus de 6 mois sont considérés à implantation prolongée.",
+                reference: "Article CTS 38 : 'Les dispositions du présent sous-chapitre sont applicables aux établissements clos et itinérants [...] qui sont implantés pour une durée supérieure à six mois.'",
+                visualAid: null
+            },
+            {
+                id: 33,
+                question: "Quelle est la largeur minimale des circulations principales ?",
+                answers: [
+                    "Égale à celle des sorties",
+                    "1,20 m minimum",
+                    "1,80 m minimum",
+                    "2,00 m minimum"
+                ],
+                correctAnswer: 0,
+                level: "pro",
+                theme: "construction",
+                hint: "Article CTS 11, paragraphe 3",
+                explanation: "La largeur des circulations principales doit être égale à celle des sorties correspondantes.",
+                reference: "Article CTS 11 §3 : 'La largeur de ces circulations doit être égale à celle des sorties correspondantes.'",
+                visualAid: null
+            },
+            {
+                id: 34,
+                question: "Quelle catégorie de matériaux pour les tentures ?",
+                answers: [
+                    "M0",
+                    "M1",
+                    "M2",
+                    "M3"
+                ],
+                correctAnswer: 2,
+                level: "student",
+                theme: "construction",
+                hint: "Article CTS 13, paragraphe 1",
+                explanation: "Les tentures doivent être réalisées en matériaux de catégorie M2.",
+                reference: "Article CTS 13 §1 : 'Les tentures doivent être réalisées en matériaux de catégorie M2.'",
+                visualAid: null
+            },
+            {
+                id: 35,
+                question: "Quelle est la puissance utile totale maximum pour un générateur accolé à la paroi ?",
+                answers: [
+                    "50 kW",
+                    "70 kW",
+                    "100 kW",
+                    "150 kW"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "construction",
+                hint: "Article CTS 15, paragraphe 1",
+                explanation: "Si la puissance utile totale ne dépasse pas 70 kW, le générateur peut être accolé à la paroi.",
+                reference: "Article CTS 15 §1 : 'Si la puissance utile totale installée ne dépasse pas 70 kW, le ou les appareils peuvent être accolés à la paroi extérieure de l'établissement.'",
+                visualAid: null
+            },
+            {
+                id: 36,
+                question: "Quelle distance minimale entre le stockage de gaz et l'établissement ?",
+                answers: [
+                    "1 mètre",
+                    "3 mètres",
+                    "5 mètres",
+                    "10 mètres"
+                ],
+                correctAnswer: 1,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 15, paragraphe 5",
+                explanation: "Le stockage de gaz doit être à 3 mètres minimum de l'établissement.",
+                reference: "Article CTS 15 §5 : 'Il doit être situé à une distance minimale de 3 mètres de l'établissement.'",
+                visualAid: null
+            },
+            {
+                id: 37,
+                question: "Quelle norme pour les blocs autonomes d'éclairage de sécurité ?",
+                answers: [
+                    "NF C 71-700",
+                    "NF C 71-800",
+                    "NF C 71-900",
+                    "NF C 71-1000"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "electricity",
+                hint: "Article CTS 23, paragraphe 1",
+                explanation: "Les blocs doivent être conformes à la norme NF C 71-800.",
+                reference: "Article CTS 23 §1 : 'L'éclairage de sécurité par blocs autonomes doit être réalisé par des appareils conformes à la norme de la série NF C 71-800.'",
+                visualAid: null
+            },
+            {
+                id: 38,
+                question: "Quelle est la composition minimale du service de sécurité pour 800 personnes ?",
+                answers: [
+                    "1 personne instruite",
+                    "2 agents de sécurité",
+                    "3 agents de sécurité",
+                    "4 agents de sécurité"
+                ],
+                correctAnswer: 0,
+                level: "pro",
+                theme: "safety",
+                hint: "Article CTS 27, paragraphe 1-a",
+                explanation: "Pour jusqu'à 2500 personnes : personnes instruites en sécurité incendie.",
+                reference: "Article CTS 27 §1-a : 'Etablissements recevant 2 500 personnes au plus : par des personnes instruites en sécurité incendie et fournies par l'organisateur.'",
+                visualAid: null
+            },
+            {
+                id: 39,
+                question: "Quel est le contenu minimal du rapport de vérification périodique ?",
+                answers: [
+                    "Un simple constat",
+                    "Les éléments des annexes VI ou VII",
+                    "Une liste d'observations",
+                    "Un avis favorable ou défavorable"
+                ],
+                correctAnswer: 1,
+                level: "expert",
+                theme: "general",
+                hint: "Article CTS 36, paragraphe 1",
+                explanation: "Le rapport doit comprendre au minimum les éléments mentionnés dans les annexes VI ou VII.",
+                reference: "Article CTS 36 §1 : 'Le rapport de vérification périodique doit comprendre au minimum les éléments mentionnés dans les annexes VI ou VII.'",
+                visualAid: null
+            },
+            {
+                id: 40,
+                question: "Quelle est la superficie minimale pour les petits établissements ?",
+                answers: [
+                    "8 m²",
+                    "16 m²",
+                    "25 m²",
+                    "50 m²"
+                ],
+                correctAnswer: 1,
+                level: "student",
+                theme: "general",
+                hint: "Article CTS 37",
+                explanation: "Tout établissement visé à l'article CTS 1 §3 doit respecter les dispositions de l'article CTS 37.",
+                reference: "Article CTS 37 : 'Tout établissement visé à l'article CTS 1 (§3) doit respecter l'ensemble des dispositions suivantes...'",
+                visualAid: null
+            }
+        ];
+
+        // VARIABLES GLOBALES
+        let quizQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let correctAnswers = 0;
+        let startTime = Date.now();
+        let timerInterval;
+        let timePerQuestion = [];
+        let currentQuestionStartTime = Date.now();
+
+        // CONFIGURATION - TOUTES LES OPTIONS SONT VIDES PAR DÉFAUT
+        let selectedQuestionsCount = 0;
+        let selectedLevel = null;
+        let selectedThemes = [];
+
+        // INITIALISATION
+        document.addEventListener('DOMContentLoaded', function () {
+            initConfig();
+            initNavigation();
+            initQuizControls();
+        });
+
+        // INITIALISER LA CONFIGURATION
+        function initConfig() {
+            // Configuration par défaut - tout est vide
+            updateConfigSummary();
+
+            // Options de nombre de questions
+            const questionOptions = [
+                { count: 10, time: "5-7 min" },
+                { count: 20, time: "10-15 min" },
+                { count: 30, time: "15-20 min" },
+                { count: 40, time: "20-25 min" }
+            ];
+
+            const questionContainer = document.getElementById('questionCountOptions');
+            questionContainer.innerHTML = '';
+
+            questionOptions.forEach(option => {
+                const div = document.createElement('div');
+                div.className = `question-option flex items-center justify-between p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50`;
+                div.dataset.questions = option.count;
+                div.innerHTML = `
+                    <div>
+                        <div class="font-medium">${option.count} questions</div>
+                        <div class="text-xs text-stone-500">${option.time}</div>
+                    </div>
+                    <div class="selector-circle"></div>
                 `;
-                div.addEventListener('click', () => selectQuestionCount(option.value));
-                questionCountContainer.appendChild(div);
+
+                div.addEventListener('click', () => {
+                    document.querySelectorAll('.question-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                        const circle = opt.querySelector('.selector-circle');
+                        if (circle) {
+                            circle.style.borderColor = '#d6d3d1';
+                            circle.style.backgroundColor = 'transparent';
+                        }
+                    });
+                    
+                    div.classList.add('selected');
+                    const circle = div.querySelector('.selector-circle');
+                    if (circle) {
+                        circle.style.borderColor = '#ea580c';
+                        circle.style.backgroundColor = '#ea580c';
+                    }
+                    selectedQuestionsCount = option.count;
+                    updateConfigSummary();
+                    updateStartButtonState();
+                });
+
+                questionContainer.appendChild(div);
             });
 
-            // Générer les options de niveau
+            // Options de niveau
+            const levelOptions = [
+                { id: "student", name: "Étudiant", desc: "Bases réglementaires" },
+                { id: "pro", name: "Professionnel", desc: "Pratique opérationnelle" },
+                { id: "expert", name: "Expert", desc: "Jurisprudence & dérogations" }
+            ];
+
             const levelContainer = document.getElementById('levelOptions');
-            configOptions.levels.forEach(option => {
-                const isSelected = quizConfig.level === option.value;
+            levelContainer.innerHTML = '';
+
+            levelOptions.forEach(option => {
                 const div = document.createElement('div');
-                div.className = `quiz-option p-4 border rounded-lg cursor-pointer transition ${isSelected ? 'border-orange-500 bg-orange-50' : 'border-stone-300 hover:bg-stone-50'}`;
-                div.dataset.value = option.value;
+                div.className = `level-option flex items-center justify-between p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50`;
+                div.dataset.level = option.id;
                 div.innerHTML = `
-                    <div class="flex items-center">
-                        <i class="fas ${option.icon} mr-3 ${isSelected ? 'text-orange-600' : 'text-stone-500'}"></i>
-                        <div class="flex-1">
-                            <div class="font-medium">${option.label}</div>
-                        </div>
-                        ${isSelected ? '<i class="fas fa-check text-orange-600"></i>' : ''}
+                    <div>
+                        <div class="font-medium">${option.name}</div>
+                        <div class="text-xs text-stone-500">${option.desc}</div>
                     </div>
+                    <div class="selector-circle"></div>
                 `;
-                div.addEventListener('click', () => selectLevel(option.value));
+
+                div.addEventListener('click', () => {
+                    document.querySelectorAll('.level-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                        const circle = opt.querySelector('.selector-circle');
+                        if (circle) {
+                            circle.style.borderColor = '#d6d3d1';
+                            circle.style.backgroundColor = 'transparent';
+                        }
+                    });
+                    
+                    div.classList.add('selected');
+                    const circle = div.querySelector('.selector-circle');
+                    if (circle) {
+                        circle.style.borderColor = '#ea580c';
+                        circle.style.backgroundColor = '#ea580c';
+                    }
+                    selectedLevel = option.id;
+                    updateConfigSummary();
+                    updateStartButtonState();
+                });
+
                 levelContainer.appendChild(div);
             });
 
-            // Générer les options de thèmes
+            // Options de thèmes
+            const themeOptions = [
+                { id: "general", name: "Généralités", icon: "fas fa-book" },
+                { id: "construction", name: "Construction", icon: "fas fa-hammer" },
+                { id: "electricity", name: "Électricité", icon: "fas fa-bolt" },
+                { id: "safety", name: "Sécurité", icon: "fas fa-shield-alt" }
+            ];
+
             const themeContainer = document.getElementById('themeOptions');
-            configOptions.themes.forEach(option => {
-                const isSelected = quizConfig.selectedThemes.includes(option.value);
+            themeContainer.innerHTML = '';
+
+            themeOptions.forEach(option => {
                 const div = document.createElement('div');
-                div.className = `quiz-option p-3 border rounded-lg cursor-pointer transition ${isSelected ? 'border-emerald-500 bg-emerald-50' : 'border-stone-300 hover:bg-stone-50'}`;
-                div.dataset.value = option.value;
+                div.className = `theme-option flex items-center justify-between p-3 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-50`;
+                div.dataset.theme = option.id;
                 div.innerHTML = `
                     <div class="flex items-center">
-                        <span class="text-xl mr-3">${option.icon}</span>
-                        <div class="flex-1 font-medium">${option.label}</div>
-                        ${isSelected ? '<i class="fas fa-check text-emerald-600"></i>' : ''}
+                        <i class="${option.icon} mr-3 text-stone-500"></i>
+                        <span class="font-medium">${option.name}</span>
                     </div>
+                    <i class="fas fa-plus text-stone-400"></i>
                 `;
-                div.addEventListener('click', () => toggleTheme(option.value));
+
+                div.addEventListener('click', () => {
+                    div.classList.toggle('selected');
+                    
+                    const firstIcon = div.querySelector('i:first-child');
+                    const span = div.querySelector('span');
+                    const lastIcon = div.querySelector('i:last-child');
+                    
+                    if (div.classList.contains('selected')) {
+                        div.style.borderColor = '#059669';
+                        div.style.backgroundColor = '#f0fdf4';
+                        
+                        if (firstIcon) {
+                            firstIcon.style.color = '#059669';
+                        }
+                        if (span) {
+                            span.style.color = '#065f46';
+                            span.style.fontWeight = '500';
+                        }
+                        if (lastIcon) {
+                            lastIcon.className = 'fas fa-check';
+                            lastIcon.style.color = '#059669';
+                        }
+                        
+                        if (!selectedThemes.includes(option.id)) {
+                            selectedThemes.push(option.id);
+                        }
+                    } else {
+                        div.style.borderColor = '';
+                        div.style.backgroundColor = '';
+                        
+                        if (firstIcon) {
+                            firstIcon.style.color = '#a8a29e';
+                        }
+                        if (span) {
+                            span.style.color = '';
+                            span.style.fontWeight = '';
+                        }
+                        if (lastIcon) {
+                            lastIcon.className = 'fas fa-plus';
+                            lastIcon.style.color = '#a8a29e';
+                        }
+                        
+                        selectedThemes = selectedThemes.filter(t => t !== option.id);
+                    }
+                    updateConfigSummary();
+                    updateStartButtonState();
+                });
+
                 themeContainer.appendChild(div);
             });
-
-            // Mettre à jour le résumé
-            updateConfigSummary();
         }
 
-        // --- GESTION DES SÉLECTIONS ---
-        function selectQuestionCount(count) {
-            quizConfig.questionCount = count;
-            
-            // Mettre à jour l'interface
-            document.querySelectorAll('#questionCountOptions .quiz-option').forEach(option => {
-                const optionValue = parseInt(option.dataset.value);
-                if (optionValue === count) {
-                    option.classList.add('border-orange-500', 'bg-orange-50');
-                    option.classList.remove('border-stone-300');
-                } else {
-                    option.classList.remove('border-orange-500', 'bg-orange-50');
-                    option.classList.add('border-stone-300');
-                }
-                
-                // Mettre à jour l'icône de vérification
-                const checkIcon = option.querySelector('.fa-check');
-                if (checkIcon) {
-                    checkIcon.style.display = optionValue === count ? 'block' : 'none';
-                }
-            });
-            
-            updateConfigSummary();
-            updateEstimatedTime();
-        }
-
-        function selectLevel(level) {
-            quizConfig.level = level;
-            
-            // Mettre à jour l'interface
-            document.querySelectorAll('#levelOptions .quiz-option').forEach(option => {
-                if (option.dataset.value === level) {
-                    option.classList.add('border-orange-500', 'bg-orange-50');
-                    option.classList.remove('border-stone-300');
-                } else {
-                    option.classList.remove('border-orange-500', 'bg-orange-50');
-                    option.classList.add('border-stone-300');
-                }
-                
-                // Mettre à jour l'icône de vérification
-                const checkIcon = option.querySelector('.fa-check');
-                if (checkIcon) {
-                    checkIcon.style.display = option.dataset.value === level ? 'block' : 'none';
-                }
-            });
-            
-            updateConfigSummary();
-        }
-
-        function toggleTheme(theme) {
-            const index = quizConfig.selectedThemes.indexOf(theme);
-            if (index === -1) {
-                quizConfig.selectedThemes.push(theme);
-            } else {
-                quizConfig.selectedThemes.splice(index, 1);
-            }
-            
-            // Mettre à jour l'interface
-            document.querySelectorAll('#themeOptions .quiz-option').forEach(option => {
-                if (option.dataset.value === theme) {
-                    const isSelected = quizConfig.selectedThemes.includes(theme);
-                    if (isSelected) {
-                        option.classList.add('border-emerald-500', 'bg-emerald-50');
-                        option.classList.remove('border-stone-300');
-                    } else {
-                        option.classList.remove('border-emerald-500', 'bg-emerald-50');
-                        option.classList.add('border-stone-300');
-                    }
-                    
-                    // Mettre à jour l'icône de vérification
-                    const checkIcon = option.querySelector('.fa-check');
-                    if (checkIcon) {
-                        checkIcon.style.display = isSelected ? 'block' : 'none';
-                    }
-                }
-            });
-            
-            updateConfigSummary();
-        }
-
+        // METTRE À JOUR LE RÉSUMÉ DE CONFIGURATION
         function updateConfigSummary() {
-            document.getElementById('summaryQuestions').textContent = quizConfig.questionCount;
-            
-            // Trouver le label du niveau
-            const levelOption = configOptions.levels.find(l => l.value === quizConfig.level);
-            document.getElementById('summaryLevel').textContent = levelOption ? levelOption.label : quizConfig.level;
-            
-            document.getElementById('summaryThemes').textContent = `${quizConfig.selectedThemes.length} sélectionné(s)`;
+            document.getElementById('summaryQuestions').textContent = selectedQuestionsCount || '0';
+
+            let levelText = 'Non sélectionné';
+            if (selectedLevel === "student") levelText = "Étudiant";
+            else if (selectedLevel === "pro") levelText = "Professionnel";
+            else if (selectedLevel === "expert") levelText = "Expert";
+            document.getElementById('summaryLevel').textContent = levelText;
+
+            document.getElementById('summaryThemes').textContent = `${selectedThemes.length} sélectionné${selectedThemes.length !== 1 ? 's' : ''}`;
+
+            // Temps estimé
+            let estimatedTime = "--";
+            if (selectedQuestionsCount === 10) estimatedTime = "5-7 minutes";
+            else if (selectedQuestionsCount === 20) estimatedTime = "10-15 minutes";
+            else if (selectedQuestionsCount === 30) estimatedTime = "15-20 minutes";
+            else if (selectedQuestionsCount === 40) estimatedTime = "20-25 minutes";
+            document.getElementById('estimatedTime').textContent = estimatedTime;
         }
 
-        function updateEstimatedTime() {
-            const times = {
-                10: "5-10 minutes",
-                20: "10-15 minutes",
-                30: "15-20 minutes"
-            };
-            document.getElementById('estimatedTime').textContent = times[quizConfig.questionCount] || "10-15 minutes";
-        }
+        // METTRE À JOUR L'ÉTAT DU BOUTON DE DÉMARRAGE
+        function updateStartButtonState() {
+            const startBtn = document.getElementById('startBtn');
+            const isValid = selectedQuestionsCount > 0 && selectedLevel !== null && selectedThemes.length > 0;
 
-        // --- BASE DE DONNÉES ÉTENDUE DES QUESTIONS ---
-        const questionsDatabase = {
-            student: [
-                {
-                    id: 1,
-                    theme: 'GENERAL',
-                    question: "Quelle est la définition réglementaire d'un chapiteau selon l'arrêté CTS ?",
-                    options: [
-                        "Structure textile soutenue par des mâts et des câbles",
-                        "Toute structure temporaire démontable",
-                        "Bâtiment léger de moins de 50m²",
-                        "Structure en toile sans ancrage"
-                    ],
-                    correctAnswer: 0,
-                    hint: "L'arrêté du 23 janvier 1985 définit précisément les différentes catégories de CTS.",
-                    explanation: "Un chapiteau est défini comme une structure textile soutenue par des mâts et des câbles, selon l'article 1 de l'arrêté du 23 janvier 1985.",
-                    detailedExplanation: "Cette définition distingue le chapiteau des tentes et structures. La spécificité 'textile soutenue par des mâts et câbles' est essentielle pour appliquer les bonnes règles de sécurité.",
-                    reference: "Arrêté du 23 janvier 1985, article 1",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "En 2018, un festival a été sanctionné pour avoir présenté une structure métallique comme un chapiteau, contournant ainsi les règles CTS spécifiques."
-                },
-                {
-                    id: 2,
-                    theme: 'CONSTRUCTION',
-                    question: "Quelle est la distance minimale entre un chapiteau et un bâtiment existant ?",
-                    options: [
-                        "3 mètres",
-                        "5 mètres",
-                        "10 mètres",
-                        "Aucune distance minimale n'est imposée"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Cette distance permet l'accès des secours et limite les risques de propagation d'incendie.",
-                    explanation: "Une distance minimale de 5 mètres est requise pour permettre l'accès des secours et éviter la propagation d'incendie.",
-                    detailedExplanation: "Ces 5 mètres sont critiques pour : 1) L'accès des engins de secours 2) La prévention de la propagation du feu 3) L'évacuation sécurisée",
-                    reference: "Arrêté du 23 janvier 1985, article 10",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "Lors d'un incendie à Marseille en 2019, l'impossibilité d'accès des pompiers due à une distance insuffisante a aggravé les dégâts."
-                },
-                {
-                    id: 3,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quelle norme électrique s'applique aux installations temporaires de CTS ?",
-                    options: [
-                        "NFC 15-100 uniquement",
-                        "NF C 15-500 uniquement",
-                        "NFC 15-100 et NF C 15-500",
-                        "Aucune norme spécifique"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Les installations temporaires combinent les exigences des normes permanentes et temporaires.",
-                    explanation: "Les installations doivent respecter à la fois la NFC 15-100 (bases) et la NF C 15-500 (spécificités temporaires).",
-                    detailedExplanation: "La NFC 15-500 complète la 15-100 avec des dispositions pour : installations démontables, protection contre les intempéries, câbles souples autorisés.",
-                    reference: "NF C 15-500 - Installations électriques temporaires",
-                    link: "https://www.boutique.afnor.org/fr-fr/norme/nf-c15500",
-                    caseStudy: "En 2021, un court-circuit dans une installation non conforme a provoqué un incendie dans un chapiteau de 500 places."
-                },
-                {
-                    id: 4,
-                    theme: 'SÉCURITÉ',
-                    question: "Quel est le classement au feu minimum pour les toiles de chapiteau ?",
-                    options: [
-                        "M0 (incombustible)",
-                        "M1 (non inflammable)",
-                        "M2 (difficilement inflammable)",
-                        "M3 (moyennement inflammable)"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Consultez les articles relatifs à la réaction au feu des matériaux textiles.",
-                    explanation: "La toile des chapiteaux doit être classée M1 (non inflammable) ou M2 ignifugé.",
-                    detailedExplanation: "Le classement M1 signifie : indice d'oxygène ≥ 28, essai au chalumeau - pas de gouttes enflammées.",
-                    reference: "Arrêté du 23 janvier 1985, article 15",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "L'incendie du chapiteau de Dijon en 2020 a été aggravé par une toile classée M3."
-                },
-                {
-                    id: 5,
-                    theme: 'GENERAL',
-                    question: "À partir de combien de personnes un chapiteau devient un ERP de 5ème catégorie ?",
-                    options: [
-                        "50 personnes",
-                        "100 personnes",
-                        "200 personnes",
-                        "300 personnes"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Le seuil de 200 personnes est déterminant pour la classification CTS.",
-                    explanation: "Un chapiteau de plus de 200 personnes relève de la 5ème catégorie ERP.",
-                    detailedExplanation: "Seuil spécifique CTS : > 200 personnes = 5ème catégorie. Conséquences : visites commission possibles, registre de sécurité obligatoire.",
-                    reference: "Arrêté du 23 janvier 1985, article 3",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "Un organisateur a été condamné pour ne pas avoir déclaré son chapiteau de 220 places comme ERP 5ème catégorie."
-                },
-                {
-                    id: 6,
-                    theme: 'CONSTRUCTION',
-                    question: "Quelle est la hauteur maximale d'un chapiteau sans autorisation spéciale ?",
-                    options: [
-                        "8 mètres",
-                        "12 mètres",
-                        "15 mètres",
-                        "20 mètres"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Cette limitation concerne la stabilité et la sécurité au vent.",
-                    explanation: "La hauteur maximale est de 12 mètres sans autorisation spéciale.",
-                    detailedExplanation: "Au-delà de 12m, des études de stabilité particulières sont requises, notamment pour la résistance au vent.",
-                    reference: "Guide technique CTS - Ministère de l'Intérieur",
-                    caseStudy: "En 2022, un chapiteau de 18m a dû être démonté pour non-respect de cette hauteur maximale."
-                },
-                {
-                    id: 7,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quelle est la section minimale des conducteurs en cuivre pour l'éclairage ?",
-                    options: [
-                        "1,5 mm²",
-                        "2,5 mm²",
-                        "4 mm²",
-                        "6 mm²"
-                    ],
-                    correctAnswer: 1,
-                    hint: "La section dépend de l'usage et de la longueur du circuit.",
-                    explanation: "La section minimale est de 2,5 mm² pour les circuits d'éclairage en cuivre.",
-                    detailedExplanation: "Cette section permet de limiter la chute de tension et d'assurer la sécurité électrique.",
-                    reference: "NFC 15-100, tableau 52-C",
-                    caseStudy: "Un incendie en 2020 a été causé par une surchauffe due à des câbles de 1,5 mm² sur un circuit de 3kW."
-                },
-                {
-                    id: 8,
-                    theme: 'SÉCURITÉ',
-                    question: "Combien faut-il d'extincteurs pour un chapiteau de 400 m² ?",
-                    options: [
-                        "1 extincteur",
-                        "2 extincteurs",
-                        "3 extincteurs",
-                        "4 extincteurs"
-                    ],
-                    correctAnswer: 1,
-                    hint: "La règle est : 1 extincteur pour 200 m² ou fraction.",
-                    explanation: "Il faut 2 extincteurs (400 m² ÷ 200 m² = 2).",
-                    detailedExplanation: "Ces extincteurs doivent être de type eau + additif 6L, accessibles en moins de 15 secondes de marche.",
-                    reference: "Article MS 54 - Règlement de sécurité",
-                    caseStudy: "Lors d'un départ de feu en 2019, l'absence du deuxième extincteur a retardé l'intervention."
-                },
-                {
-                    id: 9,
-                    theme: 'GENERAL',
-                    question: "Quelle est la durée maximale d'installation d'un CTS sans permis de construire ?",
-                    options: [
-                        "1 mois",
-                        "3 mois",
-                        "6 mois",
-                        "12 mois"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Au-delà de cette durée, l'installation devient considérée comme permanente.",
-                    explanation: "La durée maximale est de 3 mois sans permis de construire.",
-                    detailedExplanation: "Ce délai peut être prolongé sur autorisation spéciale de la mairie, avec justification.",
-                    reference: "Code de l'urbanisme, article R*421-19",
-                    caseStudy: "Une société a été condamnée pour avoir maintenu un chapiteau 5 mois sans autorisation."
-                },
-                {
-                    id: 10,
-                    theme: 'CONSTRUCTION',
-                    question: "Quelle charge au sol minimale doit supporter un chapiteau ?",
-                    options: [
-                        "150 kg/m²",
-                        "200 kg/m²",
-                        "250 kg/m²",
-                        "300 kg/m²"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Cette charge inclut le public, le mobilier et les équipements.",
-                    explanation: "La charge au sol minimale est de 250 kg/m².",
-                    detailedExplanation: "Cette valeur correspond à un public debout dense avec équipements légers.",
-                    reference: "NF P 98-001 - Charges permanentes et d'exploitation",
-                    caseStudy: "L'effondrement partiel d'une estrade en 2018 était dû à une charge de seulement 180 kg/m²."
-                }
-            ],
-            pro: [
-                {
-                    id: 101,
-                    theme: 'SÉCURITÉ',
-                    question: "Pour un chapiteau de 800 places, quel est le classement au feu minimum requis pour la toile ?",
-                    options: [
-                        "M0 (incombustible)",
-                        "M1 (non inflammable)",
-                        "M2 (difficilement inflammable)",
-                        "M3 (moyennement inflammable)"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Consultez les articles relatifs à la réaction au feu des matériaux textiles.",
-                    explanation: "La toile des chapiteaux doit être classée M1 (non inflammable) ou M2 ignifugé, selon l'article 15 de l'arrêté du 23 janvier 1985.",
-                    detailedExplanation: "Le classement M1 signifie : indice d'oxygène ≥ 28, essai au chalumeau - pas de gouttes enflammées, temps de combustion ≤ 5 secondes.",
-                    reference: "Arrêté du 23 janvier 1985, article 15",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "L'incendie du chapiteau de Dijon en 2020 a été aggravé par une toile classée M3 au lieu de M1, propagation en 90 secondes."
-                },
-                {
-                    id: 102,
-                    theme: 'CLASSIFICATION',
-                    question: "Un chapiteau accueillant 250 personnes relève-t-il de la 5ème catégorie ?",
-                    options: [
-                        "Oui, toujours",
-                        "Non, jamais",
-                        "Oui si implanté en plein air",
-                        "Dépend de la hauteur sous toile"
-                    ],
-                    correctAnswer: 0,
-                    hint: "Le seuil de 200 personnes est déterminant pour la classification CTS.",
-                    explanation: "Oui, un chapiteau de plus de 200 personnes relève de la 5ème catégorie ERP, quelle que soit son implantation.",
-                    detailedExplanation: "Seuil spécifique CTS : > 200 personnes = 5ème catégorie. Conséquences : visites commission possibles, registre de sécurité obligatoire.",
-                    reference: "Arrêté du 23 janvier 1985, article 3",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000864644",
-                    caseStudy: "Un organisateur a été condamné pour ne pas avoir déclaré son chapiteau de 220 places comme ERP 5ème catégorie."
-                },
-                {
-                    id: 103,
-                    theme: 'DÉGAGEMENTS',
-                    question: "Combien faut-il de sorties pour un chapiteau de 600 personnes ?",
-                    options: [
-                        "2 sorties minimum",
-                        "3 sorties minimum", 
-                        "4 sorties minimum",
-                        "5 sorties minimum"
-                    ],
-                    correctAnswer: 1,
-                    hint: "La règle est : 2 sorties jusqu'à 500 personnes, puis +1 sortie par tranche de 500 personnes.",
-                    explanation: "Il faut 3 sorties minimum : 2 pour les premières 500 personnes + 1 pour les 100 personnes supplémentaires.",
-                    detailedExplanation: "Calcul : 600 personnes = 2 sorties (base) + 1 sortie supplémentaire (dépassement 500). Largeur cumulée minimale : 600/100 = 6 UP × 0.60m = 3.60m.",
-                    reference: "Article CO 38 - Règlement de sécurité",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000290033",
-                    caseStudy: "En 2017, l'évacuation difficile d'un chapiteau surchargé (1 sortie pour 550 personnes) a fait 8 blessés."
-                },
-                {
-                    id: 104,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quelle est la distance maximale entre deux prises de courant en CTS ?",
-                    options: [
-                        "2 mètres",
-                        "4 mètres",
-                        "6 mètres",
-                        "8 mètres"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Cette distance limite l'usage de rallonges dangereuses.",
-                    explanation: "La distance maximale est de 4 mètres entre deux prises de courant.",
-                    detailedExplanation: "Cette règle vise à éviter les rallonges multiples et les risques de trébuchement.",
-                    reference: "NF C 15-500, article 559.5",
-                    caseStudy: "En 2019, une chute avec blessure due à un enchevêtrement de rallonges sur 10 mètres."
-                },
-                {
-                    id: 105,
-                    theme: 'CONSTRUCTION',
-                    question: "Quel type d'ancrage est obligatoire pour un chapiteau en zone ventée ?",
-                    options: [
-                        "Ancrages en béton",
-                        "Plot-béton de 500kg",
-                        "Ancrages vissés ou enterrés",
-                        "Contrepoids en eau"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Les ancrages doivent résister aux efforts de soulèvement.",
-                    explanation: "Des ancrages vissés ou enterrés sont obligatoires en zone ventée.",
-                    detailedExplanation: "Ces ancrages doivent être calculés pour résister à un vent de 120 km/h selon la zone.",
-                    reference: "DTU 43.1 - Règles NV 65",
-                    caseStudy: "En 2018, un chapiteau ancré avec des sacs de sable a été arraché par un vent de 100 km/h."
-                },
-                {
-                    id: 106,
-                    theme: 'MATÉRIAUX',
-                    question: "Quelle est la durée de validité d'un certificat d'ignifugation pour toile de chapiteau ?",
-                    options: [
-                        "1 an",
-                        "3 ans",
-                        "5 ans",
-                        "Illimitée si bien entretenue"
-                    ],
-                    correctAnswer: 2,
-                    hint: "L'ignifugation perd son efficacité avec le temps et les conditions météorologiques.",
-                    explanation: "La durée de validité est généralement de 5 ans, mais doit être vérifiée annuellement en conditions sévères.",
-                    detailedExplanation: "Facteurs réduisant la durée : UV, pluie acide, frottements, nettoyages. Contrôle annuel recommandé par test au chalumeau.",
-                    reference: "Guide technique CTS - Ministère de l'Intérieur",
-                    caseStudy: "Incendie de Nantes 2019 : toile ignifugée il y a 7 ans, efficacité nulle, propagation en 2 minutes."
-                },
-                {
-                    id: 107,
-                    theme: 'SECOURS',
-                    question: "Quel est le délai maximum d'intervention des secours intégré dans le plan d'évacuation ?",
-                    options: [
-                        "5 minutes",
-                        "10 minutes",
-                        "15 minutes",
-                        "30 minutes"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Ce délai correspond au temps d'évacuation complet de la structure.",
-                    explanation: "Le plan d'évacuation doit prévoir une évacuation complète en moins de 10 minutes.",
-                    detailedExplanation: "Calcul basé sur : temps de détection (2 min) + alerte (1 min) + évacuation (6 min) + marge (1 min) = 10 minutes max.",
-                    reference: "Article MS 46 - Règlement de sécurité",
-                    link: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000290033",
-                    caseStudy: "Exercice réussi à Strasbourg : 850 personnes évacuées en 8 minutes 30 grâce à un plan bien préparé."
-                },
-                {
-                    id: 108,
-                    theme: 'JURISPRUDENCE',
-                    question: "Selon la jurisprudence, quelle est la responsabilité du responsable technique en cas d'effondrement dû à des ancrages défectueux ?",
-                    options: [
-                        "Responsabilité civile uniquement",
-                        "Responsabilité pénale pour mise en danger d'autrui",
-                        "Aucune responsabilité si le constructeur est fautif",
-                        "Responsabilité administrative uniquement"
-                    ],
-                    correctAnswer: 1,
-                    hint: "L'article 223-1 du Code pénal s'applique en cas de violation délibérée des obligations de sécurité.",
-                    explanation: "Le responsable technique engage sa responsabilité pénale (article 223-1 CP) s'il a manqué à son obligation de vérification des ancrages.",
-                    detailedExplanation: "La jurisprudence considère que le responsable technique doit vérifier personnellement les points critiques : ancrages, stabilité, conformité des matériaux.",
-                    reference: "Code pénal, article 223-1",
-                    link: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006417884/",
-                    caseStudy: "Tribunal correctionnel de Lyon, 2020 : 6 mois avec sursis + 15 000€ d'amende pour non-contrôle des ancrages."
-                },
-                {
-                    id: 109,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quelle est la tension maximale autorisée pour les installations temporaires en CTS ?",
-                    options: [
-                        "230V monophasé",
-                        "400V triphasé",
-                        "500V",
-                        "1000V"
-                    ],
-                    correctAnswer: 1,
-                    hint: "La tension dépend des besoins en puissance des équipements.",
-                    explanation: "La tension maximale est de 400V triphasé pour les installations temporaires.",
-                    detailedExplanation: "Cette tension permet d'alimenter des équipements puissants (sono, lumières) tout en respectant les limites de sécurité.",
-                    reference: "NF C 15-500, article 559.1",
-                    caseStudy: "En 2021, une installation en 500V a provoqué un arc électrique et un départ de feu."
-                },
-                {
-                    id: 110,
-                    theme: 'SÉCURITÉ',
-                    question: "Quelle est la distance maximale à parcourir pour atteindre un extincteur ?",
-                    options: [
-                        "10 mètres",
-                        "15 mètres",
-                        "20 mètres",
-                        "25 mètres"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Cette distance garantit une intervention rapide en cas de départ de feu.",
-                    explanation: "La distance maximale est de 15 mètres à parcourir jusqu'à un extincteur.",
-                    detailedExplanation: "Calcul basé sur un temps d'intervention de 30 secondes maximum pour un départ de feu naissant.",
-                    reference: "Article MS 54 - Règlement de sécurité",
-                    caseStudy: "Lors d'un incendie en 2020, le temps d'accès à l'extincteur (25m) a permis au feu de se développer."
-                },
-                {
-                    id: 111,
-                    theme: 'CONSTRUCTION',
-                    question: "Quelle est la pente minimale recommandée pour l'écoulement des eaux de pluie sur une toile ?",
-                    options: [
-                        "5%",
-                        "10%",
-                        "15%",
-                        "20%"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Cette pente évite la stagnation de l'eau et le risque d'effondrement.",
-                    explanation: "La pente minimale recommandée est de 15% pour l'écoulement des eaux.",
-                    detailedExplanation: "Une pente inférieure peut provoquer : accumulation d'eau, surcharge structurelle, risques de déchirure.",
-                    reference: "DTU 43.1 - Règles de conception",
-                    caseStudy: "En 2019, l'effondrement d'un chapiteau sous 30cm d'eau accumulée (pente de 8%)."
-                },
-                {
-                    id: 112,
-                    theme: 'MATÉRIAUX',
-                    question: "Quel classement au feu pour les décors flottants (banderoles, draperies) ?",
-                    options: [
-                        "M0 obligatoire",
-                        "M1 obligatoire",
-                        "M2 minimum",
-                        "M3 accepté"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Les éléments suspendus présentent un risque particulier de propagation verticale.",
-                    explanation: "Les décors flottants doivent être classés M1 (non inflammable).",
-                    detailedExplanation: "Risque spécifique : propagation rapide par les courants d'air chaud, difficulté d'extinction.",
-                    reference: "Article AM 11 - Règlement de sécurité",
-                    caseStudy: "Incendie du théâtre de Nantes 2018 : propagation en 45 secondes via des banderoles M4."
-                },
-                {
-                    id: 113,
-                    theme: 'SECOURS',
-                    question: "Combien d'exercices d'évacuation annuels sont obligatoires pour un CTS ?",
-                    options: [
-                        "1 exercice",
-                        "2 exercices",
-                        "3 exercices",
-                        "4 exercices"
-                    ],
-                    correctAnswer: 0,
-                    hint: "La fréquence dépend de la catégorie de l'établissement.",
-                    explanation: "1 exercice d'évacuation annuel est obligatoire pour les CTS.",
-                    detailedExplanation: "Cet exercice doit impliquer tout le personnel et faire l'objet d'un compte-rendu dans le registre de sécurité.",
-                    reference: "Article MS 46 - Règlement de sécurité",
-                    caseStudy: "Lors d'un vrai incendie en 2021, le personnel formé grâce aux exercices a évacué 300 personnes en 4 minutes."
-                },
-                {
-                    id: 114,
-                    theme: 'JURISPRUDENCE',
-                    question: "Quelle amende maximale pour mise en danger de la vie d'autrui dans un CTS ?",
-                    options: [
-                        "15 000 €",
-                        "30 000 €",
-                        "75 000 €",
-                        "150 000 €"
-                    ],
-                    correctAnswer: 3,
-                    hint: "L'article 223-1 du Code pénal prévoit des peines sévères.",
-                    explanation: "L'amende maximale est de 150 000 € pour mise en danger de la vie d'autrui.",
-                    detailedExplanation: "Peines complémentaires possibles : interdiction d'exercer, fermeture administrative, dommages-intérêts.",
-                    reference: "Code pénal, article 223-1",
-                    caseStudy: "Tribunal de Lille 2022 : 120 000 € d'amende + 2 ans avec sursis pour un chapiteau surchargé non conforme."
-                },
-                {
-                    id: 115,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quelle est la section minimale du conducteur de protection (terre) ?",
-                    options: [
-                        "Égale aux conducteurs actifs",
-                        "Moitié de la section des conducteurs actifs",
-                        "2,5 mm² minimum",
-                        "1,5 mm² minimum"
-                    ],
-                    correctAnswer: 0,
-                    hint: "Le conducteur de protection doit pouvoir supporter le même courant de défaut.",
-                    explanation: "La section doit être égale à celle des conducteurs actifs.",
-                    detailedExplanation: "Exception : si la section des actifs > 16 mm², la terre peut être de 16 mm² minimum.",
-                    reference: "NFC 15-100, tableau 54G",
-                    caseStudy: "Électrocution en 2020 due à une terre de section insuffisante qui a fondu."
-                }
-            ],
-            expert: [
-                {
-                    id: 201,
-                    theme: 'JURISPRUDENCE',
-                    question: "Selon un arrêt de la Cour de cassation, quelle est la faute caractérisée d'un responsable CTS ?",
-                    options: [
-                        "Ne pas avoir un SSIAP présent",
-                        "Avoir dépassé la jauge de 10%",
-                        "Avoir utilisé des matériaux M2 au lieu de M1",
-                        "Avoir omis de vérifier les certificats d'ignifugation"
-                    ],
-                    correctAnswer: 3,
-                    hint: "La vérification des documents techniques est une obligation de moyen renforcée.",
-                    explanation: "L'omission de vérification des certificats d'ignifugation constitue une faute caractérisée.",
-                    detailedExplanation: "La jurisprudence considère que le responsable doit vérifier personnellement la validité et l'authenticité des certificats.",
-                    reference: "Cass. Crim. 15 janvier 2020, n° 19-82.456",
-                    caseStudy: "Condamnation confirmée en appel : responsable technique ayant accepté une toile avec certificat falsifié."
-                },
-                {
-                    id: 202,
-                    theme: 'MATÉRIAUX',
-                    question: "Quel est l'indice d'oxygène minimum pour un matériau classé M1 ?",
-                    options: [
-                        "IO ≥ 21",
-                        "IO ≥ 28",
-                        "IO ≥ 35",
-                        "IO ≥ 42"
-                    ],
-                    correctAnswer: 1,
-                    hint: "L'indice d'oxygène mesure la combustibilité d'un matériau.",
-                    explanation: "L'indice d'oxygène minimum est de 28 pour un matériau classé M1.",
-                    detailedExplanation: "IO = pourcentage minimum d'oxygène nécessaire à la combustion. Plus l'IO est élevé, moins le matériau est combustible.",
-                    reference: "Norme NF EN ISO 4589-2",
-                    caseStudy: "Matériau présenté comme M1 mais avec IO 24 : combustion spontanée à 280°C au lieu de 350°C."
-                },
-                {
-                    id: 203,
-                    theme: 'SECOURS',
-                    question: "Quel est le temps maximum d'évacuation calculé pour un chapiteau de 1000 places ?",
-                    options: [
-                        "4 minutes",
-                        "6 minutes",
-                        "8 minutes",
-                        "10 minutes"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Le calcul inclut le temps de perception, de décision et de mouvement.",
-                    explanation: "Le temps maximum théorique est de 8 minutes pour 1000 personnes.",
-                    detailedExplanation: "Calcul : 1000 personnes ÷ (3 sorties × 50 pers/min) = 6.7 min + 1.3 min de marge = 8 min.",
-                    reference: "Méthode de calcul SIA 81 - Sécurité incendie",
-                    caseStudy: "Exercice réel : évacuation de 980 personnes en 7 minutes 45 avec un personnel bien formé."
-                },
-                {
-                    id: 204,
-                    theme: 'CONSTRUCTION',
-                    question: "Quelle est la pression de calcul pour les ancrages en zone à vent extrême ?",
-                    options: [
-                        "500 Pa",
-                        "750 Pa",
-                        "1000 Pa",
-                        "1500 Pa"
-                    ],
-                    correctAnswer: 3,
-                    hint: "La pression varie selon la zone géographique et l'altitude.",
-                    explanation: "La pression de calcul est de 1500 Pa en zone à vent extrême.",
-                    detailedExplanation: "Cette pression correspond à un vent de 160 km/h. Les ancrages doivent résister à cette pression + coefficient de sécurité.",
-                    reference: "Eurocode 1 - Actions sur les structures",
-                    caseStudy: "Tempête de 2019 : seul le chapiteau calculé à 1500 Pa a résisté aux rafales à 155 km/h."
-                },
-                {
-                    id: 205,
-                    theme: 'ÉLECTRICITÉ',
-                    question: "Quel est le courant de défaut maximum pour un DDR 30mA en CTS ?",
-                    options: [
-                        "15 mA",
-                        "30 mA",
-                        "100 mA",
-                        "300 mA"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Le DDR doit déclencher avant que le courant ne devienne dangereux.",
-                    explanation: "Le courant de défaut maximum est de 30 mA pour la protection des personnes.",
-                    detailedExplanation: "À 30 mA, le temps de déclenchement doit être ≤ 40 ms pour éviter la fibrillation cardiaque.",
-                    reference: "NFC 15-100, article 411.3.3",
-                    caseStudy: "Défaillance d'un DDR calibré à 100 mA : électrisation grave avec arrêt cardiaque à 80 mA."
-                },
-                {
-                    id: 206,
-                    theme: 'SÉCURITÉ',
-                    question: "Quelle est la densité de charge au feu maximale pour un local de CTS ?",
-                    options: [
-                        "200 MJ/m²",
-                        "400 MJ/m²",
-                        "600 MJ/m²",
-                        "800 MJ/m²"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Cette valeur limite l'énergie calorifique potentiellement dégagée.",
-                    explanation: "La densité maximale est de 600 MJ/m² pour un local de CTS.",
-                    detailedExplanation: "Calcul basé sur la somme des pouvoirs calorifiques de tous les matériaux présents.",
-                    reference: "Méthode de la charge au feu - Guide APSAD",
-                    caseStudy: "Incendie ultra-rapide en 2021 : charge au feu de 850 MJ/m² due à des décors en polystyrène."
-                },
-                {
-                    id: 207,
-                    theme: 'JURISPRUDENCE',
-                    question: "Quelle est la prescription pour une action en responsabilité après un accident en CTS ?",
-                    options: [
-                        "3 ans",
-                        "5 ans",
-                        "10 ans",
-                        "20 ans"
-                    ],
-                    correctAnswer: 2,
-                    hint: "Le délai est plus long pour les atteintes à l'intégrité physique.",
-                    explanation: "La prescription est de 10 ans à compter de la consolidation du dommage.",
-                    detailedExplanation: "Délai spécifique pour les atteintes à l'intégrité physique (article 2226 du Code civil).",
-                    reference: "Code civil, article 2226",
-                    caseStudy: "Victime d'un effondrement en 2010 a pu agir en 2019 après complications médicales."
-                },
-                {
-                    id: 208,
-                    theme: 'MATÉRIAUX',
-                    question: "Quel est le taux d'émission de fumées maximum pour un matériau classé M1 ?",
-                    options: [
-                        "≤ 100",
-                        "≤ 200",
-                        "≤ 300",
-                        "≤ 400"
-                    ],
-                    correctAnswer: 1,
-                    hint: "Les fumées sont responsables de 80% des décès dans les incendies.",
-                    explanation: "Le taux maximum est de 200 pour un matériau classé M1.",
-                    detailedExplanation: "Mesuré par l'indice d'opacité des fumées (ISO 5659-2). Les fumées doivent être non toxiques et peu opaques.",
-                    reference: "Norme NF EN 13823 - Essai SBI",
-                    caseStudy: "Matériau M1 rejeté : émission de fumées à 350 avec toxicité élevée (CO à 5000 ppm)."
-                },
-                {
-                    id: 209,
-                    theme: 'SECOURS',
-                    question: "Quelle est la largeur efficace minimale d'une issue compte tenu du phénomène d'arc-boutement ?",
-                    options: [
-                        "Largeur nominale - 15 cm",
-                        "Largeur nominale - 10 cm",
-                        "Largeur nominale - 5 cm",
-                        "Largeur nominale - 0 cm"
-                    ],
-                    correctAnswer: 0,
-                    hint: "L'arc-boutement réduit la largeur utile lors d'une évacuation dense.",
-                    explanation: "La largeur efficace est la largeur nominale moins 15 cm.",
-                    detailedExplanation: "Phénomène d'arc-boutement : les épaules des personnes créent un goulot d'étranglement même dans une issue large.",
-                    reference: "Étude du CSTB - Modélisation des flux de foule",
-                    caseStudy: "Sortie de 1.20m nominale mais efficace à 1.05m : réduction de 25% du débit d'évacuation."
-                },
-                {
-                    id: 210,
-                    theme: 'CONSTRUCTION',
-                    question: "Quel est le coefficient de sécurité minimal pour les câbles de tension d'un chapiteau ?",
-                    options: [
-                        "2",
-                        "3",
-                        "4",
-                        "5"
-                    ],
-                    correctAnswer: 3,
-                    hint: "Les câbles sont soumis à des efforts dynamiques et des facteurs d'usure.",
-                    explanation: "Le coefficient de sécurité minimal est de 4 pour les câbles de tension.",
-                    detailedExplanation: "Un câble de rupture à 4000 kg doit être utilisé pour une tension de 1000 kg max.",
-                    reference: "DTU 43.1 - Règles de calcul des structures tendues",
-                    caseStudy: "Rupture de câble en 2018 : coefficient de 2.5 seulement, rupture à 1800 kg pour une charge de 700 kg."
-                }
-            ]
-        };
-
-        // --- GESTION DU QUIZ ---
-        let quizState = {
-            questions: [],
-            currentQuestionIndex: 0,
-            score: 0,
-            answers: [],
-            startTime: null,
-            timerInterval: null,
-            totalSeconds: 0
-        };
-
-        // --- CONTENU PÉDAGOGIQUE ---
-        const educationalContent = {
-            caseStudies: [
-                {
-                    title: "Effondrement partiel de chapiteau - Toulouse 2019",
-                    content: `
-                        <div class="bg-white rounded-xl shadow-sm overflow-hidden border-l-4 border-red-500 border border-stone-200">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-bold mr-3">
-                                        Tribunal Correctionnel
-                                    </div>
-                                    <div class="text-sm text-stone-500">Toulouse, 15 juillet 2019</div>
-                                </div>
-                                <h4 class="text-xl font-bold mb-2">Effondrement partiel de chapiteau</h4>
-                                <p class="text-stone-700 mb-4">
-                                    Un chapiteau de 2000 places s'est partiellement effondré lors d'un festival suite à des vents de 80 km/h.
-                                    Les ancrages n'étaient pas conformes à la réglementation CTS.
-                                </p>
-                                <div class="space-y-2">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-gavel text-red-500 mr-2"></i>
-                                        <span class="font-bold">Condamnation :</span>
-                                        <span class="ml-2">8 mois avec sursis</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <i class="fas fa-euro-sign text-red-500 mr-2"></i>
-                                        <span class="font-bold">Amende :</span>
-                                        <span class="ml-2">35 000 €</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <i class="fas fa-user-injured text-red-500 mr-2"></i>
-                                        <span class="font-bold">Blessés :</span>
-                                        <span class="ml-2">12 blessés légers</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                },
-                {
-                    title: "Incendie dans une tente d'exposition - Lyon 2021",
-                    content: `
-                        <div class="bg-white rounded-xl shadow-sm overflow-hidden border-l-4 border-orange-500 border border-stone-200">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-bold mr-3">
-                                        Cour d'Appel
-                                    </div>
-                                    <div class="text-sm text-stone-500">Lyon, 22 mars 2021</div>
-                                </div>
-                                <h4 class="text-xl font-bold mb-2">Incendie dans une tente d'exposition</h4>
-                                <p class="text-stone-700 mb-4">
-                                    Un départ de feu dans une installation électrique provisoire a entraîné la destruction totale d'une tente de 800m².
-                                    Absence de détection incendie et extincteurs non accessibles.
-                                </p>
-                                <div class="space-y-2">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-gavel text-orange-500 mr-2"></i>
-                                        <span class="font-bold">Condamnation :</span>
-                                        <span class="ml-2">1 an avec sursis</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <i class="fas fa-euro-sign text-orange-500 mr-2"></i>
-                                        <span class="font-bold">Amende :</span>
-                                        <span class="ml-2">50 000 €</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                }
-            ]
-        };
-
-        // --- FONCTIONS DE NAVIGATION ---
-        function switchTab(tabId) {
-            console.log("Changement d'onglet vers :", tabId);
-            
-            // Masquer tous les onglets
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // Afficher l'onglet sélectionné
-            const tab = document.getElementById(tabId);
-            if (tab) {
-                tab.classList.add('active');
+            if (isValid) {
+                startBtn.disabled = false;
+                startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                startBtn.disabled = true;
+                startBtn.classList.add('opacity-50', 'cursor-not-allowed');
             }
-            
-            // Mettre à jour les boutons de navigation
+        }
+
+        // INITIALISER LA NAVIGATION
+        function initNavigation() {
+            // Gérer le clic sur les boutons de navigation
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('border-orange-600', 'text-orange-600', 'border-emerald-600', 'text-emerald-600');
-                btn.classList.add('border-transparent');
+                btn.addEventListener('click', function () {
+                    const tabName = this.getAttribute('onclick').match(/switchTab\('([^']+)'\)/)[1];
+                    switchTab(tabName);
+                });
             });
-            
-            const activeBtn = document.getElementById('btn-' + tabId);
+        }
+
+        // INITIALISER LES CONTRÔLES DU QUIZ
+        function initQuizControls() {
+            // Bouton précédent
+            const prevBtn = document.getElementById('prevBtn');
+            if (prevBtn) {
+                prevBtn.addEventListener('click', previousQuestion);
+            }
+
+            // Bouton suivant/terminer
+            const nextBtn = document.getElementById('nextBtn');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextQuestionOrFinish);
+            }
+        }
+
+        // CHANGER D'ONGLET
+        function switchTab(tabName) {
+            // Cacher tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Mettre à jour la navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-orange-600', 'border-emerald-600', 'text-orange-600', 'text-emerald-600');
+                btn.style.borderBottomColor = 'transparent';
+            });
+
+            // Appliquer le style au bouton actif
+            const activeBtn = document.querySelector(`[onclick="switchTab('${tabName}')"]`);
             if (activeBtn) {
-                if (tabId === 'resultats') {
+                activeBtn.classList.add('active');
+                if (tabName === 'resultats') {
                     activeBtn.classList.add('border-emerald-600', 'text-emerald-600');
+                    activeBtn.style.borderBottomColor = '#059669';
                 } else {
                     activeBtn.classList.add('border-orange-600', 'text-orange-600');
+                    activeBtn.style.borderBottomColor = '#ea580c';
                 }
-                activeBtn.classList.remove('border-transparent');
             }
-            
-            // Charger le contenu spécifique si nécessaire
-            if (tabId === 'cas_reels') {
-                loadCaseStudies();
-            }
-            
-            // Si on bascule vers les résultats, afficher les résultats
-            if (tabId === 'resultats' && quizState.questions.length > 0) {
+
+            // Si on passe à l'onglet résultats, afficher les résultats
+            if (tabName === 'resultats') {
                 showResults();
             }
         }
 
-        function loadCaseStudies() {
-            const container = document.getElementById('caseStudiesContent');
-            if (!container) return;
-            
-            let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">';
-            
-            educationalContent.caseStudies.forEach((caseStudy) => {
-                html += caseStudy.content;
-            });
-            
-            html += '</div>';
-            
-            // Ajouter l'analyse des causes
-            html += `
-                <div class="bg-stone-50 rounded-xl p-6 border border-stone-200">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-search text-slate-700 mr-3"></i>
-                        Analyse des Causes Récurrentes
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-bold text-lg mb-3">Causes Techniques</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Ancrages insuffisants ou mal réalisés</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Installations électriques non conformes NFC 15-100</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Matériaux non classés au feu (M1 obligatoire)</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-3">Causes Organisationnelles</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Absence de contrôle des ancrages avant événement</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Personnel non formé aux procédures d'évacuation</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
-                                    <span>Registre de sécurité non tenu à jour</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            container.innerHTML = html;
-        }
-
+        // DÉMARRER LE QUIZ
         function startQuiz() {
-            // Vérifier qu'au moins un thème est sélectionné
-            if (quizConfig.selectedThemes.length === 0) {
-                alert("Veuillez sélectionner au moins un thème pour le quiz.");
+            // Vérifier la configuration
+            if (selectedQuestionsCount === 0) {
+                alert("Veuillez sélectionner un nombre de questions.");
                 return;
             }
 
-            // Générer les questions selon la configuration
-            quizState.questions = generateQuizQuestions();
-            
-            if (quizState.questions.length === 0) {
-                alert("Aucune question disponible avec la configuration actuelle. Veuillez ajuster les paramètres.");
+            if (selectedLevel === null) {
+                alert("Veuillez sélectionner un niveau de difficulté.");
                 return;
             }
 
-            // Initialiser l'état du quiz
-            quizState.currentQuestionIndex = 0;
-            quizState.score = 0;
-            quizState.answers = [];
-            quizState.startTime = new Date();
-            quizState.totalSeconds = 0;
+            if (selectedThemes.length === 0) {
+                alert("Veuillez sélectionner au moins un thème.");
+                return;
+            }
 
-            // Démarrer le timer
-            startTimer();
+            // Préparer les questions selon la configuration
+            prepareQuizQuestions();
 
-            // Basculer vers l'onglet quiz
+            // Vérifier qu'on a assez de questions
+            if (quizQuestions.length < selectedQuestionsCount) {
+                alert(`Seulement ${quizQuestions.length} questions disponibles avec cette configuration. Veuillez sélectionner plus de thèmes ou un niveau différent.`);
+                return;
+            }
+
+            // Initialiser les variables
+            currentQuestionIndex = 0;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            correctAnswers = 0;
+            timePerQuestion = new Array(quizQuestions.length).fill(0);
+            startTime = Date.now();
+            currentQuestionStartTime = Date.now();
+
+            // Changer d'onglet
             switchTab('quiz');
 
-            // Afficher la première question
-            displayCurrentQuestion();
+            // Charger la première question
+            loadQuestion();
+            startTimer();
+            updateStats();
+            updateProgress();
         }
 
-        function generateQuizQuestions() {
-            const allQuestions = [];
-            
-            // Récupérer les questions du niveau sélectionné
-            const levelQuestions = questionsDatabase[quizConfig.level] || [];
-            
-            // Filtrer par thèmes sélectionnés
-            const filteredQuestions = levelQuestions.filter(q => 
-                quizConfig.selectedThemes.some(theme => 
-                    q.theme.toLowerCase().includes(theme.toLowerCase())
-                )
+        // PRÉPARER LES QUESTIONS DU QUIZ
+        function prepareQuizQuestions() {
+            // Filtrer les questions selon les critères
+            let filteredQuestions = allQuestions.filter(q =>
+                selectedThemes.includes(q.theme) &&
+                q.level === selectedLevel
             );
-            
-            // Si pas assez de questions, prendre toutes les questions du niveau
-            const questionsPool = filteredQuestions.length >= quizConfig.questionCount 
-                ? filteredQuestions 
-                : levelQuestions;
-            
+
+            // Si pas assez de questions, prendre toutes les questions des thèmes sélectionnés
+            if (filteredQuestions.length < selectedQuestionsCount) {
+                filteredQuestions = allQuestions.filter(q =>
+                    selectedThemes.includes(q.theme)
+                );
+            }
+
+            // Si toujours pas assez, prendre toutes les questions
+            if (filteredQuestions.length < selectedQuestionsCount) {
+                filteredQuestions = [...allQuestions];
+            }
+
             // Mélanger les questions
-            const shuffledQuestions = [...questionsPool].sort(() => Math.random() - 0.5);
-            
-            // Prendre le nombre demandé de questions
-            return shuffledQuestions.slice(0, quizConfig.questionCount);
+            filteredQuestions = shuffleArray(filteredQuestions);
+
+            // Prendre le nombre demandé
+            quizQuestions = filteredQuestions.slice(0, selectedQuestionsCount);
         }
 
-        function displayCurrentQuestion() {
-            const question = quizState.questions[quizState.currentQuestionIndex];
-            if (!question) return;
+        // MÉLANGE DES QUESTIONS
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
 
-            // Mettre à jour les indicateurs
-            document.getElementById('currentQuestion').textContent = 
-                `${quizState.currentQuestionIndex + 1}/${quizState.questions.length}`;
-            document.getElementById('questionsLeft').textContent = 
-                quizState.questions.length - quizState.currentQuestionIndex - 1;
-            
-            // Mettre à jour la progression
-            const progress = ((quizState.currentQuestionIndex + 1) / quizState.questions.length) * 100;
-            document.getElementById('progressBar').style.width = `${progress}%`;
-            document.getElementById('progressText').textContent = `${Math.round(progress)}%`;
+        // CHARGER LA QUESTION
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
 
-            // Afficher la question
-            document.getElementById('questionTheme').textContent = question.theme;
+            // Mettre à jour le texte de la question
             document.getElementById('questionText').textContent = question.question;
 
-            // Afficher les options
-            const optionsContainer = document.getElementById('quizOptions');
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'quiz-option p-4 border border-stone-300 rounded-lg cursor-pointer hover:bg-stone-50 transition';
-                optionElement.innerHTML = `
-                    <div class="flex items-center">
-                        <div class="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center mr-4 font-bold">
-                            ${String.fromCharCode(65 + index)}
-                        </div>
-                        <div class="flex-1">${option}</div>
-                    </div>
-                `;
-                
-                optionElement.addEventListener('click', () => selectAnswer(index));
-                optionsContainer.appendChild(optionElement);
+            // Mettre à jour le thème
+            const themeText = question.theme === "general" ? "GÉNÉRALITÉS" :
+                question.theme === "construction" ? "CONSTRUCTION" :
+                    question.theme === "electricity" ? "ÉLECTRICITÉ" : "SÉCURITÉ";
+            document.getElementById('questionTheme').textContent = themeText;
+
+            // Mettre à jour les indicateurs de difficulté
+            const difficultyDots = document.querySelectorAll('#questionText ~ div .flex.space-x-1 div');
+            difficultyDots.forEach((dot, index) => {
+                if (question.level === "student" && index < 1) {
+                    dot.className = 'w-3 h-3 rounded-full bg-orange-500';
+                } else if (question.level === "pro" && index < 2) {
+                    dot.className = 'w-3 h-3 rounded-full bg-orange-500';
+                } else if (question.level === "expert" && index < 3) {
+                    dot.className = 'w-3 h-3 rounded-full bg-orange-500';
+                } else {
+                    dot.className = 'w-3 h-3 rounded-full bg-stone-300';
+                }
             });
 
-            // Cacher les feedbacks précédents
+            // Mettre à jour les options de réponse
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            question.answers.forEach((answer, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = `quiz-option p-4 border-2 border-stone-200 rounded-lg cursor-pointer transition-all ${userAnswers[currentQuestionIndex] === index ? 'selected' : ''}`;
+                optionDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full border border-stone-300 mr-4 font-medium">
+                            ${String.fromCharCode(65 + index)}
+                        </div>
+                        <div class="flex-1">${answer}</div>
+                        ${userAnswers[currentQuestionIndex] === index ? '<i class="fas fa-check ml-2 text-emerald-600"></i>' : ''}
+                    </div>
+                `;
+
+                optionDiv.addEventListener('click', () => {
+                    if (userAnswers[currentQuestionIndex] === null) {
+                        selectAnswer(index);
+                    }
+                });
+
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Mettre à jour les aides
+            document.getElementById('hintText').textContent = question.hint;
+            document.getElementById('referenceText').textContent = question.reference;
+
+            // Cacher les conteneurs d'aide
             document.getElementById('hintContainer').classList.add('hidden');
             document.getElementById('feedbackContainer').classList.add('hidden');
             document.getElementById('caseStudyContainer').classList.add('hidden');
             document.getElementById('referenceContainer').classList.add('hidden');
 
-            // Gérer les boutons de navigation
-            document.getElementById('prevBtn').disabled = quizState.currentQuestionIndex === 0;
-
-            // Mettre à jour le score
-            updateScoreDisplay();
-        }
-
-        function selectAnswer(selectedIndex) {
-            const question = quizState.questions[quizState.currentQuestionIndex];
-            const isCorrect = selectedIndex === question.correctAnswer;
-
-            // Enregistrer la réponse
-            quizState.answers[quizState.currentQuestionIndex] = {
-                questionId: question.id,
-                selectedAnswer: selectedIndex,
-                isCorrect: isCorrect,
-                timeSpent: quizState.totalSeconds
-            };
-
-            if (isCorrect) {
-                quizState.score++;
+            // Si une réponse a déjà été donnée, montrer le résultat
+            if (userAnswers[currentQuestionIndex] !== null) {
+                showQuestionResult();
             }
 
-            // Afficher le feedback
-            showFeedback(question, selectedIndex, isCorrect);
-            
-            // Mettre à jour le score
-            updateScoreDisplay();
+            // Mettre à jour les boutons de navigation
+            updateNavigationButtons();
+
+            // Mettre à jour les statistiques
+            updateStats();
+            updateProgress();
+
+            // Enregistrer le temps de début
+            currentQuestionStartTime = Date.now();
         }
 
-        function showFeedback(question, selectedIndex, isCorrect) {
-            // Désactiver toutes les options
-            document.querySelectorAll('#quizOptions .quiz-option').forEach((option, index) => {
-                option.style.pointerEvents = 'none';
-                if (index === question.correctAnswer) {
-                    option.classList.add('correct', 'border-emerald-500', 'bg-emerald-50');
-                } else if (index === selectedIndex && !isCorrect) {
-                    option.classList.add('incorrect', 'border-red-500', 'bg-red-50');
+        // SÉLECTIONNER UNE RÉPONSE
+        function selectAnswer(answerIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            userAnswers[currentQuestionIndex] = answerIndex;
+
+            // Calculer le temps passé sur cette question
+            const timeSpent = Math.floor((Date.now() - currentQuestionStartTime) / 1000);
+            timePerQuestion[currentQuestionIndex] = timeSpent;
+
+            // Vérifier si la réponse est correcte
+            const isCorrect = (answerIndex === question.correctAnswer);
+
+            // Mettre à jour le compteur de bonnes réponses
+            if (isCorrect) {
+                correctAnswers++;
+            }
+
+            // Afficher le résultat
+            showQuestionResult();
+
+            // Mettre à jour les statistiques
+            updateStats();
+            updateProgress();
+        }
+
+        // AFFICHER LE RÉSULTAT DE LA QUESTION
+        function showQuestionResult() {
+            const question = quizQuestions[currentQuestionIndex];
+            const userAnswer = userAnswers[currentQuestionIndex];
+
+            if (userAnswer === null) return;
+
+            // Mettre à jour toutes les options
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((option, index) => {
+                // Réinitialiser les classes
+                option.classList.remove('selected', 'correct', 'incorrect');
+
+                // Marquer la réponse de l'utilisateur
+                if (index === userAnswer) {
+                    option.classList.add('selected');
                 }
+
+                // Marquer les bonnes/mauvaises réponses
+                if (index === question.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (index === userAnswer && index !== question.correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+
+                // Désactiver le clic
+                option.style.pointerEvents = 'none';
             });
 
-            // Afficher le feedback détaillé
+            // Afficher le feedback
             const feedbackContainer = document.getElementById('feedbackContainer');
+            const isCorrect = (userAnswer === question.correctAnswer);
+
             feedbackContainer.innerHTML = `
-                <div class="${isCorrect ? 'bg-emerald-50 border-emerald-500' : 'bg-red-50 border-red-500'} rounded-lg p-4 border-l-4 mb-4">
+                <div class="p-4 rounded-lg ${isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-red-50 border border-red-200'}">
                     <div class="flex items-start">
                         <i class="fas ${isCorrect ? 'fa-check-circle text-emerald-600' : 'fa-times-circle text-red-600'} text-xl mr-3 mt-1"></i>
                         <div>
                             <h4 class="font-bold ${isCorrect ? 'text-emerald-800' : 'text-red-800'} mb-1">
                                 ${isCorrect ? 'Bonne réponse !' : 'Réponse incorrecte'}
                             </h4>
-                            <p class="${isCorrect ? 'text-emerald-700' : 'text-red-700'} mb-2">
-                                ${question.explanation}
-                            </p>
-                            ${question.detailedExplanation ? `
-                                <div class="mt-3 p-3 bg-white rounded border ${isCorrect ? 'border-emerald-200' : 'border-red-200'}">
-                                    <p class="font-semibold ${isCorrect ? 'text-emerald-800' : 'text-red-800'} mb-1">Explication détaillée :</p>
-                                    <p class="text-sm ${isCorrect ? 'text-emerald-700' : 'text-red-700'}">${question.detailedExplanation}</p>
-                                </div>
-                            ` : ''}
+                            <p class="${isCorrect ? 'text-emerald-700' : 'text-red-700'}">${question.explanation}</p>
                         </div>
                     </div>
                 </div>
             `;
             feedbackContainer.classList.remove('hidden');
 
-            // Afficher l'étude de cas si disponible
-            if (question.caseStudy) {
-                const caseStudyContainer = document.getElementById('caseStudyContainer');
-                caseStudyContainer.innerHTML = `
-                    <p class="text-sm text-stone-700">${question.caseStudy}</p>
-                `;
-                caseStudyContainer.classList.remove('hidden');
-            }
-
-            // Afficher la référence si disponible
-            if (question.reference) {
-                const referenceContainer = document.getElementById('referenceContainer');
-                referenceContainer.innerHTML = `
-                    <p class="text-sm text-stone-600">${question.reference}</p>
-                    ${question.link ? `<a href="${question.link}" target="_blank" class="text-sm text-blue-600 hover:underline inline-block mt-2">
-                        <i class="fas fa-external-link-alt mr-1"></i>
-                        Consulter le texte
-                    </a>` : ''}
-                `;
-                referenceContainer.classList.remove('hidden');
-            }
+            // Afficher la référence
+            document.getElementById('referenceContainer').classList.remove('hidden');
         }
 
-        function updateScoreDisplay() {
-            const currentQuestion = quizState.currentQuestionIndex + 1;
-            const percentage = currentQuestion > 0 ? 
-                Math.round((quizState.score / currentQuestion) * 100) : 0;
-            
-            document.getElementById('correctAnswers').textContent = quizState.score;
-            document.getElementById('scorePercentage').textContent = `${percentage}%`;
-        }
-
+        // AFFICHER UN INDICE
         function showHint() {
-            const question = quizState.questions[quizState.currentQuestionIndex];
-            if (!question) return;
-            
-            document.getElementById('hintText').textContent = question.hint;
-            document.getElementById('hintContainer').classList.remove('hidden');
+            document.getElementById('hintContainer').classList.toggle('hidden');
         }
 
-        function previousQuestion() {
-            if (quizState.currentQuestionIndex > 0) {
-                quizState.currentQuestionIndex--;
-                displayCurrentQuestion();
-            }
-        }
-
+        // QUESTION SUIVANTE OU TERMINER
         function nextQuestionOrFinish() {
-            if (quizState.currentQuestionIndex < quizState.questions.length - 1) {
-                quizState.currentQuestionIndex++;
-                displayCurrentQuestion();
+            // On vérifie si c'est la dernière question
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                // Question suivante
+                currentQuestionIndex++;
+                loadQuestion();
             } else {
+                // Dernière question, terminer le quiz
                 finishQuiz();
             }
         }
+        // QUESTION PRÉCÉDENTE
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
 
-        // --- TIMER ---
+        // METTRE À JOUR LES STATISTIQUES
+        function updateStats() {
+            const answered = userAnswers.filter(a => a !== null).length;
+
+            document.getElementById('currentQuestion').textContent = `${currentQuestionIndex + 1}/${quizQuestions.length}`;
+            document.getElementById('correctAnswers').textContent = correctAnswers;
+
+            const percentage = quizQuestions.length > 0 ? Math.round((correctAnswers / quizQuestions.length) * 100) : 0;
+            document.getElementById('scorePercentage').textContent = `${percentage}%`;
+
+            document.getElementById('questionsLeft').textContent = quizQuestions.length - answered;
+        }
+
+        // METTRE À JOUR LA PROGRESSION
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('progressText').textContent = `${Math.round(progress)}%`;
+        }
+
+        // METTRE À JOUR LES BOUTONS DE NAVIGATION
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentQuestionIndex === 0;
+
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                nextBtn.innerHTML = 'Terminer <i class="fas fa-flag-checkered ml-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'Suivant <i class="fas fa-arrow-right ml-2"></i>';
+            }
+        }
+
+        // DÉMARRER LE TIMER
         function startTimer() {
-            clearInterval(quizState.timerInterval);
-            quizState.totalSeconds = 0;
-            
-            quizState.timerInterval = setInterval(() => {
-                quizState.totalSeconds++;
-                const minutes = Math.floor(quizState.totalSeconds / 60);
-                const seconds = quizState.totalSeconds % 60;
-                document.getElementById('globalTimer').textContent = 
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('totalTimeTaken').textContent =
                     `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }, 1000);
         }
 
+        // TERMINER LE QUIZ
         function finishQuiz() {
-            clearInterval(quizState.timerInterval);
+            clearInterval(timerInterval);
+
+            // Calculer les résultats
+            const totalCorrect = correctAnswers;
+            const percentage = Math.round((totalCorrect / quizQuestions.length) * 100);
+            const totalTime = Math.floor((Date.now() - startTime) / 1000);
+            const totalTimeSeconds = timePerQuestion.reduce((a, b) => a + b, 0);
+            const avgTime = quizQuestions.length > 0 ? Math.round(totalTimeSeconds / quizQuestions.length) : 0;
+
+            // Mettre à jour les valeurs des résultats
+            document.getElementById('finalScorePercentage').textContent = `${percentage}%`;
+            document.getElementById('totalCorrectAnswers').textContent = totalCorrect;
+
+            const minutes = Math.floor(totalTime / 60);
+            const seconds = totalTime % 60;
+            document.getElementById('totalTimeTaken').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            document.getElementById('averageTime').textContent = `${avgTime}s`;
+
+            // Mettre à jour le certificat
+            document.getElementById('certificateScore').textContent = `${percentage}%`;
+            document.getElementById('certificateDate').textContent = new Date().toLocaleDateString('fr-FR');
+
+            // Créer le graphique de performance
+            createPerformanceChart();
+
+            // Générer les recommandations
+            generateAdviceList(percentage);
+
+            // Afficher les résultats
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            document.getElementById('noResultsMessage').classList.add('hidden');
+
+            // Changer d'onglet
             switchTab('resultats');
         }
 
+        // AFFICHER LES RÉSULTATS
         function showResults() {
-            const totalQuestions = quizState.questions.length;
-            const percentage = totalQuestions > 0 ? Math.round((quizState.score / totalQuestions) * 100) : 0;
-            
-            // Mettre à jour les résultats
-            document.getElementById('finalScorePercentage').textContent = `${percentage}%`;
-            document.getElementById('totalCorrectAnswers').textContent = quizState.score;
-            document.getElementById('totalTimeTaken').textContent = formatTime(quizState.totalSeconds);
-            document.getElementById('averageTime').textContent = totalQuestions > 0 ? 
-                `${Math.round(quizState.totalSeconds / totalQuestions)}s` : '0s';
-            
-            // Mettre à jour le certificat
-            document.getElementById('certificateScore').textContent = `${percentage}%`;
-            
-            // Créer le graphique de performance
-            createPerformanceChart();
-            
-            // Générer les conseils
-            generateAdvice(percentage);
-            
-            // Afficher les résultats
-            document.getElementById('resultsContainer').classList.remove('hidden');
-            document.getElementById('noResultsMessage').style.display = 'none';
+            // Si le quiz n'a pas été fait, montrer le message
+            if (quizQuestions.length === 0) {
+                document.getElementById('resultsContainer').classList.add('hidden');
+                document.getElementById('noResultsMessage').classList.remove('hidden');
+            } else {
+                document.getElementById('resultsContainer').classList.remove('hidden');
+                document.getElementById('noResultsMessage').classList.add('hidden');
+            }
         }
 
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
+        // CRÉER LE GRAPHIQUE DE PERFORMANCE
         function createPerformanceChart() {
             const ctx = document.getElementById('performanceChart').getContext('2d');
-            
-            // Analyser les performances par thème
+
+            // Calculer les statistiques par thème
             const themeStats = {};
-            quizState.questions.forEach((question, index) => {
-                const answer = quizState.quizData.answers[index];
-                if (!themeStats[question.theme]) {
-                    themeStats[question.theme] = { correct: 0, total: 0 };
+            userAnswers.forEach((answer, index) => {
+                const question = quizQuestions[index];
+                const theme = question.theme;
+                const isCorrect = (answer === question.correctAnswer);
+
+                if (!themeStats[theme]) {
+                    themeStats[theme] = { total: 0, correct: 0 };
                 }
-                themeStats[question.theme].total++;
-                if (answer && answer.isCorrect) {
-                    themeStats[question.theme].correct++;
-                }
+
+                themeStats[theme].total++;
+                if (isCorrect) themeStats[theme].correct++;
             });
-            
+
             const themes = Object.keys(themeStats);
-            const percentages = themes.map(theme => {
-                const stat = themeStats[theme];
-                return stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
-            });
-            
-            // Détruire le graphique existant
-            if (window.performanceChart) {
-                window.performanceChart.destroy();
+            const percentages = themes.map(theme =>
+                Math.round((themeStats[theme].correct / themeStats[theme].total) * 100)
+            );
+
+            const themeNames = {
+                'general': 'Généralités',
+                'construction': 'Construction',
+                'electricity': 'Électricité',
+                'safety': 'Sécurité'
+            };
+
+            // Détruire le graphique existant s'il existe
+            if (window.performanceChartInstance) {
+                window.performanceChartInstance.destroy();
             }
-            
-            window.performanceChart = new Chart(ctx, {
+
+            window.performanceChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: themes,
+                    labels: themes.map(t => themeNames[t]),
                     datasets: [{
-                        label: 'Score par thème (%)',
+                        label: '% de réussite',
                         data: percentages,
                         backgroundColor: [
                             'rgba(234, 88, 12, 0.7)',
                             'rgba(5, 150, 105, 0.7)',
                             'rgba(51, 65, 85, 0.7)',
-                            'rgba(220, 38, 38, 0.7)',
-                            'rgba(245, 158, 11, 0.7)'
+                            'rgba(120, 113, 108, 0.7)'
                         ],
                         borderColor: [
-                            '#ea580c',
-                            '#059669',
-                            '#334155',
-                            '#dc2626',
-                            '#f59e0b'
+                            'rgb(234, 88, 12)',
+                            'rgb(5, 150, 105)',
+                            'rgb(51, 65, 85)',
+                            'rgb(120, 113, 108)'
                         ],
                         borderWidth: 1
                     }]
@@ -2087,120 +2375,119 @@
                         y: {
                             beginAtZero: true,
                             max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
+                            title: {
+                                display: true,
+                                text: 'Pourcentage de réussite'
                             }
                         }
                     },
                     plugins: {
                         legend: {
                             display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label}: ${context.raw}%`;
-                                }
-                            }
                         }
                     }
                 }
             });
         }
 
-        function generateAdvice(scorePercentage) {
+        // GÉNÉRER LA LISTE DE CONSEILS
+        function generateAdviceList(percentage) {
             const adviceList = document.getElementById('adviceList');
             adviceList.innerHTML = '';
-            
-            const advices = [];
-            
-            if (scorePercentage < 50) {
-                advices.push(
-                    '<li class="flex items-start"><i class="fas fa-book text-red-500 mt-1 mr-2"></i><span><strong>Revisez les bases :</strong> Consultez l\'arrêté du 23 janvier 1985</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-graduation-cap text-red-500 mt-1 mr-2"></i><span><strong>Formation recommandée :</strong> Suivez une formation CTS de niveau initiation</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-file-contract text-red-500 mt-1 mr-2"></i><span><strong>Étudiez les cas :</strong> Analysez les études de cas dans l\'onglet dédié</span></li>'
-                );
-            } else if (scorePercentage < 75) {
-                advices.push(
-                    '<li class="flex items-start"><i class="fas fa-search text-orange-500 mt-1 mr-2"></i><span><strong>Approfondissez :</strong> Étudiez les cas pratiques de jurisprudence</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-file-contract text-orange-500 mt-1 mr-2"></i><span><strong>Documentation :</strong> Consultez les normes NFC 15-500 et NF EN 13501-1</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-chart-line text-orange-500 mt-1 mr-2"></i><span><strong>Entraînement :</strong> Refaites le quiz avec le niveau Expert</span></li>'
-                );
+
+            let advices = [];
+
+            // Conseils basés sur le score
+            if (percentage >= 90) {
+                advices.push('Excellente performance ! Vous maîtrisez parfaitement la réglementation CTS.');
+                advices.push('Envisagez de passer la certification officielle.');
+            } else if (percentage >= 75) {
+                advices.push('Très bon niveau ! Quelques détails à perfectionner.');
+                advices.push('Revoyez les cas particuliers et dérogations.');
+            } else if (percentage >= 60) {
+                advices.push('Bon niveau de connaissances.');
+                advices.push('Concentrez-vous sur les chapitres où vous avez fait des erreurs.');
             } else {
-                advices.push(
-                    '<li class="flex items-start"><i class="fas fa-crown text-emerald-500 mt-1 mr-2"></i><span><strong>Excellente maîtrise :</strong> Pensez à la formation continue</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-chart-line text-emerald-500 mt-1 mr-2"></i><span><strong>Veille réglementaire :</strong> Suivez les évolutions jurisprudentielles</span></li>',
-                    '<li class="flex items-start"><i class="fas fa-share-alt text-emerald-500 mt-1 mr-2"></i><span><strong>Partage :</strong> Formez vos collègues aux bonnes pratiques CTS</span></li>'
-                );
+                advices.push('Continuez à vous former.');
+                advices.push('Revoyez les bases de la réglementation CTS.');
             }
-            
+
+            // Conseils généraux
+            advices.push('Consultez régulièrement les mises à jour réglementaires.');
+            advices.push('Participez à des formations continues.');
+            advices.push('Pratiquez avec des études de cas réels.');
+
+            // Ajouter les conseils à la liste
             advices.forEach(advice => {
-                adviceList.innerHTML += advice;
+                const li = document.createElement('li');
+                li.className = 'flex items-start mb-3';
+                li.innerHTML = `
+                    <i class="fas fa-check-circle text-emerald-500 mt-1 mr-3"></i>
+                    <span>${advice}</span>
+                `;
+                adviceList.appendChild(li);
             });
         }
 
+        // TÉLÉCHARGER LE CERTIFICAT
         function downloadCertificate() {
-            const name = document.getElementById('certificateName').textContent;
-            if (name === '[VOTRE NOM]' || name.trim() === '') {
-                alert("Veuillez entrer votre nom dans le certificat avant de le télécharger.");
-                document.getElementById('certificateName').focus();
-                return;
-            }
-            
-            alert(`Certificat généré pour ${name}. Dans une version complète, un PDF téléchargeable serait généré.`);
+            alert('Fonctionnalité de téléchargement à implémenter.');
+            // Ici, vous pourriez utiliser html2canvas pour générer une image du certificat
         }
 
+        // RECOMMENCER LE QUIZ
         function restartQuiz() {
-            quizState.questions = [];
-            quizState.currentQuestionIndex = 0;
-            quizState.score = 0;
-            quizState.answers = [];
-            quizState.startTime = null;
-            clearInterval(quizState.timerInterval);
-            quizState.totalSeconds = 0;
-            
-            // Réinitialiser le timer
-            document.getElementById('globalTimer').textContent = '00:00';
-            
+            // Retour à la configuration
             switchTab('config');
+
+            // Réinitialiser les variables
+            quizQuestions = [];
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            correctAnswers = 0;
+            timePerQuestion = [];
+
+            // Cacher les résultats
             document.getElementById('resultsContainer').classList.add('hidden');
-            document.getElementById('noResultsMessage').style.display = 'block';
+            document.getElementById('noResultsMessage').classList.remove('hidden');
         }
 
-        // --- INITIALISATION ---
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Page chargée, initialisation...");
-            
-            // Initialiser la configuration
-            initConfiguration();
-            
-            // Initialiser la date du certificat
-            const now = new Date();
-            document.getElementById('certificateDate').textContent = 
-                `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
-            
-            // Préparer le champ nom du certificat
-            const certificateName = document.getElementById('certificateName');
-            certificateName.addEventListener('click', function() {
-                if (this.textContent === '[VOTRE NOM]') {
-                    this.textContent = '';
-                }
-            });
-            
-            certificateName.addEventListener('blur', function() {
-                if (this.textContent.trim() === '') {
-                    this.textContent = '[VOTRE NOM]';
-                }
-            });
-            
-            // Charger le contenu pédagogique initial
-            loadCaseStudies();
-            
-            console.log("Initialisation terminée");
-        });
+        // NAVIGATION CLAVIER
+        document.addEventListener('keydown', (e) => {
+            // Ignorer si on n'est pas dans le quiz
+            const quizTab = document.getElementById('quiz');
+            if (!quizTab || !quizTab.classList.contains('active')) return;
 
+            switch (e.key) {
+                case 'ArrowLeft':
+                    if (currentQuestionIndex > 0) previousQuestion();
+                    break;
+                case 'ArrowRight':
+                    if (currentQuestionIndex < quizQuestions.length - 1) nextQuestionOrFinish();
+                    break;
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                    const answerIndex = parseInt(e.key) - 1;
+                    if (answerIndex >= 0 && answerIndex < 4 && userAnswers[currentQuestionIndex] === null) {
+                        selectAnswer(answerIndex);
+                    }
+                    break;
+                case 'h':
+                case 'H':
+                    showHint();
+                    break;
+                case 'Enter':
+                    if (currentQuestionIndex === quizQuestions.length - 1) {
+                        finishQuiz();
+                    } else {
+                        nextQuestionOrFinish();
+                    }
+                    break;
+            }
+        });
     </script>
 </body>
+
 </html>
