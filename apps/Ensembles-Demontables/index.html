@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémento Ensembles Démontables - Guide Complet</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%230868da' d='M10 70 L50 10 L90 70 L75 85 L25 85 Z'/><path fill='%230455bb' d='M25 70 L25 85 L75 85 L75 70 Z'/></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9 !important;
+            color: #374151;
+            scroll-behavior: auto !important;
+        }
+
+        /* Animation pour les transitions d'onglets */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation tabs style */
+        .nav-tab.active {
+            border-bottom-color: #dc2626;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Styles sobres */
+        .section-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-highlight {
+            background: #f8fafc;
+            border-left: 4px solid #dc2626;
+        }
+
+        .accent-border {
+            border-color: #dc2626;
+        }
+
+        .accent-text {
+            color: #dc2626;
+        }
+
+        /* Chart container */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Status indicators */
+        .status-required {
+            color: #dc2626;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-optional {
+            color: #6b7280;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Data visualization */
+        .data-viz {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+        }
+
+        /* Subtle hover effects */
+        .hover-lift {
+            transition: transform 0.2s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Glossary styles */
+        .glossary-term {
+            cursor: help;
+            border-bottom: 1px dashed #9ca3af;
+            position: relative;
+        }
+
+        .glossary-tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 100;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            width: 280px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            font-size: 0.875rem;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .glossary-term:hover .glossary-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Search highlight */
+        .search-highlight {
+            background-color: #fef3c7;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Responsive tables */
+        .responsive-table {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Progress indicators */
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-700 font-sans">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-2"></span>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Ensembles Démontables
+                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">Chapiteaux
+                            Tentes & Structures</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.href='https://firegie.fr';"
+                        class="text-sm text-stone-500 hover:text-orange-600 transition flex items-center hidden sm:inline-flex">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Retour au Portail
+                    </button>
+                    <div class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse" title="Application active"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navigation par Onglets (Enrichie) -->
+    <div class="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div class="max-w-8xl mx-auto">
+            <nav class="flex overflow-x-auto no-scrollbar">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard"
+                    class="nav-tab active px-4 py-3 border-b-2 border-red-600 text-red-600 font-medium whitespace-nowrap flex items-center">
+                    <i class="fas fa-home mr-2 text-sm"></i>
+                    Tableau de Bord
+                </button>
+                <button onclick="switchTab('acteurs')" id="nav-acteurs"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-users mr-2 text-sm"></i>
+                    Acteurs
+                </button>
+                <button onclick="switchTab('classification')" id="nav-classification"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-layer-group mr-2 text-sm"></i>
+                    Classification
+                </button>
+                <button onclick="switchTab('marquage')" id="nav-marquage"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-tag mr-2 text-sm"></i>
+                    Marquage
+                </button>
+                <button onclick="switchTab('formations')" id="nav-formations"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-graduation-cap mr-2 text-sm"></i>
+                    Formations
+                </button>
+                <button onclick="switchTab('technique')" id="nav-technique"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-calculator mr-2 text-sm"></i>
+                    Données Techniques
+                </button>
+                <button onclick="switchTab('suspensions')" id="nav-suspensions"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-anchor mr-2 text-sm"></i>
+                    Suspensions
+                </button>
+                <button onclick="switchTab('documents')" id="nav-documents"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-file-alt mr-2 text-sm"></i>
+                    Documents
+                </button>
+                <button onclick="switchTab('glossaire')" id="nav-glossaire"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-book mr-2 text-sm"></i>
+                    Glossaire
+                </button>
+                <button onclick="switchTab('outils')" id="nav-outils"
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
+                    <i class="fas fa-tools mr-2 text-sm"></i>
+                    Outils
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ==================== ONGLET TABLEAU DE BORD ==================== -->
+        <section id="view-dashboard" class="tab-content active space-y-8">
+            <!-- Header -->
+            <div class="section-card p-8">
+                <div class="flex items-start">
+                    <div class="flex-1">
+                        <h1 class="text-2xl font-semibold text-gray-900 mb-3">
+                            Mémento Ensembles Démontables - Édition 6
+                        </h1>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Guide pratique complet synthétisant les 102 pages du document officiel.
+                            Cet outil interactif couvre la réglementation, les responsabilités,
+                            les exigences techniques et les procédures de sécurité pour les
+                            <span class="glossary-term">ensembles démontables<span class="glossary-tooltip">Structures
+                                    temporaires installées pour des manifestations événementielles, culturelles ou
+                                    sportives pour une durée n'excédant pas 3 mois.</span></span>.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-book mr-2"></i>
+                                <span>102 pages synthétisées</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-balance-scale mr-2"></i>
+                                <span>NF EN 13200</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-gavel mr-2"></i>
+                                <span>Arrêté 25 juin 1980</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                <span>Édition mars 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analyse des risques -->
+            <div class="section-card p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-semibold text-gray-900">Analyse des Risques Principaux</h2>
+                    <span class="text-xs font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                        Données synthétisées
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Chart -->
+                    <div class="data-viz p-6">
+                        <div class="chart-container">
+                            <canvas id="riskChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Insights -->
+                    <div class="space-y-6">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 rounded-full bg-red-500 mr-3"></div>
+                                <h4 class="font-medium text-gray-900">Chutes de Hauteur</h4>
+                                <span class="ml-auto text-sm font-semibold text-gray-700">35%</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Risque principal lié aux <span class="glossary-term">garde-corps<span
+                                        class="glossary-tooltip">Équipement protégeant contre les chutes de hauteur,
+                                        hauteur minimale 1.00m.</span></span>. Hauteur minimale réglementaire : 1.00m.
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 rounded-full bg-amber-500 mr-3"></div>
+                                <h4 class="font-medium text-gray-900">Stabilité Structurelle</h4>
+                                <span class="ml-auto text-sm font-semibold text-gray-700">25%</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Calage insuffisant et charges non respectées. Tribunes : 400-500 kg/m².
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 rounded-full bg-gray-500 mr-3"></div>
+                                <h4 class="font-medium text-gray-900">Sécurité Incendie</h4>
+                                <span class="ml-auto text-sm font-semibold text-gray-700">20%</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Dégagements et évacuation. Calcul des unités de passage obligatoire.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation rapide enrichie -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="#view-acteurs" onclick="switchTab('acteurs')"
+                    class="section-card p-6 hover-lift cursor-pointer">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-gray-600"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-900">Acteurs</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Responsabilités et rôles des intervenants
+                    </p>
+                </a>
+
+                <a href="#view-classification" onclick="switchTab('classification')"
+                    class="section-card p-6 hover-lift cursor-pointer">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-layer-group text-gray-600"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-900">Classification</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Catégories OP/OS et hauteurs limites
+                    </p>
+                </a>
+
+                <a href="#view-formations" onclick="switchTab('formations')"
+                    class="section-card p-6 hover-lift cursor-pointer">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-gray-600"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-900">Formations</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Compétences et certifications
+                    </p>
+                </a>
+
+                <a href="#view-outils" onclick="switchTab('outils')" class="section-card p-6 hover-lift cursor-pointer">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-tools text-gray-600"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-900">Outils Pratiques</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Calculateurs et simulateurs
+                    </p>
+                </a>
+            </div>
+
+            <!-- Synthèse inspections -->
+            <div class="section-card p-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Synthèse des Inspections Requises</h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Catégorie</th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Vérification Conception
+                                </th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Inspection Montage</th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Inspection Exploitation
+                                </th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Trimestrielle</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OP1</td>
+                                <td class="p-3"><span class="text-gray-400 text-sm">Document marché</span></td>
+                                <td class="p-3"><span class="text-green-600 font-medium">Installateur</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OP2</td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OP3</td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA ERP</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OS1</td>
+                                <td class="p-3"><span class="text-gray-400 text-sm">Document marché</span></td>
+                                <td class="p-3"><span class="text-green-600 font-medium">Installateur</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OS2</td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">OS3</td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
+                                <td class="p-3"><span class="text-red-600 font-medium">OA ERP</span></td>
+                                <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
+                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 text-xs text-gray-500">
+                        <span class="font-medium">Légende :</span> TC = Technicien Compétent • OA = Organisme Agréé •
+                        ERP = Établissement Recevant du Public
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET ACTEURS ==================== -->
+        <section id="view-acteurs" class="tab-content hidden space-y-8">
+            <!-- Header -->
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Acteurs et Responsabilités</h2>
+                <p class="text-gray-600">
+                    Répartition claire des responsabilités selon la réglementation. Chaque intervenant a des obligations
+                    spécifiques.
+                </p>
+            </div>
+
+            <!-- Les 3 acteurs principaux -->
+            <div class="section-card p-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Les Trois Acteurs Clés</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Organisateur -->
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-user-tie text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">L'Organisateur</h4>
+                                <p class="text-xs text-gray-500">Maître d'ouvrage</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Définit le besoin et commande</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Responsable sécurité publique</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Convoque la commission</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Installateur -->
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-tools text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">L'Installateur</h4>
+                                <p class="text-xs text-gray-500">Prestataire technique</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Montage selon notice</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Attestation de bon montage</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Signale les défauts terrain</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contrôleur -->
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-clipboard-check text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Le Contrôleur</h4>
+                                <p class="text-xs text-gray-500">Tiers vérificateur</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Vérifie solidité et stabilité</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Rapport RVRAT</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <span>Obligatoire > 300 places</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matrice des responsabilités -->
+            <div class="section-card p-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Matrice des Responsabilités par Phase</h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Phase</th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Organisateur</th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Installateur</th>
+                                <th class="p-3 text-left font-medium text-gray-700 border-b">Contrôleur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">Conception</td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Cahier des charges</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-400 text-sm">-</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-400 text-sm">-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">Montage</td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Supervision</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Réalisation</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-400 text-sm">-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">Vérification</td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Demande contrôle</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Auto-contrôle</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Contrôle tiers</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-gray-700">Exploitation</td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Responsabilité totale</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-600 text-sm">Support technique</span>
+                                </td>
+                                <td class="p-3">
+                                    <span class="text-gray-400 text-sm">-</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET CLASSIFICATION ==================== -->
+        <section id="view-classification" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Classification des Ensembles Démontables</h2>
+                <p class="text-gray-600 mb-6">
+                    Catégorisation selon la hauteur de chute et les risques associés (Article 5).
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- OP Catégories -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Ossatures Portant des Personnes (OP)</h3>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">OP1</span>
+                                Hauteur de chute < 1.20 m </h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                                            Tribunes, podiums, scènes < 1.20m </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mt-0.5 mr-2"></i>
+                                            Passerelles < 3m portée </li>
+                                    </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mr-3">OP2</span>
+                                1.20 m ≤ Hauteur < 3.50 m </h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-amber-500 mt-0.5 mr-2"></i>
+                                            Tribunes 1.20m à 3.50m
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-amber-500 mt-0.5 mr-2"></i>
+                                            Scènes et podiums 1.20m à 2m
+                                        </li>
+                                    </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-3">OP3</span>
+                                Hauteur de chute ≥ 3.50 m
+                            </h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-500 mt-0.5 mr-2"></i>
+                                    Tribunes ≥ 3.50m
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-500 mt-0.5 mr-2"></i>
+                                    Scènes et podiums ≥ 2m
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-500 mt-0.5 mr-2"></i>
+                                    Passerelles ≥ 3m portée
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- OS Catégories -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Ossatures d'Équipements Scéniques (OS)</h3>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">OS1</span>
+                                Point haut < 3.50 m </h4>
+                                    <p class="text-sm text-gray-600">
+                                        Structures supportant équipements (son, lumière, décors)
+                                    </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mr-3">OS2</span>
+                                3.50 m ≤ Point haut < 6.20 m </h4>
+                                    <p class="text-sm text-gray-600">
+                                        Tours, portiques, grils moyens
+                                    </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                                <span
+                                    class="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-3">OS3</span>
+                                Point haut ≥ 6.20 m
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                                Grandes tours, poutres hautes, grils importants
+                            </p>
+                        </div>
+
+                        <!-- Effectif Maximal -->
+                        <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                            <h4 class="font-medium text-gray-700 mb-4">
+                                <i class="fas fa-users mr-2"></i>
+                                Effectif Maximal (Article 6)
+                            </h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>Assis sur sièges : 1 personne/siège</li>
+                                <li>Assis sur bancs : 2 personnes/mètre linéaire</li>
+                                <li>Debout (hors dégagements) : 3 personnes/m²</li>
+                            </ul>
+                            <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                                <p class="text-xs text-yellow-800 font-medium">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                    Enceintes sportives homologuées : places assises uniquement
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET MARQUAGE ==================== -->
+        <section id="view-marquage" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Marquage et Traçabilité</h2>
+                <p class="text-gray-600 mb-6">
+                    Exigences de marquage pour garantir la traçabilité des éléments (Articles 3-4).
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Matériel neuf -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Matériel Neuf</h3>
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4">Exigences minimales</h4>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-industry text-red-500 mt-0.5 mr-3"></i>
+                                    Nom ou sigle du fabricant
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-barcode text-red-500 mt-0.5 mr-3"></i>
+                                    Référence du modèle
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-calendar text-red-500 mt-0.5 mr-3"></i>
+                                    Année de fabrication
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-0.5 mr-3"></i>
+                                    Marquage pérenne et lisible
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Matériel existant -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Matériel Existant</h3>
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-medium text-gray-700 mb-4">Exigences spécifiques</h4>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-clock text-blue-500 mt-0.5 mr-3"></i>
+                                    Marquage au plus tard le 1er janvier 2020
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-stamp text-blue-500 mt-0.5 mr-3"></i>
+                                    Mention "Antérieur à [année]"
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-user-tag text-blue-500 mt-0.5 mr-3"></i>
+                                    Nom du fabricant ou propriétaire
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-tag text-blue-500 mt-0.5 mr-3"></i>
+                                    Marquage pérenne (estampille, bague)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tableau des pièces à marquer -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Pièces à Marquer par Type d'Ensemble</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Tribunes</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Fermes</li>
+                                <li>Éléments de surélévation</li>
+                                <li>Contreventements</li>
+                                <li>Supports d'assises</li>
+                                <li>Garde-corps</li>
+                                <li>Planchers</li>
+                                <li>Embases et vérins</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Échafaudages/Tours</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Montants</li>
+                                <li>Fermes, poutres</li>
+                                <li>Diagonales</li>
+                                <li>Supports de plancher</li>
+                                <li>Garde-corps</li>
+                                <li>Éléments d'escalier</li>
+                                <li>Embases</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Scènes</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Montants, poteaux</li>
+                                <li>Fermes, poutres</li>
+                                <li>Supports de plancher</li>
+                                <li>Mâts de levage</li>
+                                <li>Garde-corps</li>
+                                <li>Embases et vérins</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Accessoires</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Élingues : CMU/SWL/WLL</li>
+                                <li>Colliers : marque + modèle</li>
+                                <li>Manilles : marquage</li>
+                                <li>Goupilles et axes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET FORMATIONS ==================== -->
+        <section id="view-formations" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Formations et Compétences</h2>
+                <p class="text-gray-600 mb-6">
+                    Programme de formation des techniciens compétents en inspection (Articles 20-21).
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Tronc commun -->
+                    <div class="lg:col-span-2">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Tronc Commun (3 jours)</h3>
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="space-y-4">
+                                <div class="p-4 bg-gray-50 rounded">
+                                    <h4 class="font-medium text-gray-700 mb-2">Module 1 : Préambule</h4>
+                                    <p class="text-sm text-gray-600">Identification des risques • Textes juridiques •
+                                        Sources fiables</p>
+                                </div>
+
+                                <div class="p-4 bg-gray-50 rounded">
+                                    <h4 class="font-medium text-gray-700 mb-2">Module 2 : ERP & CCH</h4>
+                                    <p class="text-sm text-gray-600">Rôles et missions • Réglementation • Réaction au
+                                        feu</p>
+                                </div>
+
+                                <div class="p-4 bg-gray-50 rounded">
+                                    <h4 class="font-medium text-gray-700 mb-2">Module 3 : Code du Travail</h4>
+                                    <p class="text-sm text-gray-600">Dispositions • Textes spécifiques • Plans de
+                                        prévention</p>
+                                </div>
+
+                                <div class="p-4 bg-gray-50 rounded">
+                                    <h4 class="font-medium text-gray-700 mb-2">Module 4 : Guide Pratique</h4>
+                                    <p class="text-sm text-gray-600">Portée juridique • Contenu • Méthode d'inspection
+                                    </p>
+                                </div>
+
+                                <div class="p-4 bg-gray-50 rounded">
+                                    <h4 class="font-medium text-gray-700 mb-2">Module 5 : Matériels et Ensembles</h4>
+                                    <p class="text-sm text-gray-600">Historique • Lexiques • Types de matériels •
+                                        Répartitions de charges</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compétences -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Compétences Clés</h3>
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="space-y-4">
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Analyser la demande</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Préparer l'inspection terrain</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Vérifier conformité au projet</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Contrôler la sécurité</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Rédiger le rapport</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded">
+                                    <p class="text-sm font-medium text-gray-700">Présenter au donneur d'ordre</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <h4 class="font-medium text-gray-700 mb-3">Prérequis</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-briefcase text-green-500 mt-0.5 mr-2"></i>
+                                        Expérience 5 ans minimum
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-user-tie text-green-500 mt-0.5 mr-2"></i>
+                                        Métiers technique ou structure
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-certificate text-green-500 mt-0.5 mr-2"></i>
+                                        AP2/PRV2 pour préventionniste
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Certifications IMED</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div
+                                class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-stairs"></i>
+                            </div>
+                            <p class="text-center font-medium text-gray-700">Escaliers, Podiums, Scènes</p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div
+                                class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <p class="text-center font-medium text-gray-700">Tribunes Démontables</p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div
+                                class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-tower-observation"></i>
+                            </div>
+                            <p class="text-center font-medium text-gray-700">Échafaudages et Passerelles</p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div
+                                class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-grip-lines"></i>
+                            </div>
+                            <p class="text-center font-medium text-gray-700">Poutres et Grils</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET DONNÉES TECHNIQUES ==================== -->
+        <section id="view-technique" class="tab-content hidden space-y-8">
+            <!-- Header -->
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Données Techniques</h2>
+                <p class="text-gray-600">
+                    Exigences réglementaires chiffrées pour la conception et l'installation.
+                </p>
+            </div>
+
+            <!-- Surcharges -->
+            <div class="section-card p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Surcharges d'Exploitation</h3>
+                    <span class="text-xs font-medium text-gray-500">NF EN 13200</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Chart -->
+                    <div class="data-viz p-6">
+                        <div class="chart-container">
+                            <canvas id="loadChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Données -->
+                    <div class="space-y-4">
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-medium text-gray-700">Tribunes (places assises)</h4>
+                                <span class="font-semibold text-gray-900">400 kg/m²</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Charge statique + dynamique. Test de résistance obligatoire.
+                            </p>
+                        </div>
+
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-medium text-gray-700">Tribunes debout / Scènes</h4>
+                                <span class="font-semibold text-gray-900">500 kg/m²</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Charge maximale zones à forte densité. Facteur sécurité 1.5 recommandé.
+                            </p>
+                        </div>
+
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-medium text-gray-700">Escaliers & accès</h4>
+                                <span class="font-semibold text-gray-900">500 kg/m²</span>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Prise en compte effets dynamiques. Contrôle visuel quotidien.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions climatiques -->
+            <div class="section-card p-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Actions Climatiques (Article 25)</h3>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Vent -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-wind text-blue-500 mr-3"></i>
+                            Vent de Service
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-blue-50 rounded">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Limite exploitation</span>
+                                    <span class="font-semibold text-blue-600">72 km/h</span>
+                                </div>
+                                <p class="text-xs text-gray-600">20 m/s sur 3 secondes</p>
+                            </div>
+
+                            <div class="p-3 bg-amber-50 rounded">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">72-100 km/h</span>
+                                    <span class="font-semibold text-amber-600">Stabilité justifiée</span>
+                                </div>
+                                <p class="text-xs text-gray-600">Dispositions spécifiques</p>
+                            </div>
+
+                            <div class="p-3 bg-red-50 rounded">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">> 100 km/h</span>
+                                    <span class="font-semibold text-red-600">Évacuation</span>
+                                </div>
+                                <p class="text-xs text-gray-600">Limites structurelles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Neige -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-snowflake text-blue-500 mr-3"></i>
+                            Neige de Service
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-blue-50 rounded">
+                                <p class="text-sm font-medium text-gray-700 mb-2">Déblaiement préalable</p>
+                                <p class="text-xs text-gray-600">Nécessaire avant accueil public</p>
+                            </div>
+
+                            <div class="p-3 bg-blue-50 rounded">
+                                <p class="text-sm font-medium text-gray-700 mb-2">Calcul ELU</p>
+                                <p class="text-xs text-gray-600">Pondération à l'état limite ultime</p>
+                            </div>
+
+                            <div class="p-3 bg-blue-50 rounded">
+                                <p class="text-sm font-medium text-gray-700 mb-2">Valeur maximale</p>
+                                <p class="text-xs text-gray-600">Déterminée en conception/projet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculateur vent -->
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h4 class="font-medium text-gray-700 mb-4">Calculateur Vent</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (m/s)</label>
+                            <input type="number" id="vent-ms" value="20"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="convertVent()">
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-exchange-alt text-gray-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (km/h)</label>
+                            <input type="number" id="vent-kmh" value="72"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="convertVent(true)">
+                        </div>
+                    </div>
+                    <div id="vent-status" class="mt-3 p-3 bg-green-50 border border-green-200 rounded">
+                        <p class="text-sm font-medium text-green-700">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            Exploitation autorisée
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET SUSPENSIONS ==================== -->
+        <section id="view-suspensions" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Équipements Techniques Suspendus</h2>
+                <p class="text-gray-600 mb-6">
+                    Exigences de sécurité pour les suspensions au-dessus du public (Article 54).
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Redondance -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Principe de Redondance</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Deux dispositifs indépendants</h4>
+                                <p class="text-sm text-gray-600">Technologies différentes • Rupture d'un système ≠ chute
+                                </p>
+                            </div>
+
+                            <div class="p-4 bg-green-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Cas rigide autorisé</h4>
+                                <p class="text-sm text-gray-600">Soudure ou boulons dimensionnés • Dispositifs
+                                    anti-desserrement</p>
+                            </div>
+
+                            <div class="p-4 bg-red-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Installations pérennes</h4>
+                                <p class="text-sm text-gray-600">Élingage de sécurité obligatoire • Pas d'exception</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Palans électriques -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Palans Électriques</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-blue-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Catégorie D8</h4>
+                                <p class="text-sm text-gray-600">Maintien charge • Sécurité secondaire requise</p>
+                            </div>
+
+                            <div class="p-4 bg-amber-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Catégorie D8+</h4>
+                                <p class="text-sm text-gray-600">Maintien statique • Frein de secours • CMU 50%</p>
+                            </div>
+
+                            <div class="p-4 bg-green-50 rounded">
+                                <h4 class="font-medium text-gray-700 mb-2">Catégorie C1</h4>
+                                <p class="text-sm text-gray-600">Mouvements sur public • Limitation charge • Groupe de
+                                    palans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Élingues et accessoires -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Élingues et Accessoires</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Textiles</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Marquage CE obligatoire</li>
+                                <li>Sécurité secondaire incombustible</li>
+                                <li>Identification fabricant + CMU</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Chaînes</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Grade 8 minimum</li>
+                                <li>Certificat CE charge rupture</li>
+                                <li>Coefficient utilisation documenté</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-medium text-gray-700 mb-3">Protections</h4>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li>Arrêt de chute EN 360</li>
+                                <li>Filets ou matelas réception</li>
+                                <li>Points d'ancrage spécifiés</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET DOCUMENTS ==================== -->
+        <section id="view-documents" class="tab-content hidden space-y-8">
+            <!-- Header -->
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Documents de Sécurité</h2>
+                <p class="text-gray-600">
+                    Checklist des documents obligatoires pour le dossier de sécurité.
+                </p>
+            </div>
+
+            <!-- Checklist -->
+            <div class="section-card p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Checklist du Dossier</h3>
+                    <div class="flex items-center">
+                        <span id="checklist-progress" class="text-sm font-medium text-gray-700 mr-3">0/8</span>
+                        <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div id="checklist-progress-bar" class="h-full bg-red-600 transition-all duration-300"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3" id="checklist-container">
+                    <!-- Items injected by JS -->
+                </div>
+            </div>
+
+            <!-- Commission de sécurité -->
+            <div class="section-card p-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Commission de Sécurité</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-4">Composition</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-user-tie text-gray-500 mr-3 w-5"></i>
+                                Représentant du Préfet
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-landmark text-gray-500 mr-3 w-5"></i>
+                                Maire ou représentant
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-fire-extinguisher text-gray-500 mr-3 w-5"></i>
+                                Pompiers (SDIS)
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-shield-alt text-gray-500 mr-3 w-5"></i>
+                                Police/Gendarmerie
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-building text-gray-500 mr-3 w-5"></i>
+                                DDT
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-4">Avis Possibles</h4>
+                        <div class="space-y-3">
+                            <div class="p-3 border border-green-200 bg-green-50 rounded">
+                                <div class="flex items-center mb-1">
+                                    <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                    <span class="font-medium text-green-700">Favorable</span>
+                                </div>
+                                <p class="text-xs text-green-600">Ouverture autorisée</p>
+                            </div>
+
+                            <div class="p-3 border border-amber-200 bg-amber-50 rounded">
+                                <div class="flex items-center mb-1">
+                                    <i class="fas fa-exclamation-circle text-amber-600 mr-2"></i>
+                                    <span class="font-medium text-amber-700">Sous Réserves</span>
+                                </div>
+                                <p class="text-xs text-amber-600">Corrections mineures nécessaires</p>
+                            </div>
+
+                            <div class="p-3 border border-red-200 bg-red-50 rounded">
+                                <div class="flex items-center mb-1">
+                                    <i class="fas fa-times-circle text-red-600 mr-2"></i>
+                                    <span class="font-medium text-red-700">Défavorable</span>
+                                </div>
+                                <p class="text-xs text-red-600">Ouverture interdite</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-lightbulb text-gray-500 mr-2"></i>
+                        Présentez-vous avec le dossier complet et une personne technique pour répondre aux questions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET GLOSSAIRE ==================== -->
+        <section id="view-glossaire" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Glossaire des Termes Techniques</h2>
+                <p class="text-gray-600 mb-6">
+                    Définitions issues du glossaire officiel (pages 83-88).
+                </p>
+
+                <!-- Recherche glossaire -->
+                <div class="mb-6">
+                    <input type="text" id="glossary-search"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="Rechercher un terme...">
+                </div>
+
+                <!-- Catégories -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Structure -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Structure</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('ensemble-démontable')">
+                                <p class="font-medium text-gray-700">Ensemble démontable</p>
+                                <p class="text-xs text-gray-600 mt-1">Structure temporaire installée ≤ 3 mois</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer" onclick="showGlossaryDetail('ossature')">
+                                <p class="font-medium text-gray-700">Ossature (OP/OS)</p>
+                                <p class="text-xs text-gray-600 mt-1">OP pour personnes, OS pour équipements</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer" onclick="showGlossaryDetail('tribune')">
+                                <p class="font-medium text-gray-700">Tribune</p>
+                                <p class="text-xs text-gray-600 mt-1">Gradins assis/debout temporaires</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('échafaudage')">
+                                <p class="font-medium text-gray-700">Échafaudage</p>
+                                <p class="text-xs text-gray-600 mt-1">Structure modulaire spectacle/événement</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sécurité -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Sécurité</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('garde-corps')">
+                                <p class="font-medium text-gray-700">Garde-corps</p>
+                                <p class="text-xs text-gray-600 mt-1">Protection chutes hauteur ≥ 1m</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('dégagement')">
+                                <p class="font-medium text-gray-700">Dégagement</p>
+                                <p class="text-xs text-gray-600 mt-1">Cheminement évacuation personnes</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('plan-prévention')">
+                                <p class="font-medium text-gray-700">Plan de prévention</p>
+                                <p class="text-xs text-gray-600 mt-1">Document risques coactivité</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('sécurité-secondaire')">
+                                <p class="font-medium text-gray-700">Sécurité secondaire</p>
+                                <p class="text-xs text-gray-600 mt-1">Dispositif redondant suspension</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Organisation -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Organisation</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('organisateur')">
+                                <p class="font-medium text-gray-700">Organisateur</p>
+                                <p class="text-xs text-gray-600 mt-1">Initiateur manifestation</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('installateur')">
+                                <p class="font-medium text-gray-700">Installateur</p>
+                                <p class="text-xs text-gray-600 mt-1">Responsable montage/démontage</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('technicien-compétent')">
+                                <p class="font-medium text-gray-700">Technicien compétent</p>
+                                <p class="text-xs text-gray-600 mt-1">Formé inspection ensembles</p>
+                            </div>
+
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                                onclick="showGlossaryDetail('préventionniste')">
+                                <p class="font-medium text-gray-700">Préventionniste</p>
+                                <p class="text-xs text-gray-600 mt-1">Spécialiste risques incendie ERP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Détail terme -->
+                <div id="glossary-detail" class="mt-8 p-6 bg-gray-50 rounded-lg hidden">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ONGLET OUTILS ==================== -->
+        <section id="view-outils" class="tab-content hidden space-y-8">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">Outils Pratiques</h2>
+                <p class="text-gray-600 mb-6">
+                    Calculateurs et simulateurs pour faciliter la mise en œuvre.
+                </p>
+
+                <!-- Outils grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift cursor-pointer"
+                        onclick="showTool('evacuation')">
+                        <div
+                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-700 mb-2">Calculateur Évacuation</h4>
+                        <p class="text-sm text-gray-600">Détermination dégagements selon effectif</p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift cursor-pointer"
+                        onclick="showTool('vent')">
+                        <div
+                            class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-700 mb-2">Calculateur Vent</h4>
+                        <p class="text-sm text-gray-600">Conversion m/s ↔ km/h et limites</p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift cursor-pointer"
+                        onclick="showTool('charge-sol')">
+                        <div
+                            class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-weight-hanging"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-700 mb-2">Capacité Portante Sol</h4>
+                        <p class="text-sm text-gray-600">Vérification selon nature du sol</p>
+                    </div>
+                </div>
+
+                <!-- Zone outil actif -->
+                <div id="tool-container" class="border border-gray-200 rounded-lg p-6">
+                    <div id="tool-evacuation" class="tool-content">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Calculateur d'Évacuation</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Effectif Total
+                                </label>
+                                <input type="number" id="calc-effectif" value="850"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                                    oninput="calculateEvacuation()">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 bg-gray-50 rounded-lg text-center">
+                                    <div class="text-sm text-gray-600 mb-1">Unités de Passage</div>
+                                    <div id="res-up" class="text-2xl font-semibold text-gray-900">6</div>
+                                    <div class="text-xs text-gray-500">UP</div>
+                                </div>
+                                <div class="p-4 bg-gray-100 rounded-lg text-center">
+                                    <div class="text-sm text-gray-600 mb-1">Largeur Minimum</div>
+                                    <div id="res-width" class="text-2xl font-semibold text-gray-900">3.60m</div>
+                                    <div class="text-xs text-gray-500">Mètres cumulés</div>
+                                </div>
+                            </div>
+
+                            <div class="text-xs text-gray-500 pt-4 border-t border-gray-200">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                1 UP = 0.60m • Pour >500 personnes : +1 UP par 100 personnes
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tool-vent" class="tool-content hidden">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Calculateur Vent</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (m/s)</label>
+                                <input type="number" id="tool-vent-ms" value="20"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    oninput="convertVentTool()">
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-exchange-alt text-gray-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (km/h)</label>
+                                <input type="number" id="tool-vent-kmh" value="72"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    oninput="convertVentTool(true)">
+                            </div>
+                        </div>
+                        <div id="tool-vent-status" class="p-3 bg-green-50 border border-green-200 rounded">
+                            <p class="text-sm font-medium text-green-700">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Exploitation autorisée (≤ 72 km/h)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="tool-charge-sol" class="tool-content hidden">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Capacité Portante du Sol</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Charge Ponctuelle (kN)
+                                </label>
+                                <input type="number" id="charge-ponctuelle" value="50"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="calculateSol()">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Nature du Sol
+                                </label>
+                                <select id="nature-sol" class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    onchange="calculateSol()">
+                                    <option value="1.0">Terrain naturel (1 bar)</option>
+                                    <option value="1.5">Terre compactée</option>
+                                    <option value="2.0">Gravier</option>
+                                    <option value="3.0">Béton</option>
+                                    <option value="4.0">Dalle béton armé</option>
+                                </select>
+                            </div>
+
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="text-sm text-gray-600 mb-1">Surface de répartition nécessaire</div>
+                                <div id="res-surface" class="text-2xl font-semibold text-gray-900">0.50 m²</div>
+                                <div class="text-xs text-gray-500">Plaque minimum</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
+        <div class="max-w-8xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+
+                    <!-- Section 1 -->
+                    <h4 class="text-xl mb-4 text-[#343a40]">Portail de veille juridique ERP & CTS</h4>
+                    <p class="text-[#6c757d] text-sm mb-2">
+                        Suite d'Applications destinées aux
+                        Régisseurs, Exploitants & Organismes de Formation
+                    </p>
+
+                    <p class="text-[#495057] text-sm font-medium mb-2 mt-4">
+                        L'Application ne se substitue pas :
+                    </p>
+                    <ul class="text-[#6c757d] text-sm space-y-1 mb-4">
+                        <li>• Aux textes officiels publiés</li>
+                        <li>• À l'avis d'experts certifiés</li>
+                        <li>• Aux commissions de sécurité compétentes</li>
+                        <li>• À la jurisprudence en vigueur</li>
+                    </ul>
+
+                    <p class="text-[#6c757d] text-sm">
+                        <small>Mise à jour : Janvier 2026</small>
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="md:border- md:border-[] md:pl-8">
+                    <h4 class="text-xl mb-4 text-[#343a40]">Applications</h4>
+
+                    <div class="space-y-4">
+                        <a href="https://firegie.fr/index.html#accueil" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Portail de veille juridique ERP & CTS</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Suite d'Applications destinée aux
+                                    Régisseurs, Exploitants & Organismes de Formation
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/reglementation-cts/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Réglementation Spectacle Itinérant</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Outils de veille juridique & de sécurité du Spectacle Itinérant
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/simulation/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Outil de Simulation Sécurité</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Simulez votre Catégorie ERP, vos dégagements UP, Éch. de Beaufort
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/reglementation-erp/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Réglementation ERP</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Application interactive des textes officiels pour consulter rapidement la
+                                    Règlementation ERP (CCH, Arrêté du 25 juin 1980)
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="md:border- md:border-[] md:pl-8">
+                    <h4 class="text-xl mb-4 text-[#343a40]">Formation</h4>
+                    <div class="space-y-4">
+                        <a href="https://firegie.fr/apps/focus-reglementation/index.html#accueil" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Focus Réglementation</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Guide pour comprendre l'architecture de la
+                                    réglementation officielle ERP
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/securite-incendie/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Guide de la Sécurité Incendie</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Synthèse des obligations des responsables de la sécurité incendie ERP
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/formation-securite/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Formation Sécurité ERP</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Outil pédagogique destiné à la formation des responsables techniques
+                                    d'ERP Type L & CTS.
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/quiz/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Le Quiz du Régisseur</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Amusez-vous, apprenez, évaluez vos compétences
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-[#ced4da] text-center text-sm text-[#6c757d]">
+                <p>
+                    <i class="fas fa-gavel mr-2"></i>
+                    Portail de veille juridique CTS & ERP Type L
+                </p>
+                <p class="mt-2">
+                    Partage & Contribution • Contact : philippe.potier-regie@proton.me
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- STATE MANAGEMENT ---
+        const state = {
+            currentTab: 'dashboard',
+            history: ['dashboard'],
+            checklistProgress: 0,
+            glossaryTerms: {
+                'ensemble-démontable': {
+                    terme: "Ensemble démontable",
+                    definition: "Toute ossature conçue pour pouvoir être montée et démontée de façon répétitive ou unique et installée de façon temporaire à l'occasion de l'accueil des personnes.",
+                    details: "Installation temporaire (≤ 3 mois) pour manifestations événementielles, culturelles, sportives, expositions, congrès.",
+                    article: "Article 1"
+                },
+                'ossature': {
+                    terme: "Ossature (OP/OS)",
+                    definition: "Structure permettant d'accueillir des personnes (OP) ou des équipements (OS).",
+                    details: "OP = Ossatures Portant des personnes • OS = Ossatures d'Équipements Scéniques.",
+                    article: "Article 5"
+                },
+                'tribune': {
+                    terme: "Tribune",
+                    definition: "Ensemble démontable en gradins construit à partir d'éléments normalisés.",
+                    details: "Peut être monté/démonté, déplacé et déployé en différentes configurations pour fournir des places debout ou assises.",
+                    article: "Glossaire"
+                },
+                'échafaudage': {
+                    terme: "Échafaudage",
+                    definition: "Structure métallique modulaire utilisée comme ossature pour réaliser des ensembles démontables.",
+                    details: "Utilisé pour scènes, tribunes, tours, supports de décors. Multi-directionnel ou tubes et colliers.",
+                    article: "Article 42"
+                },
+                'garde-corps': {
+                    terme: "Garde-corps",
+                    definition: "Équipement protégeant contre les risques de chute de hauteur.",
+                    details: "Hauteur minimale : 1.00m. Résistance : 100 daN/m (standard) à 170 daN/m (zones foule).",
+                    article: "Article 46"
+                },
+                'dégagement': {
+                    terme: "Dégagement",
+                    definition: "Toute partie permettant le cheminement d'évacuation des occupants.",
+                    details: "Portes, sorties, issues, circulations, zones de circulation, escaliers, vomitoires.",
+                    article: "Article 39"
+                },
+                'plan-prévention': {
+                    terme: "Plan de prévention",
+                    definition: "Document définissant les mesures prises pour prévenir les risques de coactivité.",
+                    details: "Obligatoire pour travaux dangereux ou durée > 400 heures sur 12 mois.",
+                    article: "Article 56"
+                },
+                'sécurité-secondaire': {
+                    terme: "Sécurité secondaire",
+                    definition: "Dispositif de sécurisation redondant pour les équipements suspendus.",
+                    details: "Réalisé par élingue de sécurité, stop chute ou redondance du système.",
+                    article: "Article 54"
+                },
+                'organisateur': {
+                    terme: "Organisateur",
+                    definition: "Personne physique ou morale à l'initiative de la manifestation.",
+                    details: "Responsable du dossier de sécurité, convoque la commission de sécurité.",
+                    article: "Article 9"
+                },
+                'installateur': {
+                    terme: "Installateur",
+                    definition: "Personne physique ou morale assurant les opérations de montage et démontage.",
+                    details: "Doit fournir une attestation de bon montage conforme à la notice fabricant.",
+                    article: "Glossaire"
+                },
+                'technicien-compétent': {
+                    terme: "Technicien compétent",
+                    definition: "Personne formée en inspection des matériels et ensembles démontables.",
+                    details: "Certification IMED délivrée par organisme agréé. Validité 5 ans.",
+                    article: "Article 20"
+                },
+                'préventionniste': {
+                    terme: "Préventionniste",
+                    definition: "Spécialiste de l'analyse des risques incendie et panique en ERP.",
+                    details: "Titulaire AP2/PRV2. Rédige dossiers de sécurité et notices ERP.",
+                    article: "Article 22"
+                }
+            }
+        };
+
+        // --- DATA ---
+        const checklistItems = [
+            {
+                id: 1,
+                text: "Notice de Sécurité Fabricant",
+                required: true,
+                description: "Document technique fourni par le fabricant"
+            },
+            {
+                id: 2,
+                text: "Plan d'implantation Coté",
+                required: true,
+                description: "Plan à l'échelle avec cotes et emplacements"
+            },
+            {
+                id: 3,
+                text: "PV de réaction au feu (M1/M2)",
+                required: true,
+                description: "Bâches M2, sièges M3/M4 minimum"
+            },
+            {
+                id: 4,
+                text: "Attestation de Bon Montage",
+                required: true,
+                description: "Signée par l'installateur"
+            },
+            {
+                id: 5,
+                text: "Rapport de Vérification (RVRAT)",
+                required: true,
+                description: "Bureau de contrôle pour structures importantes"
+            },
+            {
+                id: 6,
+                text: "Registre de Sécurité",
+                required: true,
+                description: "Extrait à jour"
+            },
+            {
+                id: 7,
+                text: "Extrait Kbis Installateur",
+                required: true,
+                description: "Justificatif de l'entreprise"
+            },
+            {
+                id: 8,
+                text: "Attestation Assurance RC",
+                required: true,
+                description: "Couverture responsabilité civile"
+            }
+        ];
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            initChecklist();
+            calculateEvacuation();
+            convertVent();
+            calculateSol();
+            initSearch();
+
+            // Gestion de l'historique navigateur
+            window.addEventListener('popstate', function (event) {
+                if (event.state && event.state.tab) {
+                    switchTab(event.state.tab, false);
+                }
+            });
+
+            // Vérifier l'hash au chargement
+            const hash = window.location.hash.substring(1);
+            const validTabs = ['dashboard', 'acteurs', 'classification', 'marquage', 'formations', 'technique', 'suspensions', 'documents', 'glossaire', 'outils'];
+            if (hash && validTabs.includes(hash)) {
+                switchTab(hash, false);
+                history.replaceState({ tab: hash }, '', `#${hash}`);
+            } else {
+                history.replaceState({ tab: 'dashboard' }, '', '#dashboard');
+            }
+
+            // Afficher premier outil
+            showTool('evacuation');
+        });
+
+        // --- NAVIGATION LOGIC ---
+        function switchTab(tabId, pushState = true) {
+            // Si déjà sur cet onglet, ne rien faire
+            if (state.currentTab === tabId) return;
+
+            // Mettre à jour l'état
+            state.currentTab = tabId;
+            state.history.push(tabId);
+
+            // Mettre à jour l'URL avec l'historique
+            if (pushState) {
+                history.pushState({ tab: tabId }, '', `#${tabId}`);
+            }
+
+            // Cacher tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            const targetTab = document.getElementById(`view-${tabId}`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+                // Scroll vers le haut de l'onglet
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Mettre à jour la navigation
+            updateTabNavigation(tabId);
+        }
+
+        function updateTabNavigation(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-red-600', 'text-red-600');
+                btn.classList.add('border-transparent', 'text-gray-600');
+            });
+
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-gray-600');
+                activeBtn.classList.add('active', 'border-red-600', 'text-red-600');
+            }
+        }
+
+        // --- CHECKLIST FUNCTIONS ---
+        function initChecklist() {
+            const container = document.getElementById('checklist-container');
+            if (!container) return;
+
+            container.innerHTML = checklistItems.map(item => `
+                <div class="flex items-center p-3 border border-gray-200 rounded hover:bg-gray-50 cursor-pointer transition"
+                     onclick="toggleChecklistItem(${item.id})"
+                     id="checklist-item-${item.id}">
+                    <div class="w-5 h-5 border border-gray-300 rounded flex-shrink-0 flex items-center justify-center mr-3"
+                         id="check-icon-${item.id}">
+                        <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-700">${item.text}</span>
+                            <span class="${item.required ? 'status-required' : 'status-optional'}">
+                                ${item.required ? 'OBLIGATOIRE' : 'Recommandé'}
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">${item.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            updateChecklistProgress();
+        }
+
+        function toggleChecklistItem(id) {
+            const item = document.getElementById(`checklist-item-${id}`);
+            const icon = document.getElementById(`check-icon-${id}`);
+            const checkIcon = icon.querySelector('i');
+
+            if (item.classList.contains('bg-green-50')) {
+                item.classList.remove('bg-green-50', 'border-green-200');
+                item.classList.add('border-gray-200');
+                icon.classList.remove('bg-green-500', 'border-green-500');
+                icon.classList.add('border-gray-300');
+                checkIcon.classList.add('text-white');
+                state.checklistProgress--;
+            } else {
+                item.classList.add('bg-green-50', 'border-green-200');
+                item.classList.remove('border-gray-200');
+                icon.classList.add('bg-green-500', 'border-green-500');
+                icon.classList.remove('border-gray-300');
+                checkIcon.classList.remove('text-white');
+                state.checklistProgress++;
+            }
+
+            updateChecklistProgress();
+        }
+
+        function updateChecklistProgress() {
+            const progress = document.getElementById('checklist-progress');
+            const progressBar = document.getElementById('checklist-progress-bar');
+
+            if (progress && progressBar) {
+                const percentage = (state.checklistProgress / checklistItems.length) * 100;
+                progress.textContent = `${state.checklistProgress}/${checklistItems.length}`;
+                progressBar.style.width = `${percentage}%`;
+            }
+        }
+
+        // --- CALCULATOR FUNCTIONS ---
+        function calculateEvacuation() {
+            const input = document.getElementById('calc-effectif');
+            const resUp = document.getElementById('res-up');
+            const resWidth = document.getElementById('res-width');
+
+            if (!input || !resUp || !resWidth) return;
+
+            let people = parseInt(input.value) || 0;
+            let up = 0;
+
+            if (people <= 19) {
+                up = 1;
+            } else if (people <= 500) {
+                up = Math.ceil(people / 100);
+                if (up < 2) up = 2;
+            } else {
+                up = Math.ceil(people / 100);
+            }
+
+            let width = (up * 0.60).toFixed(2);
+
+            resUp.innerText = up;
+            resWidth.innerText = width + "m";
+        }
+
+        function convertVent(fromKmh = false) {
+            const inputMs = document.getElementById('vent-ms');
+            const inputKmh = document.getElementById('vent-kmh');
+            const status = document.getElementById('vent-status');
+
+            if (!inputMs || !inputKmh || !status) return;
+
+            let ms, kmh;
+
+            if (fromKmh) {
+                kmh = parseFloat(inputKmh.value) || 0;
+                ms = (kmh / 3.6).toFixed(1);
+                inputMs.value = ms;
+            } else {
+                ms = parseFloat(inputMs.value) || 0;
+                kmh = (ms * 3.6).toFixed(0);
+                inputKmh.value = kmh;
+            }
+
+            // Mettre à jour le statut
+            if (kmh > 100) {
+                status.innerHTML = `<p class="text-sm font-medium text-red-700"><i class="fas fa-exclamation-triangle mr-1"></i>Évacuation immédiate (> 100 km/h)</p>`;
+                status.className = "mt-3 p-3 bg-red-50 border border-red-200 rounded";
+            } else if (kmh > 72) {
+                status.innerHTML = `<p class="text-sm font-medium text-amber-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
+                status.className = "mt-3 p-3 bg-amber-50 border border-amber-200 rounded";
+            } else {
+                status.innerHTML = `<p class="text-sm font-medium text-green-700"><i class="fas fa-check-circle mr-1"></i>Exploitation autorisée (≤ 72 km/h)</p>`;
+                status.className = "mt-3 p-3 bg-green-50 border border-green-200 rounded";
+            }
+        }
+
+        function convertVentTool(fromKmh = false) {
+            const inputMs = document.getElementById('tool-vent-ms');
+            const inputKmh = document.getElementById('tool-vent-kmh');
+            const status = document.getElementById('tool-vent-status');
+
+            if (!inputMs || !inputKmh || !status) return;
+
+            let ms, kmh;
+
+            if (fromKmh) {
+                kmh = parseFloat(inputKmh.value) || 0;
+                ms = (kmh / 3.6).toFixed(1);
+                inputMs.value = ms;
+            } else {
+                ms = parseFloat(inputMs.value) || 0;
+                kmh = (ms * 3.6).toFixed(0);
+                inputKmh.value = kmh;
+            }
+
+            // Mettre à jour le statut
+            if (kmh > 100) {
+                status.innerHTML = `<p class="text-sm font-medium text-red-700"><i class="fas fa-exclamation-triangle mr-1"></i>Évacuation immédiate (> 100 km/h)</p>`;
+                status.className = "p-3 bg-red-50 border border-red-200 rounded";
+            } else if (kmh > 72) {
+                status.innerHTML = `<p class="text-sm font-medium text-amber-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
+                status.className = "p-3 bg-amber-50 border border-amber-200 rounded";
+            } else {
+                status.innerHTML = `<p class="text-sm font-medium text-green-700"><i class="fas fa-check-circle mr-1"></i>Exploitation autorisée (≤ 72 km/h)</p>`;
+                status.className = "p-3 bg-green-50 border border-green-200 rounded";
+            }
+        }
+
+        function calculateSol() {
+            const charge = parseFloat(document.getElementById('charge-ponctuelle').value) || 0;
+            const sol = parseFloat(document.getElementById('nature-sol').value) || 1.0;
+            const result = document.getElementById('res-surface');
+
+            if (!result) return;
+
+            // Calcul : surface = charge / capacité portante (en kN/m²)
+            // 1 bar = 100 kN/m²
+            const capacite = sol * 100; // en kN/m²
+            const surface = (charge / capacite).toFixed(2);
+
+            result.textContent = surface + " m²";
+        }
+
+        // --- GLOSSAIRE FUNCTIONS ---
+        function showGlossaryDetail(termId) {
+            const detailDiv = document.getElementById('glossary-detail');
+            const term = state.glossaryTerms[termId];
+
+            if (!term || !detailDiv) return;
+
+            detailDiv.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900">${term.terme}</h4>
+                        <p class="text-sm text-gray-500">${term.article}</p>
+                    </div>
+                    <button onclick="hideGlossaryDetail()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">Définition</p>
+                        <p class="text-sm text-gray-600 mt-1">${term.definition}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">Détails</p>
+                        <p class="text-sm text-gray-600 mt-1">${term.details}</p>
+                    </div>
+                </div>
+            `;
+
+            detailDiv.classList.remove('hidden');
+        }
+
+        function hideGlossaryDetail() {
+            const detailDiv = document.getElementById('glossary-detail');
+            if (detailDiv) {
+                detailDiv.classList.add('hidden');
+            }
+        }
+
+        // --- OUTILS FUNCTIONS ---
+        function showTool(toolId) {
+            // Cacher tous les outils
+            document.querySelectorAll('.tool-content').forEach(tool => {
+                tool.classList.add('hidden');
+            });
+
+            // Afficher l'outil sélectionné
+            const tool = document.getElementById(`tool-${toolId}`);
+            if (tool) {
+                tool.classList.remove('hidden');
+            }
+        }
+
+        // --- SEARCH FUNCTIONALITY ---
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function (e) {
+                    performSearch(e.target.value);
+                });
+            }
+
+            const glossarySearch = document.getElementById('glossary-search');
+            if (glossarySearch) {
+                glossarySearch.addEventListener('input', function (e) {
+                    searchGlossary(e.target.value);
+                });
+            }
+        }
+
+        function performSearch(query) {
+            if (query.length < 2) return;
+
+            // Ici on pourrait implémenter une recherche plus avancée
+            console.log("Recherche :", query);
+            // Pour une implémentation complète, on pourrait :
+            // 1. Indexer tout le contenu
+            // 2. Rechercher dans les textes
+            // 3. Afficher les résultats
+            // 4. Naviguer vers les sections concernées
+        }
+
+        function searchGlossary(query) {
+            const terms = document.querySelectorAll('#view-glossaire .bg-gray-50');
+            terms.forEach(term => {
+                const text = term.textContent.toLowerCase();
+                if (text.includes(query.toLowerCase())) {
+                    term.classList.remove('hidden');
+                } else {
+                    term.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- CHARTS ---
+        function initCharts() {
+            // Font setup for charts
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#6b7280';
+
+            // Risk Chart (Dashboard)
+            const ctxRisk = document.getElementById('riskChart')?.getContext('2d');
+            if (ctxRisk) {
+                new Chart(ctxRisk, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Chutes de Hauteur', 'Stabilité', 'Incendie', 'Électricité', 'Autres'],
+                        datasets: [{
+                            data: [35, 25, 20, 10, 10],
+                            backgroundColor: [
+                                '#dc2626', // Red
+                                '#f59e0b', // Amber
+                                '#6b7280', // Gray
+                                '#374151', // Dark gray
+                                '#d1d5db'  // Light gray
+                            ],
+                            borderWidth: 0,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '60%',
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    padding: 10,
+                                    usePointStyle: true,
+                                    font: { size: 11 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Load Chart (Technical)
+            const ctxLoad = document.getElementById('loadChart')?.getContext('2d');
+            if (ctxLoad) {
+                new Chart(ctxLoad, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Logement', 'Bureaux', 'Tribunes Assis', 'Scènes', 'Tribunes Debout'],
+                        datasets: [{
+                            data: [150, 250, 400, 500, 500],
+                            backgroundColor: [
+                                '#d1d5db',
+                                '#9ca3af',
+                                '#dc2626',
+                                '#b91c1c',
+                                '#991b1b'
+                            ],
+                            borderRadius: 4,
+                            barPercentage: 0.7
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f3f4f6' },
+                                title: {
+                                    display: true,
+                                    text: 'Charge (kg/m²)'
+                                }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // --- UTILITY FUNCTIONS ---
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Export des fonctions
+        window.app = {
+            switchTab,
+            toggleChecklistItem,
+            calculateEvacuation,
+            convertVent,
+            convertVentTool,
+            calculateSol,
+            showGlossaryDetail,
+            hideGlossaryDetail,
+            showTool,
+            scrollToSection,
+            state
+        };
+    </script>
+</body>
+
+</html>
