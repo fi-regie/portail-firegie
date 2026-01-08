@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mémento Ensembles Démontables - Guide Complet</title>
+    <title>Ensembles Démontables - Guide Complet | Firegie</title>
 
     <!-- Favicon -->
     <link rel="icon"
@@ -52,10 +52,10 @@
             }
         }
 
-        /* Navigation tabs style */
+        /* Navigation tabs style du portail */
         .nav-tab.active {
-            border-bottom-color: #dc2626;
-            color: #dc2626;
+            border-bottom-color: #ea580c;
+            color: #ea580c;
             font-weight: 600;
         }
 
@@ -79,30 +79,30 @@
             background: #a1a1a1;
         }
 
-        /* Styles sobres */
+        /* Styles des cartes du portail */
         .section-card {
             background: white;
             border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .section-card:hover {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .data-highlight {
             background: #f8fafc;
-            border-left: 4px solid #dc2626;
+            border-left: 4px solid #ea580c;
         }
 
         .accent-border {
-            border-color: #dc2626;
+            border-color: #ea580c;
         }
 
         .accent-text {
-            color: #dc2626;
+            color: #ea580c;
         }
 
         /* Chart container */
@@ -129,7 +129,7 @@
         .data-viz {
             background: #f8fafc;
             border: 1px solid #e5e7eb;
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
         }
 
         /* Subtle hover effects */
@@ -138,7 +138,8 @@
         }
 
         .hover-lift:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         /* Glossary styles */
@@ -186,22 +187,32 @@
         /* Progress indicators */
         .progress-bar {
             height: 4px;
-            background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+            background: linear-gradient(90deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
             transition: width 0.3s ease;
+        }
+
+        /* Supprimer le scrollbar horizontal des onglets */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-700 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <!-- Navigation / Header -->
+    <!-- Navigation / Header (identique au portail) -->
     <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
         <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <span class="text-2xl mr-2"></span>
-                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Ensembles Démontables
-                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">Chapiteaux
+                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Législation Ensembles Démontables
+                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">Chapiteaux,
                             Tentes & Structures</span>
                     </h1>
                 </div>
@@ -217,101 +228,168 @@
         </div>
     </nav>
 
-    <!-- Navigation par Onglets (Enrichie) -->
+    <!-- Navigation par Onglets (style du portail) -->
     <div class="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div class="max-w-8xl mx-auto">
             <nav class="flex overflow-x-auto no-scrollbar">
                 <button onclick="switchTab('dashboard')" id="nav-dashboard"
-                    class="nav-tab active px-4 py-3 border-b-2 border-red-600 text-red-600 font-medium whitespace-nowrap flex items-center">
-                    <i class="fas fa-home mr-2 text-sm"></i>
+                    class="nav-tab active px-4 py-3 border-b-2 border-orange-600 text-orange-600 font-semibold whitespace-nowrap flex items-center">
+                    <i class="fas fa-home mr-2"></i>
                     Tableau de Bord
                 </button>
                 <button onclick="switchTab('acteurs')" id="nav-acteurs"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-users mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-users mr-2"></i>
                     Acteurs
                 </button>
                 <button onclick="switchTab('classification')" id="nav-classification"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-layer-group mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-layer-group mr-2"></i>
                     Classification
                 </button>
                 <button onclick="switchTab('marquage')" id="nav-marquage"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-tag mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-tag mr-2"></i>
                     Marquage
                 </button>
                 <button onclick="switchTab('formations')" id="nav-formations"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-graduation-cap mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i>
                     Formations
                 </button>
                 <button onclick="switchTab('technique')" id="nav-technique"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-calculator mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-calculator mr-2"></i>
                     Données Techniques
                 </button>
                 <button onclick="switchTab('suspensions')" id="nav-suspensions"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-anchor mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-anchor mr-2"></i>
                     Suspensions
                 </button>
                 <button onclick="switchTab('documents')" id="nav-documents"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-file-alt mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-file-alt mr-2"></i>
                     Documents
                 </button>
                 <button onclick="switchTab('glossaire')" id="nav-glossaire"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-book mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-book mr-2"></i>
                     Glossaire
                 </button>
                 <button onclick="switchTab('outils')" id="nav-outils"
-                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-gray-900 whitespace-nowrap flex items-center">
-                    <i class="fas fa-tools mr-2 text-sm"></i>
+                    class="nav-tab px-4 py-3 border-b-2 border-transparent text-gray-600 hover:text-orange-600 whitespace-nowrap flex items-center">
+                    <i class="fas fa-tools mr-2"></i>
                     Outils
                 </button>
             </nav>
         </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Area (largeur identique au portail) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- ==================== ONGLET TABLEAU DE BORD ==================== -->
         <section id="view-dashboard" class="tab-content active space-y-8">
-            <!-- Header -->
+            <!-- Header (style carte portail) -->
             <div class="section-card p-8">
                 <div class="flex items-start">
                     <div class="flex-1">
                         <h1 class="text-2xl font-semibold text-gray-900 mb-3">
-                            Mémento Ensembles Démontables - Édition 6
+                        Législation Ensembles Démontables
                         </h1>
                         <p class="text-gray-600 mb-6 leading-relaxed">
-                            Guide pratique complet synthétisant les 102 pages du document officiel.
-                            Cet outil interactif couvre la réglementation, les responsabilités,
-                            les exigences techniques et les procédures de sécurité pour les
-                            <span class="glossary-term">ensembles démontables<span class="glossary-tooltip">Structures
-                                    temporaires installées pour des manifestations événementielles, culturelles ou
-                                    sportives pour une durée n'excédant pas 3 mois.</span></span>.
+                            <span class="font-medium text-gray-800">Application professionnelle dédiée à la sécurité
+                                et à la conformité des structures temporaires.</span> Conçue spécifiquement pour les
+                            régisseurs, organisateurs d'événements et responsables techniques, cette plateforme
+                            interactive centralise l'ensemble des connaissances nécessaires à la maîtrise des risques
+                            liés aux installations éphémères.
                         </p>
-                        <div class="flex flex-wrap gap-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-book mr-2"></i>
-                                <span>102 pages synthétisées</span>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            De la conception à l'exploitation, en passant par le montage et les contrôles
+                            réglementaires, cet outil complet accompagne chaque étape de vos projets. Grâce à ses
+                            modules interactifs, ses calculateurs spécialisés et son glossaire dynamique, il devient
+                            votre assistant technique indispensable pour garantir la sécurité des publics et des
+                            équipes.
+                        </p>
+
+                        <!-- 3 Cartes caractéristiques -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <!-- Carte 1 -->
+                            <div
+                                class="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-5 hover-lift">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 bg-blue-100 border border-blue-300 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-shield-alt text-blue-600"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900">Conformité & Sécurité</h3>
+                                </div>
+                                <p class="text-sm text-gray-600">
+                                    Réglementation ERP • Code du travail • Normes techniques • Procédures de contrôle •
+                                    Classification OP/OS • Exigences spécifiques
+                                </p>
                             </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-balance-scale mr-2"></i>
-                                <span>NF EN 13200</span>
+
+                            <!-- Carte 2 -->
+                            <div
+                                class="bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-5 hover-lift">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 bg-amber-100 border border-amber-300 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-diagram-project text-amber-600"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900">Gestion de Projet</h3>
+                                </div>
+                                <p class="text-sm text-gray-600">
+                                    Cycle de vie complet • Responsabilités des acteurs • Checklists interactives •
+                                    Dossiers techniques • Commissions de sécurité
+                                </p>
                             </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-gavel mr-2"></i>
-                                <span>Arrêté 25 juin 1980</span>
+
+                            <!-- Carte 3 -->
+                            <div
+                                class="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl p-5 hover-lift">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 bg-green-100 border border-green-300 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-calculator text-green-600"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900">Outils Interactifs</h3>
+                                </div>
+                                <p class="text-sm text-gray-600">
+                                    Calculateurs de charges • Simulateurs d'évacuation • Glossaire dynamique • Rapports
+                                    personnalisables • Outils de diagnostic
+                                </p>
                             </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-calendar mr-2"></i>
-                                <span>Édition mars 2020</span>
-                            </div>
+                        </div>
+
+                        <!-- Badges fonctionnalités -->
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                <i class="fas fa-layer-group mr-1"></i> 10 modules interactifs
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                <i class="fas fa-toolbox mr-1"></i> Outils professionnels
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                <i class="fas fa-triangle-exclamation mr-1"></i> Sécurité prioritaire
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                <i class="fas fa-users mr-1"></i> Pour tous les acteurs
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <i class="fas fa-mobile-screen mr-1"></i> Interface responsive
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                <i class="fas fa-graduation-cap mr-1"></i> Pédagogique
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -336,7 +414,7 @@
 
                     <!-- Insights -->
                     <div class="space-y-6">
-                        <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-red-500">
                             <div class="flex items-center mb-2">
                                 <div class="w-2 h-2 rounded-full bg-red-500 mr-3"></div>
                                 <h4 class="font-medium text-gray-900">Chutes de Hauteur</h4>
@@ -349,7 +427,7 @@
                             </p>
                         </div>
 
-                        <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-amber-500">
                             <div class="flex items-center mb-2">
                                 <div class="w-2 h-2 rounded-full bg-amber-500 mr-3"></div>
                                 <h4 class="font-medium text-gray-900">Stabilité Structurelle</h4>
@@ -360,7 +438,7 @@
                             </p>
                         </div>
 
-                        <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-500">
                             <div class="flex items-center mb-2">
                                 <div class="w-2 h-2 rounded-full bg-gray-500 mr-3"></div>
                                 <h4 class="font-medium text-gray-900">Sécurité Incendie</h4>
@@ -374,7 +452,7 @@
                 </div>
             </div>
 
-            <!-- Navigation rapide enrichie -->
+            <!-- Navigation rapide enrichie (style cartes portail) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <a href="#view-acteurs" onclick="switchTab('acteurs')"
                     class="section-card p-6 hover-lift cursor-pointer">
@@ -451,42 +529,42 @@
                                 <td class="p-3"><span class="text-gray-400 text-sm">Document marché</span></td>
                                 <td class="p-3"><span class="text-green-600 font-medium">Installateur</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-medium text-gray-700">OP2</td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-medium text-gray-700">OP3</td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA ERP</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-medium text-gray-700">OS1</td>
                                 <td class="p-3"><span class="text-gray-400 text-sm">Document marché</span></td>
                                 <td class="p-3"><span class="text-green-600 font-medium">Installateur</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-medium text-gray-700">OS2</td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-medium text-gray-700">OS3</td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA Solidité</span></td>
                                 <td class="p-3"><span class="text-red-600 font-medium">OA ERP</span></td>
                                 <td class="p-3"><span class="text-blue-600 font-medium">Exploitant</span></td>
-                                <td class="p-3"><span class="text-amber-600 font-medium">TC</span></td>
+                                <td class="p-3"><span class="text-orange-600 font-medium">TC</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -527,15 +605,15 @@
                         </div>
                         <ul class="space-y-3 text-sm text-gray-600">
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Définit le besoin et commande</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Responsable sécurité publique</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Convoque la commission</span>
                             </li>
                         </ul>
@@ -554,15 +632,15 @@
                         </div>
                         <ul class="space-y-3 text-sm text-gray-600">
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Montage selon notice</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Attestation de bon montage</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Signale les défauts terrain</span>
                             </li>
                         </ul>
@@ -581,15 +659,15 @@
                         </div>
                         <ul class="space-y-3 text-sm text-gray-600">
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Vérifie solidité et stabilité</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Rapport RVRAT</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mt-1 mr-3 text-xs"></i>
+                                <i class="fas fa-check text-orange-600 mt-1 mr-3 text-xs"></i>
                                 <span>Obligatoire > 300 places</span>
                             </li>
                         </ul>
@@ -679,7 +757,7 @@
                     <div class="space-y-6">
                         <h3 class="text-lg font-semibold text-gray-900">Ossatures Portant des Personnes (OP)</h3>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">OP1</span>
@@ -694,7 +772,7 @@
                                     </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mr-3">OP2</span>
@@ -711,7 +789,7 @@
                                     </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-3">OP3</span>
@@ -738,7 +816,7 @@
                     <div class="space-y-6">
                         <h3 class="text-lg font-semibold text-gray-900">Ossatures d'Équipements Scéniques (OS)</h3>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">OS1</span>
@@ -748,7 +826,7 @@
                                     </p>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mr-3">OS2</span>
@@ -758,7 +836,7 @@
                                     </p>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                                 <span
                                     class="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-3">OS3</span>
@@ -804,23 +882,23 @@
                     <!-- Matériel neuf -->
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Matériel Neuf</h3>
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4">Exigences minimales</h4>
                             <ul class="space-y-3 text-sm text-gray-600">
                                 <li class="flex items-start">
-                                    <i class="fas fa-industry text-red-500 mt-0.5 mr-3"></i>
+                                    <i class="fas fa-industry text-orange-500 mt-0.5 mr-3"></i>
                                     Nom ou sigle du fabricant
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-barcode text-red-500 mt-0.5 mr-3"></i>
+                                    <i class="fas fa-barcode text-orange-500 mt-0.5 mr-3"></i>
                                     Référence du modèle
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-calendar text-red-500 mt-0.5 mr-3"></i>
+                                    <i class="fas fa-calendar text-orange-500 mt-0.5 mr-3"></i>
                                     Année de fabrication
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-red-500 mt-0.5 mr-3"></i>
+                                    <i class="fas fa-check-circle text-orange-500 mt-0.5 mr-3"></i>
                                     Marquage pérenne et lisible
                                 </li>
                             </ul>
@@ -830,7 +908,7 @@
                     <!-- Matériel existant -->
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Matériel Existant</h3>
-                        <div class="border border-gray-200 rounded-lg p-6">
+                        <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-4">Exigences spécifiques</h4>
                             <ul class="space-y-3 text-sm text-gray-600">
                                 <li class="flex items-start">
@@ -859,7 +937,7 @@
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Pièces à Marquer par Type d'Ensemble</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Tribunes</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Fermes</li>
@@ -872,7 +950,7 @@
                             </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Échafaudages/Tours</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Montants</li>
@@ -885,7 +963,7 @@
                             </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Scènes</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Montants, poteaux</li>
@@ -897,7 +975,7 @@
                             </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Accessoires</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Élingues : CMU/SWL/WLL</li>
@@ -925,31 +1003,31 @@
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Tronc Commun (3 jours)</h3>
                         <div class="border border-gray-200 rounded-lg p-6">
                             <div class="space-y-4">
-                                <div class="p-4 bg-gray-50 rounded">
+                                <div class="p-4 bg-gray-50 rounded border-l-4 border-orange-500">
                                     <h4 class="font-medium text-gray-700 mb-2">Module 1 : Préambule</h4>
                                     <p class="text-sm text-gray-600">Identification des risques • Textes juridiques •
                                         Sources fiables</p>
                                 </div>
 
-                                <div class="p-4 bg-gray-50 rounded">
+                                <div class="p-4 bg-gray-50 rounded border-l-4 border-orange-500">
                                     <h4 class="font-medium text-gray-700 mb-2">Module 2 : ERP & CCH</h4>
                                     <p class="text-sm text-gray-600">Rôles et missions • Réglementation • Réaction au
                                         feu</p>
                                 </div>
 
-                                <div class="p-4 bg-gray-50 rounded">
+                                <div class="p-4 bg-gray-50 rounded border-l-4 border-orange-500">
                                     <h4 class="font-medium text-gray-700 mb-2">Module 3 : Code du Travail</h4>
                                     <p class="text-sm text-gray-600">Dispositions • Textes spécifiques • Plans de
                                         prévention</p>
                                 </div>
 
-                                <div class="p-4 bg-gray-50 rounded">
+                                <div class="p-4 bg-gray-50 rounded border-l-4 border-orange-500">
                                     <h4 class="font-medium text-gray-700 mb-2">Module 4 : Guide Pratique</h4>
                                     <p class="text-sm text-gray-600">Portée juridique • Contenu • Méthode d'inspection
                                     </p>
                                 </div>
 
-                                <div class="p-4 bg-gray-50 rounded">
+                                <div class="p-4 bg-gray-50 rounded border-l-4 border-orange-500">
                                     <h4 class="font-medium text-gray-700 mb-2">Module 5 : Matériels et Ensembles</h4>
                                     <p class="text-sm text-gray-600">Historique • Lexiques • Types de matériels •
                                         Répartitions de charges</p>
@@ -963,22 +1041,22 @@
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Compétences Clés</h3>
                         <div class="border border-gray-200 rounded-lg p-6">
                             <div class="space-y-4">
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Analyser la demande</p>
                                 </div>
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Préparer l'inspection terrain</p>
                                 </div>
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Vérifier conformité au projet</p>
                                 </div>
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Contrôler la sécurité</p>
                                 </div>
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Rédiger le rapport</p>
                                 </div>
-                                <div class="p-3 bg-gray-50 rounded">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
                                     <p class="text-sm font-medium text-gray-700">Présenter au donneur d'ordre</p>
                                 </div>
                             </div>
@@ -1008,7 +1086,7 @@
                 <div class="mt-8">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Certifications IMED</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <div
                                 class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3 mx-auto">
                                 <i class="fas fa-stairs"></i>
@@ -1016,7 +1094,7 @@
                             <p class="text-center font-medium text-gray-700">Escaliers, Podiums, Scènes</p>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <div
                                 class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-3 mx-auto">
                                 <i class="fas fa-users"></i>
@@ -1024,7 +1102,7 @@
                             <p class="text-center font-medium text-gray-700">Tribunes Démontables</p>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <div
                                 class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-3 mx-auto">
                                 <i class="fas fa-tower-observation"></i>
@@ -1032,7 +1110,7 @@
                             <p class="text-center font-medium text-gray-700">Échafaudages et Passerelles</p>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <div
                                 class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3 mx-auto">
                                 <i class="fas fa-grip-lines"></i>
@@ -1071,7 +1149,7 @@
 
                     <!-- Données -->
                     <div class="space-y-4">
-                        <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="p-4 border border-gray-200 rounded-lg hover-lift">
                             <div class="flex justify-between items-center mb-2">
                                 <h4 class="font-medium text-gray-700">Tribunes (places assises)</h4>
                                 <span class="font-semibold text-gray-900">400 kg/m²</span>
@@ -1081,7 +1159,7 @@
                             </p>
                         </div>
 
-                        <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="p-4 border border-gray-200 rounded-lg hover-lift">
                             <div class="flex justify-between items-center mb-2">
                                 <h4 class="font-medium text-gray-700">Tribunes debout / Scènes</h4>
                                 <span class="font-semibold text-gray-900">500 kg/m²</span>
@@ -1091,7 +1169,7 @@
                             </p>
                         </div>
 
-                        <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="p-4 border border-gray-200 rounded-lg hover-lift">
                             <div class="flex justify-between items-center mb-2">
                                 <h4 class="font-medium text-gray-700">Escaliers & accès</h4>
                                 <span class="font-semibold text-gray-900">500 kg/m²</span>
@@ -1110,7 +1188,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Vent -->
-                    <div class="border border-gray-200 rounded-lg p-6">
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                         <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                             <i class="fas fa-wind text-blue-500 mr-3"></i>
                             Vent de Service
@@ -1127,7 +1205,7 @@
                             <div class="p-3 bg-amber-50 rounded">
                                 <div class="flex justify-between items-center mb-1">
                                     <span class="text-sm font-medium text-gray-700">72-100 km/h</span>
-                                    <span class="font-semibold text-amber-600">Stabilité justifiée</span>
+                                    <span class="font-semibold text-orange-600">Stabilité justifiée</span>
                                 </div>
                                 <p class="text-xs text-gray-600">Dispositions spécifiques</p>
                             </div>
@@ -1143,7 +1221,7 @@
                     </div>
 
                     <!-- Neige -->
-                    <div class="border border-gray-200 rounded-lg p-6">
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                         <h4 class="font-medium text-gray-700 mb-4 flex items-center">
                             <i class="fas fa-snowflake text-blue-500 mr-3"></i>
                             Neige de Service
@@ -1174,7 +1252,8 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (m/s)</label>
                             <input type="number" id="vent-ms" value="20"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="convertVent()">
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
+                                oninput="convertVent()">
                         </div>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-exchange-alt text-gray-400 text-xl"></i>
@@ -1182,7 +1261,8 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (km/h)</label>
                             <input type="number" id="vent-kmh" value="72"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="convertVent(true)">
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
+                                oninput="convertVent(true)">
                         </div>
                     </div>
                     <div id="vent-status" class="mt-3 p-3 bg-green-50 border border-green-200 rounded">
@@ -1205,7 +1285,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Redondance -->
-                    <div class="border border-gray-200 rounded-lg p-6">
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Principe de Redondance</h3>
                         <div class="space-y-4">
                             <div class="p-4 bg-gray-50 rounded">
@@ -1228,7 +1308,7 @@
                     </div>
 
                     <!-- Palans électriques -->
-                    <div class="border border-gray-200 rounded-lg p-6">
+                    <div class="border border-gray-200 rounded-lg p-6 hover-lift">
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Palans Électriques</h3>
                         <div class="space-y-4">
                             <div class="p-4 bg-blue-50 rounded">
@@ -1254,7 +1334,7 @@
                 <div class="mt-8">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Élingues et Accessoires</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Textiles</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Marquage CE obligatoire</li>
@@ -1263,7 +1343,7 @@
                             </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Chaînes</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Grade 8 minimum</li>
@@ -1272,7 +1352,7 @@
                             </ul>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover-lift">
                             <h4 class="font-medium text-gray-700 mb-3">Protections</h4>
                             <ul class="text-xs text-gray-600 space-y-1">
                                 <li>Arrêt de chute EN 360</li>
@@ -1302,7 +1382,7 @@
                     <div class="flex items-center">
                         <span id="checklist-progress" class="text-sm font-medium text-gray-700 mr-3">0/8</span>
                         <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div id="checklist-progress-bar" class="h-full bg-red-600 transition-all duration-300"
+                            <div id="checklist-progress-bar" class="h-full bg-orange-600 transition-all duration-300"
                                 style="width: 0%"></div>
                         </div>
                     </div>
@@ -1357,10 +1437,10 @@
 
                             <div class="p-3 border border-amber-200 bg-amber-50 rounded">
                                 <div class="flex items-center mb-1">
-                                    <i class="fas fa-exclamation-circle text-amber-600 mr-2"></i>
-                                    <span class="font-medium text-amber-700">Sous Réserves</span>
+                                    <i class="fas fa-exclamation-circle text-orange-600 mr-2"></i>
+                                    <span class="font-medium text-orange-700">Sous Réserves</span>
                                 </div>
-                                <p class="text-xs text-amber-600">Corrections mineures nécessaires</p>
+                                <p class="text-xs text-orange-600">Corrections mineures nécessaires</p>
                             </div>
 
                             <div class="p-3 border border-red-200 bg-red-50 rounded">
@@ -1394,7 +1474,7 @@
                 <!-- Recherche glossaire -->
                 <div class="mb-6">
                     <input type="text" id="glossary-search"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                         placeholder="Rechercher un terme...">
                 </div>
 
@@ -1404,23 +1484,25 @@
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Structure</h3>
                         <div class="space-y-3">
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('ensemble-démontable')">
                                 <p class="font-medium text-gray-700">Ensemble démontable</p>
                                 <p class="text-xs text-gray-600 mt-1">Structure temporaire installée ≤ 3 mois</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer" onclick="showGlossaryDetail('ossature')">
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
+                                onclick="showGlossaryDetail('ossature')">
                                 <p class="font-medium text-gray-700">Ossature (OP/OS)</p>
                                 <p class="text-xs text-gray-600 mt-1">OP pour personnes, OS pour équipements</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer" onclick="showGlossaryDetail('tribune')">
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
+                                onclick="showGlossaryDetail('tribune')">
                                 <p class="font-medium text-gray-700">Tribune</p>
                                 <p class="text-xs text-gray-600 mt-1">Gradins assis/debout temporaires</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('échafaudage')">
                                 <p class="font-medium text-gray-700">Échafaudage</p>
                                 <p class="text-xs text-gray-600 mt-1">Structure modulaire spectacle/événement</p>
@@ -1432,25 +1514,25 @@
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Sécurité</h3>
                         <div class="space-y-3">
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('garde-corps')">
                                 <p class="font-medium text-gray-700">Garde-corps</p>
                                 <p class="text-xs text-gray-600 mt-1">Protection chutes hauteur ≥ 1m</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('dégagement')">
                                 <p class="font-medium text-gray-700">Dégagement</p>
                                 <p class="text-xs text-gray-600 mt-1">Cheminement évacuation personnes</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('plan-prévention')">
                                 <p class="font-medium text-gray-700">Plan de prévention</p>
                                 <p class="text-xs text-gray-600 mt-1">Document risques coactivité</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('sécurité-secondaire')">
                                 <p class="font-medium text-gray-700">Sécurité secondaire</p>
                                 <p class="text-xs text-gray-600 mt-1">Dispositif redondant suspension</p>
@@ -1462,25 +1544,25 @@
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Organisation</h3>
                         <div class="space-y-3">
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('organisateur')">
                                 <p class="font-medium text-gray-700">Organisateur</p>
                                 <p class="text-xs text-gray-600 mt-1">Initiateur manifestation</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('installateur')">
                                 <p class="font-medium text-gray-700">Installateur</p>
                                 <p class="text-xs text-gray-600 mt-1">Responsable montage/démontage</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('technicien-compétent')">
                                 <p class="font-medium text-gray-700">Technicien compétent</p>
                                 <p class="text-xs text-gray-600 mt-1">Formé inspection ensembles</p>
                             </div>
 
-                            <div class="p-3 bg-gray-50 rounded cursor-pointer"
+                            <div class="p-3 bg-gray-50 rounded cursor-pointer hover-lift"
                                 onclick="showGlossaryDetail('préventionniste')">
                                 <p class="font-medium text-gray-700">Préventionniste</p>
                                 <p class="text-xs text-gray-600 mt-1">Spécialiste risques incendie ERP</p>
@@ -1547,7 +1629,7 @@
                                     Effectif Total
                                 </label>
                                 <input type="number" id="calc-effectif" value="850"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                     oninput="calculateEvacuation()">
                             </div>
 
@@ -1577,7 +1659,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (m/s)</label>
                                 <input type="number" id="tool-vent-ms" value="20"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
                                     oninput="convertVentTool()">
                             </div>
                             <div class="flex items-center justify-center">
@@ -1586,7 +1668,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Vitesse (km/h)</label>
                                 <input type="number" id="tool-vent-kmh" value="72"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
                                     oninput="convertVentTool(true)">
                             </div>
                         </div>
@@ -1606,14 +1688,16 @@
                                     Charge Ponctuelle (kN)
                                 </label>
                                 <input type="number" id="charge-ponctuelle" value="50"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg" oninput="calculateSol()">
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
+                                    oninput="calculateSol()">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
                                     Nature du Sol
                                 </label>
-                                <select id="nature-sol" class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                <select id="nature-sol"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-orange-500 focus:ring-orange-500"
                                     onchange="calculateSol()">
                                     <option value="1.0">Terrain naturel (1 bar)</option>
                                     <option value="1.5">Terre compactée</option>
@@ -1635,7 +1719,7 @@
         </section>
     </main>
 
-    <!-- Pied de page -->
+    <!-- Pied de page (identique au portail) -->
     <footer class="bg-[#e9ecef] text-[#495057] py-8 mt-12 border-t border-[#dee2e6]">
         <div class="max-w-8xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1978,14 +2062,14 @@
 
         function updateTabNavigation(tabId) {
             document.querySelectorAll('.nav-tab').forEach(btn => {
-                btn.classList.remove('active', 'border-red-600', 'text-red-600');
+                btn.classList.remove('active', 'border-orange-600', 'text-orange-600');
                 btn.classList.add('border-transparent', 'text-gray-600');
             });
 
             const activeBtn = document.getElementById(`nav-${tabId}`);
             if (activeBtn) {
                 activeBtn.classList.remove('border-transparent', 'text-gray-600');
-                activeBtn.classList.add('active', 'border-red-600', 'text-red-600');
+                activeBtn.classList.add('active', 'border-orange-600', 'text-orange-600');
             }
         }
 
@@ -2102,7 +2186,7 @@
                 status.innerHTML = `<p class="text-sm font-medium text-red-700"><i class="fas fa-exclamation-triangle mr-1"></i>Évacuation immédiate (> 100 km/h)</p>`;
                 status.className = "mt-3 p-3 bg-red-50 border border-red-200 rounded";
             } else if (kmh > 72) {
-                status.innerHTML = `<p class="text-sm font-medium text-amber-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
+                status.innerHTML = `<p class="text-sm font-medium text-orange-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
                 status.className = "mt-3 p-3 bg-amber-50 border border-amber-200 rounded";
             } else {
                 status.innerHTML = `<p class="text-sm font-medium text-green-700"><i class="fas fa-check-circle mr-1"></i>Exploitation autorisée (≤ 72 km/h)</p>`;
@@ -2134,7 +2218,7 @@
                 status.innerHTML = `<p class="text-sm font-medium text-red-700"><i class="fas fa-exclamation-triangle mr-1"></i>Évacuation immédiate (> 100 km/h)</p>`;
                 status.className = "p-3 bg-red-50 border border-red-200 rounded";
             } else if (kmh > 72) {
-                status.innerHTML = `<p class="text-sm font-medium text-amber-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
+                status.innerHTML = `<p class="text-sm font-medium text-orange-700"><i class="fas fa-exclamation-circle mr-1"></i>Limite exploitation dépassée (72-100 km/h)</p>`;
                 status.className = "p-3 bg-amber-50 border border-amber-200 rounded";
             } else {
                 status.innerHTML = `<p class="text-sm font-medium text-green-700"><i class="fas fa-check-circle mr-1"></i>Exploitation autorisée (≤ 72 km/h)</p>`;
@@ -2232,11 +2316,6 @@
 
             // Ici on pourrait implémenter une recherche plus avancée
             console.log("Recherche :", query);
-            // Pour une implémentation complète, on pourrait :
-            // 1. Indexer tout le contenu
-            // 2. Rechercher dans les textes
-            // 3. Afficher les résultats
-            // 4. Naviguer vers les sections concernées
         }
 
         function searchGlossary(query) {
@@ -2307,9 +2386,9 @@
                             backgroundColor: [
                                 '#d1d5db',
                                 '#9ca3af',
-                                '#dc2626',
-                                '#b91c1c',
-                                '#991b1b'
+                                '#ea580c',
+                                '#f97316',
+                                '#fb923c'
                             ],
                             borderRadius: 4,
                             barPercentage: 0.7
