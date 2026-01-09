@@ -327,7 +327,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                        <!-- Carte Focus Réglementation -->
+                        <!-- Carte Focus Réglementation ERP -->
                         <div
                             class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <div class="p-6">
@@ -335,7 +335,7 @@
                                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                                         <i class="fas fa-search text-blue-600 text-xl"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900">Focus Réglementation</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">Focus Réglementation ERP</h3>
                                 </div>
                                 <p class="text-gray-600 mb-6">
                                     Application spécialisée pour la recherche et l'analyse réglementaire
@@ -361,17 +361,50 @@
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Carte Règlementation CTS -->
+                    
+                        <!-- Carte Ensemble Démontable -->
                         <div
                             class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                                        <i class="fas fa-scale-balanced text-orange-600 text-xl"></i>
+                                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-layer-group text-orange-600 text-xl"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900">Règlementation CTS</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">Ensemble Démontable</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Application professionnelle dédiée à la sécurité et conformité des structures temporaires.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Classification & réglementation </span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Calculateurs de charges & simulateurs</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Glossaire dynamique</span>
+                                    </li>
+                                </ul>
+                                <button onclick="openEnsemblesApp()"
+                                    class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <!-- Carte Réglementation CTS -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-scale-balanced text-slate-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Réglementation CTS</h3>
                                 </div>
                                 <p class="text-gray-600 mb-6">
                                     Règlementation CTS - Dispositions applicables aux établissements de type Chapiteaux,
@@ -392,12 +425,12 @@
                                     </li>
                                 </ul>
                                 <button onclick="openStructuresApp()"
-                                    class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition">
+                                    class="w-full bg-slate-600 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-lg transition">
                                     <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
                                 </button>
                             </div>
                         </div>
-
+                    
                         <!-- Carte Sécurité Incendie -->
                         <div
                             class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -432,14 +465,83 @@
                                 </button>
                             </div>
                         </div>
-
+                    
+                        <!-- Carte Outils de Simulation -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-calculator text-amber-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Outils de Simulation</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Simulateurs pour la classification ERP, calcul des dégagements,
+                                    unités de passage et sécurité incendie.
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Calculateur de catégorie ERP</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Dimensionnement des dégagements</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Graphiques interactifs</span>
+                                    </li>
+                                </ul>
+                                <button onclick="openSimulationApp()"
+                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <!-- Carte Législation ERP -->
+                        <div
+                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-gavel text-indigo-600 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Législation ERP</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6">
+                                    Application interactive pour consulter la réglementation ERP officielle 
+                                    (CCH, Arrêté du 25 juin 1980).
+                                </p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>81 articles officiels CTS complets</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Navigation par chapitres et sections</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Recherche intelligente dans les textes</span>
+                                    </li>
+                                </ul>
+                                <button onclick="openReglementationApp()"
+                                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition">
+                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
+                                </button>
+                            </div>
+                        </div>
+                    
                         <!-- Carte Formation Sécurité -->
                         <div
                             class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
                                         <i class="fas fa-graduation-cap text-emerald-600 text-xl"></i>
                                     </div>
                                     <h3 class="text-xl font-bold text-gray-900">Formation Sécurité</h3>
@@ -468,53 +570,16 @@
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Carte Outils Simulation -->
+                    
+                        <!-- Carte Quiz Régisseur -->
                         <div
                             class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
-                                        <i class="fas fa-calculator text-amber-600 text-xl"></i>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-900">Outils Simulation</h3>
-                                </div>
-                                <p class="text-gray-600 mb-6">
-                                    Simulateurs pour la classification ERP, calcul des dégagements,
-                                    unités de passage et sécurité incendie.
-                                </p>
-                                <ul class="space-y-2 mb-6">
-                                    <li class="flex items-center">
-                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
-                                        <span>Calculateur de catégorie ERP</span>
-                                    </li>
-                                    <li class="flex items-center">
-                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
-                                        <span>Dimensionnement des dégagements</span>
-                                    </li>
-                                    <li class="flex items-center">
-                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
-                                        <span>Graphiques interactifs</span>
-                                    </li>
-                                </ul>
-                                <button onclick="openSimulationApp()"
-                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition">
-                                    <i class="fas fa-arrow-right mr-2"></i>Accéder à l'application
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Carte Quiz du Régisseur -->
-                        <div
-                            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                            <div class="p-6">
-                                <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
                                         <i class="fas fa-question-circle text-purple-600 text-xl"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900">Quiz du Régisseur</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">Quiz Régisseur</h3>
                                 </div>
                                 <p class="text-gray-600 mb-6">
                                     Testez vos connaissances sur la sécurité ERP Type L et CTS de manière ludique
@@ -540,7 +605,8 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    
+                    </div>                
                 </div>
             </div>
         </div>
