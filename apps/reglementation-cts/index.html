@@ -3010,50 +3010,58 @@
             const maxWindSelect = document.getElementById('maxWindInput');
 
             if (windSlider) {
-                const updateWindStatus = () => {
-                    const current = parseInt(windSlider.value);
-                    const max = parseInt(maxWindSelect.value);
+    const updateWindStatus = () => {
+        const current = parseInt(windSlider.value);
+        const max = parseInt(maxWindSelect.value);
 
-                    windDisplay.textContent = current + " km/h";
+        windDisplay.textContent = current + " km/h";
 
-                    const statusBox = document.getElementById('weatherStatus');
-                    const icon = document.getElementById('weatherIcon');
-                    const title = document.getElementById('weatherTitle');
-                    const desc = document.getElementById('weatherDesc');
+        const statusBox = document.getElementById('weatherStatus');
+        const icon = document.getElementById('weatherIcon');
+        const title = document.getElementById('weatherTitle');
+        const desc = document.getElementById('weatherDesc');
 
-                    const warningThreshold = max * 0.75;
+        // Vérification que les éléments existent
+        if (!statusBox || !icon || !title || !desc) return;
+        
+        const warningThreshold = max * 0.75;
+        
+        // Réinitialiser les classes
+        statusBox.className = "p-4 rounded-lg flex items-start gap-3 transition-colors duration-300 border";
+        
+        // LOGIQUE CORRECTE :
+        if (current >= max) {
+            // ROUGE - ÉVACUATION
+            statusBox.classList.add('bg-red-100', 'border-red-200');
+            icon.textContent = "🚨";
+            title.textContent = "ÉVACUATION IMMÉDIATE";
+            title.className = "font-bold text-red-800";
+            desc.textContent = `Vent supérieur à la limite (${max} km/h). Affalement de la structure ou évacuation du public requis.`;
+            desc.className = "text-sm text-red-700";
+        } else if (current >= warningThreshold) {
+            // ORANGE - VIGILANCE
+            statusBox.classList.add('bg-orange-100', 'border-orange-200');
+            icon.textContent = "⚠️";
+            title.textContent = "Vigilance Renforcée";
+            title.className = "font-bold text-orange-800";
+            desc.textContent = `Vent à >75% de la limite. Préparez l'évacuation. Vérifiez les ancrages. Arrêt des effets scéniques aériens.`;
+            desc.className = "text-sm text-orange-700";
+        } else {
+            // VERT - NORMAL
+            statusBox.classList.add('bg-green-100', 'border-green-200');
+            icon.textContent = "✅";
+            title.textContent = "Situation Normale";
+            title.className = "font-bold text-green-800";
+            desc.textContent = "Vitesse de vent admissible. Exploitation autorisée sous surveillance.";
+            desc.className = "text-sm text-green-700";
+        }
+    };
 
-                    statusBox.className = "p-4 rounded-lg flex items-start gap-3 transition-colors duration-300 border";
-
-                    if (current >= max) {
-                        statusBox.classList.add('bg-red-100', 'border-red-200');
-                        icon.textContent = "🚨";
-                        title.textContent = "ÉVACUATION IMMÉDIATE";
-                        title.className = "font-bold text-red-800";
-                        desc.textContent = `Vent supérieur à la limite (${max} km/h). Affalement de la structure ou évacuation du public requis.`;
-                        desc.className = "text-sm text-red-700";
-                    } else if (current >= warningThreshold) {
-                        statusBox.classList.add('bg-orange-100', 'border-orange-200');
-                        icon.textContent = "⚠️";
-                        title.textContent = "Vigilance Renforcée";
-                        title.className = "font-bold text-orange-800";
-                        desc.textContent = `Vent à >75% de la limite. Préparez l'évacuation. Vérifiez les ancrages. Arrêt des effets scéniques aériens.`;
-                        desc.className = "text-sm text-orange-700";
-                    } else {
-                        statusBox.classList.add('bg-green-100', 'border-green-200');
-                        icon.textContent = "✅";
-                        title.textContent = "Situation Normale";
-                        title.className = "font-bold text-green-800";
-                        desc.textContent = "Vitesse de vent admissible. Exploitation autorisée sous surveillance.";
-                        desc.className = "text-sm text-green-700";
-                    }
-                };
-
-
-                windSlider2.addEventListener('input', updateWindStatus2);
-                maxWindSelect2.addEventListener('change', updateWindStatus2);
-                updateWindStatus2(); // Initialiser
-            }
+    windSlider.addEventListener('input', updateWindStatus);
+    maxWindSelect.addEventListener('change', updateWindStatus);
+    updateWindStatus(); // Initialiser
+}
+            
         }
 
         // Fonction dédiée pour initialiser le simulateur de vent de l'onglet CTS
