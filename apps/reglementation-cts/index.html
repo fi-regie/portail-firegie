@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sécurité Chapiteaux Tente & Structures (CTS) - 2026</title>
+    <title>Réglementation Sécurité : Chapiteaux & Structures (CTS) - 2026</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -202,8 +202,9 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <span class="text-2xl mr-2"></span>
-                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Sécurité Chapiteaux Tentes & Structures
-                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">Mise à Jour 2026</span>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-700">Législation Structures Itinérantes
+                        <span class="text-orange-600 text-sm font-normal uppercase ml-2 tracking-widest">Chapiteaux
+                            Tentes & Structures</span>
                     </h1>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -566,44 +567,37 @@
                 <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mt-6">
                     <a href="#classification"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-slate-600 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Classification & Jauge</span>
                     </a>
                     <a href="#evacuation"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-emerald-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Dégagements & Unités de Passage </span>
                     </a>
                     <a href="#vent-meteo"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-blue-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Échelle de Beaufort Vent & Météo</span>
                     </a>
                     <a href="#categorie-hauteur"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-orange-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Catégorisation Hauteur de Chute</span>
                     </a>
                     <a href="#simulateur-charges"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-purple-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Charges d'Exploitation</span>
                     </a>
                     <a href="#calage"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-amber-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Charges & Calages</span>
                     </a>
                     <a href="#maitre-couple"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-cyan-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span
-                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Calculateur de Maître-couple</span>
                     </a>
                 </div>
@@ -1667,7 +1661,7 @@
                     <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
                         <h3 class="text-lg font-bold text-slate-700 mb-4">Échelle de Beaufort & Risques</h3>
                         <div style="height: 300px; position: relative;">
-                            <canvas id="windChart"></canvas>
+                            <canvas id="windChartCts"></canvas>
                         </div>
                     </div>
                 </div>
@@ -2233,6 +2227,8 @@
         <div class="max-w-8xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
+
+                    <!-- Section 1 -->
                     <h4 class="text-xl mb-4 text-[#343a40]">Portail de veille juridique ERP & CTS</h4>
                     <p class="text-[#6c757d] text-sm mb-2">
                         Suite d'Applications destinées aux
@@ -2259,7 +2255,7 @@
                     <h4 class="text-xl mb-4 text-[#343a40]">Applications</h4>
 
                     <div class="space-y-4">
-                        <a href="https://fi-regie.github.io/portail-firegie/index.html#accueil" target="_blank"
+                        <a href="https://firegie.fr/index.html#accueil" target="_blank"
                             class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
@@ -2271,13 +2267,36 @@
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/reglementation-cts/index.html"
-                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://firegie.fr/apps/reglementation-cts/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Réglementation Spectacle Itinérant</h5>
                                 <p class="text-sm text-[#6c757d] mt-1">
                                     Outils de veille juridique & de sécurité du Spectacle Itinérant
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/simulation/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5 class="text-[0.95rem] font-medium">Outil de Simulation Sécurité</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Simulez votre Catégorie ERP, vos dégagements UP, Éch. de Beaufort
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/reglementation-erp/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Réglementation ERP</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Application interactive des textes officiels pour consulter rapidement la
+                                    Règlementation ERP (CCH, Arrêté du 25 juin 1980)
                                 </p>
                             </div>
                         </a>
@@ -2288,8 +2307,8 @@
                 <div class="md:border- md:border-[] md:pl-8">
                     <h4 class="text-xl mb-4 text-[#343a40]">Formation</h4>
                     <div class="space-y-4">
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/focus-reglementation/index.html"
-                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://firegie.fr/apps/focus-reglementation/index.html#accueil" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5 class="text-[0.95rem] font-medium">Focus Réglementation</h5>
@@ -2300,14 +2319,36 @@
                             </div>
                         </a>
 
-                        <a href="https://fi-regie.github.io/portail-firegie/apps/formation-securite/index.html"
-                            target="_blank" class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                        <a href="https://firegie.fr/apps/securite-incendie/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Guide de la Sécurité Incendie</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Synthèse des obligations des responsables de la sécurité incendie ERP
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/formation-securite/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
                             <i class="fas fa-external-link-alt mr-2 mt-1"></i>
                             <div>
                                 <h5>Formation Sécurité ERP</h5>
                                 <p class="text-sm text-[#6c757d] mt-1">
                                     Outil pédagogique destiné à la formation des responsables techniques
                                     d'ERP Type L & CTS.
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="https://firegie.fr/apps/quiz/index.html" target="_blank"
+                            class="flex items-start text-[#495057] hover:text-[#0d6efd] transition">
+                            <i class="fas fa-external-link-alt mr-2 mt-1"></i>
+                            <div>
+                                <h5>Le Quiz du Régisseur</h5>
+                                <p class="text-sm text-[#6c757d] mt-1">
+                                    Amusez-vous, apprenez, évaluez vos compétences
                                 </p>
                             </div>
                         </a>
@@ -2318,12 +2359,10 @@
             <div class="mt-8 pt-8 border-t border-[#ced4da] text-center text-sm text-[#6c757d]">
                 <p>
                     <i class="fas fa-gavel mr-2"></i>
-                    Portail de veille juridique CTS & ERP Type L - Version 2026
+                    Portail de veille juridique CTS & ERP Type L
                 </p>
                 <p class="mt-2">
-                    ©️Open Source • Partage & Contribution • Contact :
-                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                        data-cfemail="4e3e262722273e29327c222b302d21367a253a38363a0e3e3c29322d2e6e2d25">[email&#160;protected]</a>
+                    Partage & Contribution • Contact : philippe.potier-regie@proton.me
                 </p>
             </div>
         </div>
@@ -2343,117 +2382,129 @@
             offlineMode: false
         };
 
+        // --- Variables pour stocker les instances de graphiques ---
+        window.chartInstances = {};
+
         // --- Fonction pour initialiser les graphiques du Dashboard ---
         function initDashboardCharts() {
-            // Si Chart.js est chargé
-            if (typeof Chart !== 'undefined') {
-                // Vérifie si les graphiques existent déjà
-                if (window.dashboardChartsDone) return;
+            // Si Chart.js n'est pas chargé, on attend
+            if (typeof Chart === 'undefined') {
+                console.warn('Chart.js non chargé, réessayez dans 500ms');
+                setTimeout(initDashboardCharts, 500);
+                return;
+            }
+            
+            // Vérifie si les graphiques existent déjà et les détruit
+            if (window.chartInstances['windThresholdChart']) {
+                window.chartInstances['windThresholdChart'].destroy();
+            }
+            if (window.chartInstances['responsibilityChart']) {
+                window.chartInstances['responsibilityChart'].destroy();
+            }
 
-                // Code pour le graphique des seuils de vent
-                if (document.getElementById('windThresholdChart')) {
-                    new Chart(document.getElementById('windThresholdChart'), {
-                        type: 'bar',
-                        data: {
-                            labels: ['Surveillance', 'Arrêt Attractions', 'Évacuation'],
-                            datasets: [{
-                                label: 'Vitesse (km/h)',
-                                data: [72, 85, 100],
-                                backgroundColor: [
-                                    'rgba(251, 191, 36, 0.7)',
-                                    'rgba(249, 115, 22, 0.7)',
-                                    'rgba(220, 38, 38, 0.7)'
-                                ],
-                                borderColor: [
-                                    'rgb(251, 191, 36)',
-                                    'rgb(249, 115, 22)',
-                                    'rgb(220, 38, 38)'
-                                ],
-                                borderWidth: 1,
-                                borderRadius: 4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function (context) {
-                                            const labels = [
-                                                'Pré-alerte : Surveillance renforcée',
-                                                'Arrêt immédiat des attractions aériennes',
-                                                'Évacuation du public obligatoire'
-                                            ];
-                                            return labels[context.dataIndex];
-                                        }
-                                    }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'km/h'
+            // Code pour le graphique des seuils de vent
+            const windThresholdCanvas = document.getElementById('windThresholdChart');
+            if (windThresholdCanvas) {
+                window.chartInstances['windThresholdChart'] = new Chart(windThresholdCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Surveillance', 'Arrêt Attractions', 'Évacuation'],
+                        datasets: [{
+                            label: 'Vitesse (km/h)',
+                            data: [72, 85, 100],
+                            backgroundColor: [
+                                'rgba(251, 191, 36, 0.7)',
+                                'rgba(249, 115, 22, 0.7)',
+                                'rgba(220, 38, 38, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgb(251, 191, 36)',
+                                'rgb(249, 115, 22)',
+                                'rgb(220, 38, 38)'
+                            ],
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const labels = [
+                                            'Pré-alerte : Surveillance renforcée',
+                                            'Arrêt immédiat des attractions aériennes',
+                                            'Évacuation du public obligatoire'
+                                        ];
+                                        return labels[context.dataIndex];
                                     }
                                 }
                             }
-                        }
-                    });
-                }
-
-                // Code pour le graphique des responsabilités
-                if (document.getElementById('responsibilityChart')) {
-                    new Chart(document.getElementById('responsibilityChart'), {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Exploitant', 'Organisme Contrôle', 'Autorité', 'Techniciens'],
-                            datasets: [{
-                                data: [40, 30, 20, 10],
-                                backgroundColor: [
-                                    'rgba(30, 58, 138, 0.8)',
-                                    'rgba(234, 88, 12, 0.8)',
-                                    'rgba(51, 65, 85, 0.8)',
-                                    'rgba(148, 163, 184, 0.8)'
-                                ],
-                                borderWidth: 0,
-                                hoverOffset: 10
-                            }]
                         },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        usePointStyle: true,
-                                        font: { size: 11 },
-                                        padding: 20
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function (context) {
-                                            const descriptions = [
-                                                'Responsable pénalement de la sécurité',
-                                                'Vérifie la conformité technique',
-                                                'Signe l\'arrêté d\'ouverture',
-                                                'Exécute les travaux et maintenance'
-                                            ];
-                                            return descriptions[context.dataIndex];
-                                        }
-                                    }
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'km/h'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Code pour le graphique des responsabilités
+            const responsibilityCanvas = document.getElementById('responsibilityChart');
+            if (responsibilityCanvas) {
+                window.chartInstances['responsibilityChart'] = new Chart(responsibilityCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Exploitant', 'Organisme Contrôle', 'Autorité', 'Techniciens'],
+                        datasets: [{
+                            data: [40, 30, 20, 10],
+                            backgroundColor: [
+                                'rgba(30, 58, 138, 0.8)',
+                                'rgba(234, 88, 12, 0.8)',
+                                'rgba(51, 65, 85, 0.8)',
+                                'rgba(148, 163, 184, 0.8)'
+                            ],
+                            borderWidth: 0,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    font: { size: 11 },
+                                    padding: 20
                                 }
                             },
-                            cutout: '50%'
-                        }
-                    });
-                }
-
-                window.dashboardChartsDone = true;
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const descriptions = [
+                                            'Responsable pénalement de la sécurité',
+                                            'Vérifie la conformité technique',
+                                            'Signe l\'arrêté d\'ouverture',
+                                            'Exécute les travaux et maintenance'
+                                        ];
+                                        return descriptions[context.dataIndex];
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '50%'
+                    }
+                });
             }
         }
 
@@ -2483,22 +2534,16 @@
 
             // Initialiser le contenu spécifique si nécessaire
             if (tabId === 'dashboard') {
-                initDashboardCharts();
+                setTimeout(initDashboardCharts, 100);
             } else if (tabId === 'calculs') {
-                initCalculsTab();
+                setTimeout(initCalculsTab, 100);
             } else if (tabId === 'controle') {
-                initControleTab();
+                setTimeout(initControleTab, 100);
             } else if (tabId === 'documents') {
-                initDocumentsTab();
-            } else if (tabId === 'animals') {
-                initAnimalsChart();
-            } else if (tabId === 'cts') {
-                initCtsWindSimulator();
-            } else if (tabId === 'technique') {
-                initTechniqueChart();
-            } else if (tabId === 'outils') {
-                initOutilsTab();
-            }        
+                setTimeout(initDocumentsTab, 100);
+            } else if (tabId === 'cts' || tabId === 'animals' || tabId === 'technique') {
+                setTimeout(initNewCharts, 100);
+            }
         }
 
         // --- Initialisation des onglets ---
@@ -2558,29 +2603,93 @@
             // Rien de spécifique pour l'instant
         }
 
-        function initAnimalsTab() {
-            // Initialiser le graphique timeline animaux
-            if (typeof Chart !== 'undefined' && document.getElementById('animalTimelineChart')) {
-                // Vérifier si le graphique existe déjà
-                if (window.animalTimelineChartInstance) {
-                    window.animalTimelineChartInstance.destroy();
-                }
+        // --- Initialisation des nouveaux graphiques ---
+        function initNewCharts() {
+            // Vérifier si Chart.js est chargé
+            if (typeof Chart === 'undefined') {
+                console.warn('Chart.js non chargé, réessayez dans 500ms');
+                setTimeout(initNewCharts, 500);
+                return;
+            }
+            
+            Chart.defaults.font.family = "'Inter', sans-serif";
 
-                const ctx = document.getElementById('animalTimelineChart').getContext('2d');
-                window.animalTimelineChartInstance = new Chart(ctx, {
+            // Détruire les anciennes instances si elles existent
+            ['erpChart', 'evacChart', 'beaufortChart', 'windChartCts', 'animalTimelineChart', 'windResistanceChart'].forEach(id => {
+                if (window.chartInstances[id]) {
+                    window.chartInstances[id].destroy();
+                }
+            });
+
+            // Graphique de répartition des ERP
+            const erpCanvas = document.getElementById('erpChart');
+            if (erpCanvas) {
+                window.chartInstances['erpChart'] = new Chart(erpCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['1ère catégorie', '2ème catégorie', '3ème catégorie', '4ème catégorie', '5ème catégorie'],
+                        datasets: [{
+                            data: [2, 5, 8, 25, 60],
+                            backgroundColor: [
+                                'rgba(220, 38, 38, 0.8)',
+                                'rgba(249, 115, 22, 0.8)',
+                                'rgba(251, 191, 36, 0.8)',
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(34, 197, 94, 0.8)'
+                            ],
+                            borderWidth: 0,
+                            hoverOffset: 15
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    usePointStyle: true,
+                                    font: { size: 10 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const descriptions = [
+                                            '> 1500 personnes',
+                                            '701 - 1500 personnes',
+                                            '301 - 700 personnes',
+                                            '151 - 300 personnes',
+                                            '≤ 150 personnes'
+                                        ];
+                                        return `${context.label}: ${context.parsed}% - ${descriptions[context.dataIndex]}`;
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '45%'
+                    }
+                });
+            }
+
+            // Graphique d'évacuation
+            const evacCanvas = document.getElementById('evacChart');
+            if (evacCanvas) {
+                window.chartInstances['evacChart'] = new Chart(evacCanvas, {
                     type: 'line',
                     data: {
-                        labels: ['2021', '2023', '2025', '2028'],
+                        labels: ['0', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
                         datasets: [{
-                            label: 'Niveau de Restriction',
-                            data: [0, 30, 60, 100],
-                            borderColor: '#ea580c',
-                            backgroundColor: 'rgba(234, 88, 12, 0.1)',
+                            label: 'Unités de Passage nécessaires',
+                            data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                            borderColor: 'rgb(34, 197, 94)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
                             fill: true,
                             tension: 0.3,
-                            pointRadius: 6,
-                            pointBackgroundColor: '#fff',
-                            pointBorderColor: '#ea580c',
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgb(34, 197, 94)',
+                            pointBorderColor: '#fff',
                             pointBorderWidth: 2
                         }]
                     },
@@ -2589,31 +2698,29 @@
                         maintainAspectRatio: false,
                         scales: {
                             y: {
-                                display: true,
+                                beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: '% Interdiction'
-                                },
-                                max: 100
+                                    text: 'Unités de Passage (UP)'
+                                }
                             },
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Année'
+                                    text: 'Nombre de personnes'
                                 }
                             }
                         },
                         plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            },
                             tooltip: {
                                 callbacks: {
-                                    label: (ctx) => {
-                                        const events = {
-                                            '2021': 'Promulgation Loi',
-                                            '2023': 'Interdiction Reproduction/Acquisition',
-                                            '2025': 'Transition...',
-                                            '2028': 'INTERDICTION TOTALE'
-                                        };
-                                        return events[ctx.label] || '';
+                                    label: function (context) {
+                                        const width = (context.raw === 1 ? 0.90 : context.raw * 0.60).toFixed(2);
+                                        return `${context.raw} UP = ${width} m de largeur`;
                                     }
                                 }
                             }
@@ -2621,18 +2728,11 @@
                     }
                 });
             }
-        }
 
-        function initCtsTab() {
-            // Initialiser le graphique du CTS
-            if (typeof Chart !== 'undefined' && document.getElementById('windChart')) {
-                // Vérifier si le graphique existe déjà
-                if (window.windChartInstance) {
-                    window.windChartInstance.destroy();
-                }
-
-                const ctx = document.getElementById('windChart').getContext('2d');
-                window.windChartInstance = new Chart(ctx, {
+            // Graphique échelle de Beaufort
+            const beaufortCanvas = document.getElementById('beaufortChart');
+            if (beaufortCanvas) {
+                window.chartInstances['beaufortChart'] = new Chart(beaufortCanvas, {
                     type: 'bar',
                     data: {
                         labels: ['Calme (0-50)', 'Vigilance (50-85)', 'Danger (85-100)', 'Critique (100+)'],
@@ -2674,18 +2774,109 @@
                     }
                 });
             }
-        }
 
-        function initTechniqueTab() {
-            // Initialiser le graphique de résistance au vent
-            if (typeof Chart !== 'undefined' && document.getElementById('windResistanceChart')) {
-                // Vérifier si le graphique existe déjà
-                if (window.windResistanceChartInstance) {
-                    window.windResistanceChartInstance.destroy();
-                }
+            // Graphique échelle de Beaufort pour l'onglet CTS
+            const windChartCtsCanvas = document.getElementById('windChartCts');
+            if (windChartCtsCanvas) {
+                window.chartInstances['windChartCts'] = new Chart(windChartCtsCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Calme (0-50)', 'Vigilance (50-85)', 'Danger (85-100)', 'Critique (100+)'],
+                        datasets: [{
+                            label: 'Risque Structurel',
+                            data: [10, 40, 80, 100],
+                            backgroundColor: ['#10B981', '#FBBF24', '#F97316', '#EF4444'],
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                display: false,
+                                max: 100
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (ctx) => {
+                                        const descs = [
+                                            "Exploitation normale",
+                                            "Surveillance ancrages requise",
+                                            "Préparez évacuation",
+                                            "Affalement toile / Fuite"
+                                        ];
+                                        return descs[ctx.dataIndex];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
 
-                const ctx = document.getElementById('windResistanceChart').getContext('2d');
-                window.windResistanceChartInstance = new Chart(ctx, {
+            // Graphique timeline animaux
+            const animalTimelineCanvas = document.getElementById('animalTimelineChart');
+            if (animalTimelineCanvas) {
+                window.chartInstances['animalTimelineChart'] = new Chart(animalTimelineCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: ['2021', '2023', '2025', '2028'],
+                        datasets: [{
+                            label: 'Niveau de Restriction',
+                            data: [0, 30, 60, 100],
+                            borderColor: '#ea580c',
+                            backgroundColor: 'rgba(234, 88, 12, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#ea580c',
+                            pointBorderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: '% Interdiction'
+                                },
+                                max: 100
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: (ctx) => {
+                                        const events = {
+                                            '2021': 'Promulgation Loi',
+                                            '2023': 'Interdiction Reproduction/Acquisition',
+                                            '2025': 'Transition...',
+                                            '2028': 'INTERDICTION TOTALE'
+                                        };
+                                        return events[ctx.label] || '';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Graphique résistance au vent
+            const windResistanceCanvas = document.getElementById('windResistanceChart');
+            if (windResistanceCanvas) {
+                window.chartInstances['windResistanceChart'] = new Chart(windResistanceCanvas, {
                     type: 'bar',
                     data: {
                         labels: ['Ouverture Public', 'Structure Renforcée', 'Norme NV65 (Moyenne)'],
@@ -2720,299 +2911,6 @@
                     }
                 });
             }
-        }
-
-        function initOutilsTab() {
-            // Initialiser la checklist outils
-            initChecklist();
-        }
-
-        // --- Initialisation des nouveaux graphiques ---
-        function initNewCharts() {
-            Chart.defaults.font.family = "'Inter', sans-serif";
-
-            // Graphique de répartition des ERP
-            new Chart(document.getElementById('erpChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['1ère catégorie', '2ème catégorie', '3ème catégorie', '4ème catégorie', '5ème catégorie'],
-                    datasets: [{
-                        data: [2, 5, 8, 25, 60],
-                        backgroundColor: [
-                            'rgba(220, 38, 38, 0.8)',
-                            'rgba(249, 115, 22, 0.8)',
-                            'rgba(251, 191, 36, 0.8)',
-                            'rgba(59, 130, 246, 0.8)',
-                            'rgba(34, 197, 94, 0.8)'
-                        ],
-                        borderWidth: 0,
-                        hoverOffset: 15
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                usePointStyle: true,
-                                font: { size: 10 },
-                                padding: 15
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const descriptions = [
-                                        '> 1500 personnes',
-                                        '701 - 1500 personnes',
-                                        '301 - 700 personnes',
-                                        '151 - 300 personnes',
-                                        '≤ 150 personnes'
-                                    ];
-                                    return `${context.label}: ${context.parsed}% - ${descriptions[context.dataIndex]}`;
-                                }
-                            }
-                        }
-                    },
-                    cutout: '45%'
-                }
-            });
-
-            // Graphique d'évacuation
-            new Chart(document.getElementById('evacChart'), {
-                type: 'line',
-                data: {
-                    labels: ['0', '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'],
-                    datasets: [{
-                        label: 'Unités de Passage nécessaires',
-                        data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                        borderColor: 'rgb(34, 197, 94)',
-                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 4,
-                        pointBackgroundColor: 'rgb(34, 197, 94)',
-                        pointBorderColor: '#fff',
-                        pointBorderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Unités de Passage (UP)'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Nombre de personnes'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const width = (context.raw === 1 ? 0.90 : context.raw * 0.60).toFixed(2);
-                                    return `${context.raw} UP = ${width} m de largeur`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Graphique échelle de Beaufort
-            new Chart(document.getElementById('beaufortChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Calme (0-50)', 'Vigilance (50-85)', 'Danger (85-100)', 'Critique (100+)'],
-                    datasets: [{
-                        label: 'Risque Structurel',
-                        data: [10, 40, 80, 100],
-                        backgroundColor: ['#10B981', '#FBBF24', '#F97316', '#EF4444'],
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            display: false,
-                            max: 100
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: (ctx) => {
-                                    const descs = [
-                                        "Exploitation normale",
-                                        "Surveillance ancrages requise",
-                                        "Préparez évacuation",
-                                        "Affalement toile / Fuite"
-                                    ];
-                                    return descs[ctx.dataIndex];
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Graphique des seuils de vent (existant)
-            if (document.getElementById('windThresholdChart') && !window.dashboardChartsDone) {
-                // Déjà fait dans initDashboardCharts
-            }
-
-            // Graphique des responsabilités (existant)
-            if (document.getElementById('responsibilityChart') && !window.dashboardChartsDone) {
-                // Déjà fait dans initDashboardCharts
-            }
-
-            // Graphique échelle de Beaufort pour l'onglet CTS
-            new Chart(document.getElementById('windChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Calme (0-50)', 'Vigilance (50-85)', 'Danger (85-100)', 'Critique (100+)'],
-                    datasets: [{
-                        label: 'Risque Structurel',
-                        data: [10, 40, 80, 100],
-                        backgroundColor: ['#10B981', '#FBBF24', '#F97316', '#EF4444'],
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            display: false,
-                            max: 100
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: (ctx) => {
-                                    const descs = [
-                                        "Exploitation normale",
-                                        "Surveillance ancrages requise",
-                                        "Préparez évacuation",
-                                        "Affalement toile / Fuite"
-                                    ];
-                                    return descs[ctx.dataIndex];
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Graphique timeline animaux
-            new Chart(document.getElementById('animalTimelineChart'), {
-                type: 'line',
-                data: {
-                    labels: ['2021', '2023', '2025', '2028'],
-                    datasets: [{
-                        label: 'Niveau de Restriction',
-                        data: [0, 30, 60, 100],
-                        borderColor: '#ea580c',
-                        backgroundColor: 'rgba(234, 88, 12, 0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 6,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#ea580c',
-                        pointBorderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            display: true,
-                            title: {
-                                display: true,
-                                text: '% Interdiction'
-                            },
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: (ctx) => {
-                                    const events = {
-                                        '2021': 'Promulgation Loi',
-                                        '2023': 'Interdiction Reproduction/Acquisition',
-                                        '2025': 'Transition...',
-                                        '2028': 'INTERDICTION TOTALE'
-                                    };
-                                    return events[ctx.label] || '';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Graphique résistance au vent
-            new Chart(document.getElementById('windResistanceChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Ouverture Public', 'Structure Renforcée', 'Norme NV65 (Moyenne)'],
-                    datasets: [{
-                        label: 'Vitesse de Vent (km/h)',
-                        data: [100, 120, 140],
-                        backgroundColor: ['#dc2626', '#ea580c', '#57534e'],
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Vitesse (km/h)'
-                            }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return context.raw + ' km/h - Seuil Critique';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
         }
 
         // --- Fonctions pour les nouveaux simulateurs ---
@@ -3186,20 +3084,10 @@
                     }
                 };
 
-                // Initialiser IMMÉDIATEMENT quand la page charge
-                function initCtsWindSimulator() {
-                    if (windSlider2 && windDisplay2 && maxWindSelect2) {
-                        windSlider2.addEventListener('input', updateWindStatus2);
-                        maxWindSelect2.addEventListener('change', updateWindStatus2);
-                        updateWindStatus2();
-                    }
-                }
-                
-                // Lancer l'initialisation
-                initCtsWindSimulator();
-                
-                // Aussi l'initialiser quand on clique sur l'onglet CTS
-                window.initCtsWindSimulator = initCtsWindSimulator;            }
+                windSlider2.addEventListener('input', updateWindStatus2);
+                maxWindSelect2.addEventListener('change', updateWindStatus2);
+                updateWindStatus2(); // Initialiser
+            }
         }
 
         // --- Fonctions pour l'onglet Calculs ---
@@ -3979,33 +3867,49 @@
 
         // --- Initialisation ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Nettoyer les anciennes instances de graphiques
+            window.chartInstances = {};
+
             // Initialiser les onglets
             switchTab('dashboard');
 
-            // Initialiser les checklists
-            loadChecklist();
-
-            // Initialiser les observations
-            loadObservations();
-
-            // Initialiser le tableau de bord
-            updateDashboardCounts();
-
-            // Initialiser la législation
-            renderLinksTable(regulationsData);
-            setupSearch();
-
-            // Configurer le mode hors ligne
-            setupOfflineMode();
-
-            // Mettre à jour les notifications
-            setupNotifications();
-
-            // Initialiser les procédures
-            updateProcedure(0);
-
-            // Initialiser la checklist outils
-            initChecklist();
+            // Attendre que Chart.js soit chargé avant d'initialiser les graphiques
+            const checkChartLoaded = setInterval(() => {
+                if (typeof Chart !== 'undefined') {
+                    clearInterval(checkChartLoaded);
+                    
+                    // Initialiser les graphiques avec un léger délai
+                    setTimeout(() => {
+                        initDashboardCharts();
+                        initNewCharts();
+                        
+                        // Initialiser les checklists
+                        loadChecklist();
+                        
+                        // Initialiser les observations
+                        loadObservations();
+                        
+                        // Initialiser le tableau de bord
+                        updateDashboardCounts();
+                        
+                        // Initialiser la législation
+                        renderLinksTable(regulationsData);
+                        setupSearch();
+                        
+                        // Configurer le mode hors ligne
+                        setupOfflineMode();
+                        
+                        // Mettre à jour les notifications
+                        setupNotifications();
+                        
+                        // Initialiser les procédures
+                        updateProcedure(0);
+                        
+                        // Initialiser la checklist outils
+                        initChecklist();
+                    }, 300);
+                }
+            }, 100);
         });
 
         // --- Configuration du mode hors ligne ---
@@ -4372,8 +4276,25 @@
             initChecklist();
         }
 
+
+        // Afficher automatiquement le bonus après 30 secondes
+        setTimeout(() => {
+            if (Math.random() > 0.5) { // 50% de chance
+                showAnimalBonus();
+            }
+        }, 30000);
+
+        // Ou ajouter un bouton discret quelque part si tu préfères
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ajouter un bouton discret en bas à droite
+            const animalBtn = document.createElement('button');
+            animalBtn.innerHTML = '🐾';
+            animalBtn.title = 'Nos amis les animaux';
+            animalBtn.className = 'fixed bottom-4 right-4 bg-emerald-500 text-white w-12 h-12 rounded-full shadow-lg hover:bg-emerald-600 transition z-50 flex items-center justify-center text-xl';
+            animalBtn.onclick = showAnimalBonus;
+            document.body.appendChild(animalBtn);
+        });
         
     </script>
 </body>
-
 </html>
