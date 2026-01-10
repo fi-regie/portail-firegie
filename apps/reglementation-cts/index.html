@@ -567,37 +567,44 @@
                 <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mt-6">
                     <a href="#classification"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-slate-600 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Classification & Jauge</span>
                     </a>
                     <a href="#evacuation"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-emerald-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Dégagements & Unités de Passage </span>
                     </a>
                     <a href="#vent-meteo"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-blue-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Échelle de Beaufort Vent & Météo</span>
                     </a>
                     <a href="#categorie-hauteur"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-orange-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Catégorisation Hauteur de Chute</span>
                     </a>
                     <a href="#simulateur-charges"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-purple-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Charges d'Exploitation</span>
                     </a>
                     <a href="#calage"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-amber-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Charges & Calages</span>
                     </a>
                     <a href="#maitre-couple"
                         class="bg-stone-50 p-4 rounded-lg border-l-4 border-cyan-500 hover-lift hover:shadow-md transition-all cursor-pointer">
-                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
+                        <span
+                            class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Simulateur</span>
                         <span class="font-medium">Calculateur de Maître-couple</span>
                     </a>
                 </div>
@@ -2393,7 +2400,7 @@
                 setTimeout(initDashboardCharts, 500);
                 return;
             }
-            
+
             // Vérifie si les graphiques existent déjà et les détruit
             if (window.chartInstances['windThresholdChart']) {
                 window.chartInstances['windThresholdChart'].destroy();
@@ -2456,7 +2463,7 @@
                     }
                 });
             }
-            
+
             // Code pour le graphique des responsabilités
             const responsibilityCanvas = document.getElementById('responsibilityChart');
             if (responsibilityCanvas) {
@@ -2541,10 +2548,18 @@
                 setTimeout(initControleTab, 100);
             } else if (tabId === 'documents') {
                 setTimeout(initDocumentsTab, 100);
-            } else if (tabId === 'cts' || tabId === 'animals' || tabId === 'technique') {
+
+
+            } else if (tabId === 'cts') {
+                setTimeout(() => {
+                    initNewCharts();
+                    initCtsWindSimulator();
+                }, 100);
+            } else if (tabId === 'animals' || tabId === 'technique') {
                 setTimeout(initNewCharts, 100);
             }
         }
+
 
         // --- Initialisation des onglets ---
         function initCalculsTab() {
@@ -2611,7 +2626,7 @@
                 setTimeout(initNewCharts, 500);
                 return;
             }
-            
+
             Chart.defaults.font.family = "'Inter', sans-serif";
 
             // Détruire les anciennes instances si elles existent
@@ -3034,60 +3049,80 @@
                     }
                 };
 
-                windSlider.addEventListener('input', updateWindStatus);
-                maxWindSelect.addEventListener('change', updateWindStatus);
-                updateWindStatus(); // Initialiser
-            }
-
-            // Simulateur de vent pour l'onglet CTS
-            const windSlider2 = document.getElementById('currentWindInput2');
-            const windDisplay2 = document.getElementById('currentWindDisplay2');
-            const maxWindSelect2 = document.getElementById('maxWindInput2');
-
-            if (windSlider2) {
-                const updateWindStatus2 = () => {
-                    const current = parseInt(windSlider2.value);
-                    const max = parseInt(maxWindSelect2.value);
-
-                    windDisplay2.textContent = current + " km/h";
-
-                    const statusBox = document.getElementById('weatherStatus2');
-                    const icon = document.getElementById('weatherIcon2');
-                    const title = document.getElementById('weatherTitle2');
-                    const desc = document.getElementById('weatherDesc2');
-
-                    const warningThreshold = max * 0.75;
-
-                    statusBox.className = "p-4 rounded-lg flex items-start gap-3 transition-colors duration-300 border";
-
-                    if (current >= max) {
-                        statusBox.classList.add('bg-red-100', 'border-red-200');
-                        icon.textContent = "🚨";
-                        title.textContent = "ÉVACUATION IMMÉDIATE";
-                        title.className = "font-bold text-red-800";
-                        desc.textContent = `Vent supérieur à la limite (${max} km/h). Affalement de la structure ou évacuation du public requis.`;
-                        desc.className = "text-sm text-red-700";
-                    } else if (current >= warningThreshold) {
-                        statusBox.classList.add('bg-orange-100', 'border-orange-200');
-                        icon.textContent = "⚠️";
-                        title.textContent = "Vigilance Renforcée";
-                        title.className = "font-bold text-orange-800";
-                        desc.textContent = `Vent à >75% de la limite. Préparez l'évacuation. Vérifiez les ancrages. Arrêt des effets scéniques aériens.`;
-                        desc.className = "text-sm text-orange-700";
-                    } else {
-                        statusBox.classList.add('bg-green-100', 'border-green-200');
-                        icon.textContent = "✅";
-                        title.textContent = "Situation Normale";
-                        title.className = "font-bold text-green-800";
-                        desc.textContent = "Vitesse de vent admissible. Exploitation autorisée sous surveillance.";
-                        desc.className = "text-sm text-green-700";
-                    }
-                };
 
                 windSlider2.addEventListener('input', updateWindStatus2);
                 maxWindSelect2.addEventListener('change', updateWindStatus2);
                 updateWindStatus2(); // Initialiser
             }
+        }
+
+        // Fonction dédiée pour initialiser le simulateur de vent de l'onglet CTS
+        function initCtsWindSimulator() {
+            const windSlider2 = document.getElementById('currentWindInput2');
+            const windDisplay2 = document.getElementById('currentWindDisplay2');
+            const maxWindSelect2 = document.getElementById('maxWindInput2');
+
+            if (!windSlider2 || !windDisplay2 || !maxWindSelect2) {
+                console.warn('Éléments du simulateur CTS non trouvés');
+                return;
+            }
+
+            // Retirer les anciens écouteurs d'événements
+            const newWindSlider2 = windSlider2.cloneNode(true);
+            windSlider2.parentNode.replaceChild(newWindSlider2, windSlider2);
+
+            const newMaxWindSelect2 = maxWindSelect2.cloneNode(true);
+            maxWindSelect2.parentNode.replaceChild(newMaxWindSelect2, maxWindSelect2);
+
+            const updateWindStatus2 = () => {
+                const current = parseInt(newWindSlider2.value);
+                const max = parseInt(newMaxWindSelect2.value);
+
+                windDisplay2.textContent = current + " km/h";
+
+                const statusBox = document.getElementById('weatherStatus2');
+                const icon = document.getElementById('weatherIcon2');
+                const title = document.getElementById('weatherTitle2');
+                const desc = document.getElementById('weatherDesc2');
+
+                if (!statusBox || !icon || !title || !desc) {
+                    console.warn('Éléments de statut CTS non trouvés');
+                    return;
+                }
+
+                const warningThreshold = max * 0.75;
+
+                statusBox.className = "p-4 rounded-lg flex items-start gap-3 transition-colors duration-300 border";
+
+                if (current >= max) {
+                    statusBox.classList.add('bg-red-100', 'border-red-200');
+                    icon.textContent = "🚨";
+                    title.textContent = "ÉVACUATION IMMÉDIATE";
+                    title.className = "font-bold text-red-800";
+                    desc.textContent = `Vent supérieur à la limite (${max} km/h). Affalement de la structure ou évacuation du public requis.`;
+                    desc.className = "text-sm text-red-700";
+                } else if (current >= warningThreshold) {
+                    statusBox.classList.add('bg-orange-100', 'border-orange-200');
+                    icon.textContent = "⚠️";
+                    title.textContent = "Vigilance Renforcée";
+                    title.className = "font-bold text-orange-800";
+                    desc.textContent = `Vent à >75% de la limite. Préparez l'évacuation. Vérifiez les ancrages. Arrêt des effets scéniques aériens.`;
+                    desc.className = "text-sm text-orange-700";
+                } else {
+                    statusBox.classList.add('bg-green-100', 'border-green-200');
+                    icon.textContent = "✅";
+                    title.textContent = "Situation Normale";
+                    title.className = "font-bold text-green-800";
+                    desc.textContent = "Vitesse de vent admissible. Exploitation autorisée sous surveillance.";
+                    desc.className = "text-sm text-green-700";
+                }
+            };
+
+            newWindSlider2.addEventListener('input', updateWindStatus2);
+            newMaxWindSelect2.addEventListener('change', updateWindStatus2);
+
+            // Initialiser immédiatement
+            updateWindStatus2();
         }
 
         // --- Fonctions pour l'onglet Calculs ---
@@ -3806,17 +3841,152 @@
 
             const resultDiv = document.getElementById('guardResult');
             resultDiv.innerHTML = `
-                <div class="flex items-center">
-                    <span class="text-2xl mr-3">${icon}</span>
-                    <div>
-                        <div class="font-medium">${resultText}</div>
-                        <div class="text-sm text-stone-600 mt-1">Hauteur mesurée : ${height} m | Minimum requis : ${minHeight} m</div>
-                    </div>
-                </div>
-            `;
+        <div class="flex items-center">
+            <span class="text-2xl mr-3">${icon}</span>
+            <div>
+                <div class="font-medium">${resultText}</div>
+                <div class="text-sm text-stone-600 mt-1">Hauteur mesurée : ${height} m | Minimum requis : ${minHeight} m</div>
+            </div>
+        </div>
+    `;
             resultDiv.className = `mt-4 p-4 rounded-lg border ${resultClass}`;
             resultDiv.classList.remove('hidden');
         }
+
+        function generatePreventionPlan() {
+            const nbEntreprises = parseInt(document.getElementById('nbEntreprises').value) || 0;
+            const dureeTravaux = parseInt(document.getElementById('dureeTravaux').value) || 0;
+
+            let planNecessaire = dureeTravaux >= 400;
+            let message = '';
+            let type = 'info';
+
+            if (planNecessaire) {
+                message = `Plan de prévention OBLIGATOIRE : ${dureeTravaux}h de travaux avec ${nbEntreprises} entreprise(s).`;
+                type = 'warning';
+            } else {
+                message = `Plan de prévention recommandé mais non obligatoire (< 400h). Durée : ${dureeTravaux}h.`;
+                type = 'success';
+            }
+
+            Swal.fire({
+                icon: type === 'warning' ? 'warning' : 'info',
+                title: 'Plan de Prévention',
+                html: `
+            <div class="text-left">
+                <p class="mb-4">${message}</p>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-bold mb-2">Contenu minimum du plan :</h4>
+                    <ul class="text-sm space-y-1">
+                        <li>• Définition des phases d'activité dangereuses</li>
+                        <li>• Adaptation des matériels et installations</li>
+                        <li>• Instructions à donner aux salariés</li>
+                        <li>• Organisation des premiers secours</li>
+                    </ul>
+                </div>
+            </div>
+        `,
+                confirmButtonText: 'Compris',
+                confirmButtonColor: '#ea580c'
+            });
+        }
+
+        function calculateNextVerification() {
+            const equipmentType = document.getElementById('equipmentType').value;
+            const lastVerification = document.getElementById('lastVerification').value;
+
+            if (!lastVerification) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Date manquante',
+                    text: 'Veuillez saisir la date de dernière vérification.',
+                });
+                return;
+            }
+
+            const lastDate = new Date(lastVerification);
+            let nextDate = new Date(lastDate);
+            let frequence = '';
+            let details = '';
+
+            switch (equipmentType) {
+                case 'levage':
+                    nextDate.setFullYear(lastDate.getFullYear() + 1);
+                    frequence = 'Annuelle';
+                    details = 'Vérification générale périodique (VGP) par organisme accrédité. Articles R4323-22 et R4323-23 du Code du travail.';
+                    break;
+                case 'electrique':
+                    nextDate.setFullYear(lastDate.getFullYear() + 1);
+                    frequence = 'Annuelle';
+                    details = 'Vérification des installations électriques (Q18/Q19). Article EL du règlement de sécurité ERP.';
+                    break;
+                case 'securite':
+                    nextDate.setMonth(lastDate.getMonth() + 6);
+                    frequence = 'Semestrielle';
+                    details = 'Vérification des moyens de secours (extincteurs, RIA, BAES, désenfumage). Article MS du règlement ERP.';
+                    break;
+                case 'structure':
+                    nextDate.setFullYear(lastDate.getFullYear() + 2);
+                    frequence = 'Biennale (2 ans)';
+                    details = 'Vérification du registre de sécurité CTS. 6 mois si > 2500 pers ou établissements multiples. Article CTS 34.';
+                    break;
+            }
+
+            const today = new Date();
+            const daysRemaining = Math.ceil((nextDate - today) / (1000 * 60 * 60 * 24));
+
+            let statusClass = 'bg-emerald-50 border-emerald-200';
+            let statusIcon = '✅';
+            let statusText = 'À jour';
+
+            if (daysRemaining < 0) {
+                statusClass = 'bg-red-50 border-red-200';
+                statusIcon = '🚨';
+                statusText = `DÉPASSÉ de ${Math.abs(daysRemaining)} jours !`;
+            } else if (daysRemaining < 30) {
+                statusClass = 'bg-orange-50 border-orange-200';
+                statusIcon = '⚠️';
+                statusText = `Urgent : ${daysRemaining} jours restants`;
+            } else {
+                statusText = `${daysRemaining} jours restants`;
+            }
+
+            document.getElementById('nextVerificationDate').textContent = nextDate.toLocaleDateString('fr-FR');
+
+            const resultDiv = document.getElementById('verificationResult');
+            resultDiv.className = `mt-4 p-4 rounded-lg border ${statusClass}`;
+            resultDiv.innerHTML = `
+        <div class="space-y-3">
+            <div class="flex items-center">
+                <span class="text-2xl mr-3">${statusIcon}</span>
+                <div>
+                    <div class="font-bold text-lg">${statusText}</div>
+                    <div class="text-sm mt-1">Prochaine vérification : ${nextDate.toLocaleDateString('fr-FR')}</div>
+                </div>
+            </div>
+            <div class="bg-white p-3 rounded border">
+                <div class="text-sm font-medium mb-1">Fréquence : ${frequence}</div>
+                <div class="text-xs text-stone-600">${details}</div>
+            </div>
+        </div>
+    `;
+            resultDiv.classList.remove('hidden');
+
+            // Sauvegarder la vérification
+            saveVerification(equipmentType, lastVerification, nextDate.toISOString().split('T')[0]);
+        }
+
+        function saveVerification(type, lastDate, nextDate) {
+            const verifications = JSON.parse(localStorage.getItem('verifications') || '[]');
+            verifications.push({
+                type,
+                lastDate,
+                nextDate,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('verifications', JSON.stringify(verifications));
+        }
+
 
         // --- Fonctions de sauvegarde ---
         function saveCalculation(type, data) {
@@ -3877,34 +4047,34 @@
             const checkChartLoaded = setInterval(() => {
                 if (typeof Chart !== 'undefined') {
                     clearInterval(checkChartLoaded);
-                    
+
                     // Initialiser les graphiques avec un léger délai
                     setTimeout(() => {
                         initDashboardCharts();
                         initNewCharts();
-                        
+
                         // Initialiser les checklists
                         loadChecklist();
-                        
+
                         // Initialiser les observations
                         loadObservations();
-                        
+
                         // Initialiser le tableau de bord
                         updateDashboardCounts();
-                        
+
                         // Initialiser la législation
                         renderLinksTable(regulationsData);
                         setupSearch();
-                        
+
                         // Configurer le mode hors ligne
                         setupOfflineMode();
-                        
+
                         // Mettre à jour les notifications
                         setupNotifications();
-                        
+
                         // Initialiser les procédures
                         updateProcedure(0);
-                        
+
                         // Initialiser la checklist outils
                         initChecklist();
                     }, 300);
@@ -4294,7 +4464,8 @@
             animalBtn.onclick = showAnimalBonus;
             document.body.appendChild(animalBtn);
         });
-        
+
     </script>
 </body>
+
 </html>
